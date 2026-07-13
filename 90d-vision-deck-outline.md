@@ -3,7 +3,7 @@
 **Deck:** Content + Data + New Products — the team vision deck
 **Window:** July 10 – October 8, 2026
 **Audience:** the full VetIntel / Antelligence operating team
-**Drafted:** 2026-07-13, from the 90-Day Operating Plan, Vision & Strategy hub, the Gates v0.2 deck brief (appendix), and this week's live evidence (refresh progress, shelter-list review, newsfeed pilot, pipeline motion)
+**Drafted:** 2026-07-13, from the 90-Day Operating Plan, Vision & Strategy hub, the Gates v0.2 deck brief (appendix), today's Granola notes from the Helena / Adam / Ben data chat, and this week's live evidence (refresh progress, newsfeed pilot, pipeline motion)
 
 ---
 
@@ -136,7 +136,9 @@ Data makes the market visible → the platform makes data usable → customer wo
 **Post-90:**
 - Faster refresh cycles and continuous enrichment; the platform becomes the normal delivery surface.
 
-**Speaker notes — live proof (as of this week):** Paul reports the refresh on track and posted the first change-stats today (with the honest caveat that most early change is fixing bad data — going forward the deltas mean more). Helena's shelter-list review is complete and moving to CSV. This pillar isn't a plan; it's underway.
+**Speaker notes — live proof (as of this week):** Paul reports the refresh on track and posted the first change-stats today (with the honest caveat that most early change is fixing bad data — going forward the deltas mean more). Helena finished the shelter review Friday — **9,000+ records, every one human-reviewed** with an accept / defer / reject / enrich decision — and is already onto the next file (~100 EPD/IPD changes from Paul, walkthrough call tonight). This pillar isn't a plan; it's underway.
+
+**The quality story worth telling here (from today's data chat):** shelters were harder than EPD/IPD because there's no existing database to run automated comparisons against — county records surfaced county names instead of actual shelter names, and many rows had only a name and a phone number. The answer was human judgment on every record, with deferred items preserved for later rather than discarded. That's "trust and provenance are product features" made concrete: our AI does the comparisons where a trusted base exists, and a person makes the call where it doesn't. Helena's review also surfaced that the market is more granular than our categories — shelters vs. sanctuaries (wildlife / farm / reptile), animal control units, breeders, TNR clinics — and each split is a future dataset with a real buyer behind it (Hills nutrition programs, shelter app partners like PetSol). Today's review work is literally tomorrow's product map.
 
 **Design system:** master slide 9 (three-horizon activity slide).
 
@@ -202,7 +204,7 @@ Data makes the market visible → the platform makes data usable → customer wo
 - **New products** → solve that demand and capture new data (workforce records, verified profiles).
 - New data → back into the platform customers pay for. **The loop compounds.**
 
-**Speaker notes:** Give one concrete trace: a renewal call reveals a customer struggling with workforce data → that shapes the workforce pilot → the pilot produces a data story in The Fountain Report → the story surfaces practices we're missing → the map gets better → the renewal gets easier. One loop, real names.
+**Speaker notes:** Give one concrete trace — and we now have a real one from this week: Helena's shelter review didn't just clean 9,000+ records, it revealed the market is more granular than our categories (sanctuaries, animal control, TNR clinics) → each split is a dataset a named buyer wants (Hills nutrition programs, shelter app partners) → those datasets become data stories only we can write → the stories surface organizations we're missing → the map gets better. Data work became product map became content pipeline, in one review pass. One loop, real names.
 
 **Design system:** master slide 12.
 
@@ -257,7 +259,7 @@ Data makes the market visible → the platform makes data usable → customer wo
 
 **On slide (live ticker, dated items):**
 - ✅ July refresh **on track** — first change-stats posted today (Jul 13)
-- ✅ Shelter list **reviewed and approved** — first new dataset expansion moving to delivery
+- ✅ **9,000+ shelter records human-reviewed** — first new dataset beyond practices, finished Friday; next review file (EPD/IPD changes) already in motion
 - ✅ Morning **newsfeed pilot live** with Mark & Laura
 - ✅ Platform data load underway toward the Jul 31 reconciliation
 - ✅ Pipeline rebuilt in Notion — every renewal and quote now visible in one place
@@ -309,4 +311,5 @@ Data makes the market visible → the platform makes data usable → customer wo
 - [Private | 90-Day Gates, Financial Reality & Team Goals (v0.2)](https://app.notion.com/p/39afed47878c815ea9c6cc110ef06af1) — appendix "Gamma Deck Brief" is the v0.2 baseline this expands
 - [Create a Vision Deck task (Exec Board)](https://app.notion.com/p/398fed47878c801ea593ea3d3028648f)
 - [$500K Round — Target List & Mechanics](https://app.notion.com/p/39afed47878c81a38202c1d66b5254e8) (updated Jul 13)
-- Live signal, week of Jul 13: Paul's refresh change-stats (Slack, product-and-engineering, Jul 13), Helena's shelter-list review completion, Mark & Laura newsfeed pilot task, Jul 16 content-session task, Connor's pre-vacation advertiser wrap-up
+- Granola notes, Jul 13: "Helena / Adam / Ben data chat" (shared by Ben via email) — shelter review process (9,000+ records, accept/defer/reject/enrich), taxonomy gaps (shelters vs. sanctuaries, animal control, breeders, TNR), next EPD/IPD change-file review, commercial whitespace flags (Hills, PetSol)
+- Live signal, week of Jul 13: Paul's refresh change-stats (Slack, product-and-engineering, Jul 13), Mark & Laura newsfeed pilot task, Jul 16 content-session task, Connor's pre-vacation advertiser wrap-up
