@@ -1,0 +1,1091 @@
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Windshear — The Board Brief</title>
+<style>
+  /* ================= TOKENS ================= */
+  :root{
+    /* Cool paper, near-black ink, oxblood signal */
+    --paper:#F4F5F7;
+    --paper-raised:#FBFBFC;
+    --ink:#1A1D22;
+    --ink-soft:#41464E;
+    --faint:#6B717B;
+    --rule:#D5D9DE;
+    --rule-strong:#1A1D22;
+    --signal:#79212B;            /* oxblood */
+    --signal-strong:#5E141D;
+    --on-signal:#FBF7F5;
+    --signal-wash:rgba(121,33,43,.07);
+    --doc-paper:#FFFFFF;
+    --doc-ink:#1B1D21;
+    --doc-soft:#565B63;
+    --doc-rule:#DDDFE3;
+    --doc-shadow:0 1px 2px rgba(20,24,32,.10), 0 12px 28px -8px rgba(20,24,32,.18), 0 32px 64px -24px rgba(20,24,32,.22);
+    --btn-ink-bg:#1A1D22;
+    --btn-ink-fg:#F4F5F7;
+    --focus:#79212B;
+    --sel-bg:rgba(121,33,43,.16);
+  }
+  @media (prefers-color-scheme: dark){
+    :root{
+      /* Night reading — warm-tinted dark, softened paper-white */
+      --paper:#1A1714;
+      --paper-raised:#211D19;
+      --ink:#E9E3D9;
+      --ink-soft:#BDB5A8;
+      --faint:#948B7E;
+      --rule:#39332B;
+      --rule-strong:#E9E3D9;
+      --signal:#D08C82;          /* oxblood, lifted for dark ground */
+      --signal-strong:#DCA49B;
+      --on-signal:#23120F;
+      --signal-wash:rgba(208,140,130,.10);
+      --doc-paper:#F0ECE4;
+      --doc-ink:#211F1C;
+      --doc-soft:#5B564E;
+      --doc-rule:#D9D4C9;
+      --doc-shadow:0 1px 2px rgba(0,0,0,.4), 0 16px 32px -8px rgba(0,0,0,.5), 0 40px 80px -24px rgba(0,0,0,.55);
+      --btn-ink-bg:#E9E3D9;
+      --btn-ink-fg:#1A1714;
+      --focus:#D08C82;
+      --sel-bg:rgba(208,140,130,.25);
+    }
+  }
+  :root[data-theme="light"]{
+    --paper:#F4F5F7; --paper-raised:#FBFBFC; --ink:#1A1D22; --ink-soft:#41464E;
+    --faint:#6B717B; --rule:#D5D9DE; --rule-strong:#1A1D22;
+    --signal:#79212B; --signal-strong:#5E141D; --on-signal:#FBF7F5;
+    --signal-wash:rgba(121,33,43,.07);
+    --doc-paper:#FFFFFF; --doc-ink:#1B1D21; --doc-soft:#565B63; --doc-rule:#DDDFE3;
+    --doc-shadow:0 1px 2px rgba(20,24,32,.10), 0 12px 28px -8px rgba(20,24,32,.18), 0 32px 64px -24px rgba(20,24,32,.22);
+    --btn-ink-bg:#1A1D22; --btn-ink-fg:#F4F5F7; --focus:#79212B;
+    --sel-bg:rgba(121,33,43,.16);
+  }
+  :root[data-theme="dark"]{
+    --paper:#1A1714; --paper-raised:#211D19; --ink:#E9E3D9; --ink-soft:#BDB5A8;
+    --faint:#948B7E; --rule:#39332B; --rule-strong:#E9E3D9;
+    --signal:#D08C82; --signal-strong:#DCA49B; --on-signal:#23120F;
+    --signal-wash:rgba(208,140,130,.10);
+    --doc-paper:#F0ECE4; --doc-ink:#211F1C; --doc-soft:#5B564E; --doc-rule:#D9D4C9;
+    --doc-shadow:0 1px 2px rgba(0,0,0,.4), 0 16px 32px -8px rgba(0,0,0,.5), 0 40px 80px -24px rgba(0,0,0,.55);
+    --btn-ink-bg:#E9E3D9; --btn-ink-fg:#1A1714; --focus:#D08C82;
+    --sel-bg:rgba(208,140,130,.25);
+  }
+
+  /* ================= BASE ================= */
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  @media (prefers-reduced-motion: reduce){
+    html{scroll-behavior:auto}
+    *,*::before,*::after{animation:none !important;transition:none !important}
+  }
+  body{
+    margin:0;
+    background:var(--paper);
+    color:var(--ink);
+    font-family:"Iowan Old Style",Palatino,"Palatino Linotype","Book Antiqua",Georgia,serif;
+    font-size:18px;
+    line-height:1.65;
+    -webkit-font-smoothing:antialiased;
+    text-rendering:optimizeLegibility;
+  }
+  ::selection{background:var(--sel-bg)}
+  .sans{font-family:-apple-system,"Segoe UI","Helvetica Neue",Helvetica,Arial,sans-serif}
+  .mono{font-family:ui-monospace,"SF Mono","Cascadia Mono",Menlo,Consolas,"Liberation Mono",monospace}
+  h1,h2,h3,h4{margin:0;line-height:1.15;text-wrap:balance;font-weight:600}
+  p{margin:0}
+  a{color:inherit}
+  a:focus-visible,button:focus-visible,summary:focus-visible{
+    outline:2px solid var(--focus);outline-offset:3px;border-radius:1px;
+  }
+  main p, main li{max-width:68ch}
+  sup.fn{line-height:0}
+  sup.fn a{
+    font-family:ui-monospace,"SF Mono","Cascadia Mono",Menlo,Consolas,monospace;
+    font-size:.62em;text-decoration:none;color:var(--signal);
+    letter-spacing:.02em;padding:0 1px;
+  }
+  sup.fn a:hover{text-decoration:underline}
+  .num{font-variant-numeric:tabular-nums}
+
+  /* ================= LAYOUT GRID ================= */
+  .shell{max-width:1240px;margin:0 auto;padding:0 32px}
+  @media (max-width:640px){.shell{padding:0 20px}}
+  .band{border-top:1px solid var(--rule);padding:88px 0 96px}
+  .band.tight{padding:64px 0 72px}
+  .grid{
+    display:grid;
+    grid-template-columns:88px minmax(0,1fr) 250px;
+    column-gap:56px;
+  }
+  .g-no{grid-column:1}
+  .g-main{grid-column:2;min-width:0}
+  .g-main.wide{grid-column:2 / 4}
+  .g-aside{grid-column:3;min-width:0}
+  @media (max-width:1080px){
+    .grid{grid-template-columns:minmax(0,1fr)}
+    .g-no,.g-main,.g-main.wide,.g-aside{grid-column:1}
+    .g-no{margin-bottom:18px}
+    .g-aside{margin-top:36px}
+  }
+  .sec-no{
+    font-family:ui-monospace,"SF Mono","Cascadia Mono",Menlo,Consolas,monospace;
+    font-size:12px;letter-spacing:.16em;color:var(--signal);
+    border-top:2px solid var(--signal);padding-top:10px;display:inline-block;min-width:64px;
+  }
+  .kicker{
+    font-family:-apple-system,"Segoe UI","Helvetica Neue",Helvetica,Arial,sans-serif;
+    font-size:12px;font-weight:600;letter-spacing:.22em;text-transform:uppercase;
+    color:var(--faint);margin-bottom:20px;
+  }
+  h2.sec-title{
+    font-size:clamp(28px,3.6vw,42px);font-weight:600;letter-spacing:-.012em;
+    max-width:24ch;
+  }
+  .standfirst{
+    margin-top:22px;font-size:20px;line-height:1.6;color:var(--ink-soft);max-width:62ch;
+  }
+  .body-copy{margin-top:20px;color:var(--ink-soft)}
+  .body-copy strong{color:var(--ink);font-weight:600}
+
+  /* Margin notes */
+  .mnote{
+    font-family:-apple-system,"Segoe UI","Helvetica Neue",Helvetica,Arial,sans-serif;
+    font-size:13px;line-height:1.6;color:var(--faint);
+    border-top:1px solid var(--rule);padding-top:12px;margin-top:6px;
+  }
+  .mnote + .mnote{margin-top:28px}
+  .mnote .mk{
+    font-family:ui-monospace,"SF Mono","Cascadia Mono",Menlo,Consolas,monospace;
+    font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:var(--signal);
+    display:block;margin-bottom:6px;
+  }
+  @media (max-width:1080px){
+    .g-aside .mnote{border-top:1px solid var(--rule)}
+  }
+
+  /* ================= MASTHEAD ================= */
+  header.masthead{
+    border-bottom:2px solid var(--rule-strong);
+    background:var(--paper);
+  }
+  .mast-top{
+    display:flex;align-items:baseline;justify-content:space-between;gap:16px;
+    padding:20px 0 16px;border-bottom:1px solid var(--rule);flex-wrap:wrap;
+  }
+  .wordmark{
+    text-decoration:none;font-weight:700;font-size:19px;letter-spacing:.30em;
+    text-transform:uppercase;
+  }
+  .wordmark .wm-rule{color:var(--signal)}
+  .mast-meta{
+    font-family:ui-monospace,"SF Mono","Cascadia Mono",Menlo,Consolas,monospace;
+    font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--faint);
+    display:flex;align-items:center;gap:18px;flex-wrap:wrap;
+  }
+  .theme-toggle{
+    font-family:ui-monospace,"SF Mono","Cascadia Mono",Menlo,Consolas,monospace;
+    font-size:11px;letter-spacing:.14em;text-transform:uppercase;
+    background:none;border:1px solid var(--rule);color:var(--ink-soft);
+    padding:6px 12px;cursor:pointer;border-radius:2px;
+  }
+  .theme-toggle:hover{border-color:var(--ink-soft)}
+  .mast-nav{
+    display:flex;gap:28px;padding:12px 0;flex-wrap:wrap;
+    font-family:-apple-system,"Segoe UI","Helvetica Neue",Helvetica,Arial,sans-serif;
+    font-size:13px;font-weight:500;letter-spacing:.04em;
+  }
+  .mast-nav a{text-decoration:none;color:var(--ink-soft)}
+  .mast-nav a:hover{color:var(--signal)}
+  @media (max-width:720px){.mast-nav{gap:18px}}
+  .skip-link{
+    position:absolute;left:-9999px;top:0;background:var(--btn-ink-bg);color:var(--btn-ink-fg);
+    padding:10px 16px;z-index:100;font-family:-apple-system,"Segoe UI",Helvetica,Arial,sans-serif;font-size:14px;
+  }
+  .skip-link:focus{left:12px;top:12px}
+
+  /* ================= HERO ================= */
+  .hero{padding:96px 0 88px}
+  @media (max-width:720px){.hero{padding:64px 0 64px}}
+  .hero-cols{display:grid;grid-template-columns:minmax(0,1fr) 300px;column-gap:96px;align-items:start}
+  @media (max-width:1080px){
+    .hero-cols{grid-template-columns:minmax(0,1fr)}
+    .hero-toc{display:none}
+  }
+  .hero-toc{
+    border-top:2px solid var(--rule-strong);padding-top:18px;margin-top:14px;
+  }
+  .hero-toc .toc-label{
+    font-family:ui-monospace,"SF Mono","Cascadia Mono",Menlo,Consolas,monospace;
+    font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--signal);
+  }
+  .hero-toc ol{margin:14px 0 0;padding:0;list-style:none}
+  .hero-toc li{border-bottom:1px solid var(--rule)}
+  .hero-toc li:last-child{border-bottom:none}
+  .hero-toc a{
+    display:grid;grid-template-columns:38px minmax(0,1fr);gap:12px;align-items:baseline;
+    padding:11px 2px;text-decoration:none;
+    font-family:-apple-system,"Segoe UI","Helvetica Neue",Helvetica,Arial,sans-serif;
+    font-size:13.5px;font-weight:500;color:var(--ink-soft);
+  }
+  .hero-toc a:hover{color:var(--signal)}
+  .hero-toc a .n{
+    font-family:ui-monospace,"SF Mono","Cascadia Mono",Menlo,Consolas,monospace;
+    font-size:11px;color:var(--faint);letter-spacing:.06em;
+  }
+  .hero-toc .toc-close{
+    margin-top:16px;font-family:-apple-system,"Segoe UI","Helvetica Neue",Helvetica,Arial,sans-serif;
+    font-size:12px;line-height:1.6;color:var(--faint);
+  }
+  .hero-kicker{
+    font-family:ui-monospace,"SF Mono","Cascadia Mono",Menlo,Consolas,monospace;
+    font-size:12px;letter-spacing:.2em;text-transform:uppercase;color:var(--signal);
+    display:flex;align-items:center;gap:14px;margin-bottom:30px;
+  }
+  .hero-kicker::before{content:"";display:inline-block;width:40px;height:2px;background:var(--signal)}
+  h1.hero-title{
+    font-size:clamp(38px,5.6vw,66px);font-weight:600;letter-spacing:-.018em;line-height:1.06;
+    max-width:20ch;
+  }
+  .hero-stand{
+    margin-top:30px;font-size:21px;line-height:1.62;color:var(--ink-soft);max-width:60ch;
+  }
+  .hero-stand strong{color:var(--ink);font-weight:600}
+  .hero-ctas{display:flex;gap:14px;margin-top:40px;flex-wrap:wrap}
+  .btn{
+    display:inline-block;text-decoration:none;border-radius:2px;
+    font-family:-apple-system,"Segoe UI","Helvetica Neue",Helvetica,Arial,sans-serif;
+    font-size:14px;font-weight:600;letter-spacing:.03em;
+    padding:14px 24px;border:1px solid var(--rule-strong);
+  }
+  .btn-ink{background:var(--btn-ink-bg);color:var(--btn-ink-fg)}
+  .btn-ink:hover{background:var(--signal);border-color:var(--signal);color:var(--on-signal)}
+  .btn-line{background:transparent;color:var(--ink)}
+  .btn-line:hover{border-color:var(--signal);color:var(--signal)}
+  .btn-signal{background:var(--signal);border-color:var(--signal);color:var(--on-signal)}
+  .btn-signal:hover{background:var(--signal-strong);border-color:var(--signal-strong)}
+  :root[data-theme="dark"] .btn-signal:hover, :root[data-theme="dark"] .btn-ink:hover{color:var(--on-signal)}
+
+  /* Drop stats */
+  .stats{
+    margin-top:72px;border-top:2px solid var(--rule-strong);
+    display:grid;grid-template-columns:repeat(3,1fr);
+  }
+  @media (max-width:860px){.stats{grid-template-columns:1fr}}
+  .stat{
+    padding:28px 32px 30px 0;border-bottom:1px solid var(--rule);
+  }
+  .stats .stat + .stat{border-left:1px solid var(--rule);padding-left:32px}
+  @media (max-width:860px){
+    .stats .stat + .stat{border-left:none;padding-left:0}
+    .stat{padding-right:0}
+  }
+  .stat .fig{
+    font-size:clamp(40px,4.6vw,56px);font-weight:600;letter-spacing:-.02em;
+    font-variant-numeric:tabular-nums;line-height:1.05;
+  }
+  .stat .fig .unit{font-size:.5em;letter-spacing:0;color:var(--faint);font-weight:500}
+  .stat .cap{
+    margin-top:12px;font-family:-apple-system,"Segoe UI","Helvetica Neue",Helvetica,Arial,sans-serif;
+    font-size:13.5px;line-height:1.55;color:var(--faint);max-width:36ch;
+  }
+  .stat .cap strong{color:var(--ink);font-weight:600}
+
+  /* ================= REGULATORY LEDGER ================= */
+  .reg-list{margin-top:36px;border-top:2px solid var(--rule-strong)}
+  .reg-row{
+    display:grid;grid-template-columns:200px minmax(0,1fr);gap:28px;
+    padding:24px 0;border-bottom:1px solid var(--rule);
+  }
+  @media (max-width:720px){.reg-row{grid-template-columns:1fr;gap:8px;padding:20px 0}}
+  .reg-row .reg-name{
+    font-family:-apple-system,"Segoe UI","Helvetica Neue",Helvetica,Arial,sans-serif;
+    font-size:14px;font-weight:700;letter-spacing:.02em;padding-top:2px;
+  }
+  .reg-row .reg-name .mono{display:block;font-weight:400;font-size:11px;letter-spacing:.1em;color:var(--signal);margin-top:5px;text-transform:uppercase}
+  .reg-row p{font-size:16px;color:var(--ink-soft);max-width:62ch}
+  .reg-close{
+    margin-top:30px;font-size:19px;line-height:1.6;max-width:58ch;
+  }
+  .reg-close strong{font-weight:600;color:var(--signal)}
+
+  /* ================= PULL QUOTE ================= */
+  .pull{
+    border-top:2px solid var(--rule-strong);border-bottom:1px solid var(--rule);
+    padding:56px 0;
+  }
+  .pull blockquote{
+    margin:0;font-size:clamp(24px,3vw,34px);line-height:1.4;font-weight:500;
+    letter-spacing:-.008em;max-width:30ch;text-wrap:balance;
+  }
+  .pull blockquote .qm{color:var(--signal)}
+  .pull footer{
+    margin-top:22px;font-family:-apple-system,"Segoe UI","Helvetica Neue",Helvetica,Arial,sans-serif;
+    font-size:13px;letter-spacing:.06em;color:var(--faint);
+  }
+  .pull footer strong{color:var(--ink);font-weight:600}
+
+  /* ================= DOCUMENT ARTIFACT ================= */
+  .doc-stage{
+    margin:56px 0 0;padding:clamp(28px,5vw,64px) clamp(12px,4vw,56px);
+    background:
+      linear-gradient(var(--signal-wash), var(--signal-wash)),
+      var(--paper-raised);
+    border:1px solid var(--rule);
+  }
+  .doc{
+    max-width:680px;margin:0 auto;background:var(--doc-paper);color:var(--doc-ink);
+    box-shadow:var(--doc-shadow);
+    transform:rotate(-.45deg);
+    padding:clamp(26px,4.4vw,52px) clamp(22px,4.4vw,56px) clamp(22px,3.4vw,40px);
+    font-size:14.5px;line-height:1.6;
+  }
+  @media (max-width:560px){.doc{transform:none}}
+  .doc-caption{
+    margin:26px auto 0;max-width:680px;
+    font-family:-apple-system,"Segoe UI","Helvetica Neue",Helvetica,Arial,sans-serif;
+    font-size:12.5px;color:var(--faint);text-align:center;
+  }
+  .doc .lh{
+    display:flex;justify-content:space-between;align-items:baseline;gap:12px;
+    padding-bottom:14px;border-bottom:2px solid var(--doc-ink);flex-wrap:wrap;
+  }
+  .doc .lh .lh-mark{font-weight:700;letter-spacing:.3em;font-size:15px;text-transform:uppercase}
+  .doc .lh .lh-class{
+    font-family:ui-monospace,"SF Mono","Cascadia Mono",Menlo,Consolas,monospace;
+    font-size:10px;letter-spacing:.16em;color:#79212B;border:1px solid #79212B;
+    padding:3px 8px;text-transform:uppercase;
+  }
+  .doc .doc-title{margin-top:26px}
+  .doc .doc-title h3{font-size:26px;font-weight:600;letter-spacing:-.01em}
+  .doc .doc-title p{
+    margin-top:8px;font-family:-apple-system,"Segoe UI",Helvetica,Arial,sans-serif;
+    font-size:12.5px;letter-spacing:.05em;color:var(--doc-soft);
+  }
+  .doc .doc-meta{
+    margin-top:20px;display:grid;grid-template-columns:1fr 1fr 1fr;gap:14px;
+    border-top:1px solid var(--doc-rule);border-bottom:1px solid var(--doc-rule);
+    padding:12px 0;
+  }
+  @media (max-width:560px){.doc .doc-meta{grid-template-columns:1fr 1fr}}
+  .doc .doc-meta div{font-family:-apple-system,"Segoe UI",Helvetica,Arial,sans-serif;font-size:12px;color:var(--doc-soft)}
+  .doc .doc-meta span{
+    display:block;font-family:ui-monospace,"SF Mono",Menlo,Consolas,monospace;
+    font-size:9.5px;letter-spacing:.16em;text-transform:uppercase;margin-bottom:4px;color:#79212B;
+  }
+  .doc .doc-meta strong{color:var(--doc-ink);font-weight:600}
+  .doc .score-row{
+    margin-top:24px;display:flex;gap:28px;align-items:flex-start;flex-wrap:wrap;
+  }
+  .doc .score-big{
+    font-size:64px;font-weight:600;line-height:.95;letter-spacing:-.02em;
+    font-variant-numeric:tabular-nums;
+  }
+  .doc .score-big .of{font-size:17px;color:var(--doc-soft);letter-spacing:0;font-weight:400}
+  .doc .score-desc{flex:1;min-width:220px;font-size:13.5px;color:var(--doc-soft);padding-top:6px}
+  .doc .score-desc strong{color:var(--doc-ink);font-weight:600}
+  .doc .score-desc .delta{
+    display:inline-block;margin-top:8px;font-family:ui-monospace,"SF Mono",Menlo,Consolas,monospace;
+    font-size:11px;letter-spacing:.08em;color:#155B38;background:rgba(21,91,56,.08);
+    padding:3px 8px;font-variant-numeric:tabular-nums;
+  }
+  .doc .findings{margin-top:26px;border-top:1px solid var(--doc-rule)}
+  .doc .f-row{
+    display:grid;grid-template-columns:64px minmax(0,1fr);gap:14px;
+    padding:13px 0;border-bottom:1px solid var(--doc-rule);
+  }
+  .doc .f-row .f-id{
+    font-family:ui-monospace,"SF Mono",Menlo,Consolas,monospace;
+    font-size:10.5px;letter-spacing:.1em;padding-top:3px;color:#79212B;
+  }
+  .doc .f-row .f-id em{display:block;font-style:normal;color:var(--doc-soft);margin-top:3px;font-size:9px;letter-spacing:.14em;text-transform:uppercase}
+  .doc .f-row p{font-size:13.5px;color:var(--doc-ink)}
+  .doc .f-row p span{color:var(--doc-soft)}
+  .doc .map-line{
+    margin-top:20px;font-family:ui-monospace,"SF Mono",Menlo,Consolas,monospace;
+    font-size:10.5px;line-height:1.7;letter-spacing:.04em;color:var(--doc-soft);
+    border-left:2px solid #79212B;padding-left:12px;
+  }
+  .doc .sig-row{
+    margin-top:30px;display:grid;grid-template-columns:1fr 1fr;gap:32px;
+  }
+  @media (max-width:560px){.doc .sig-row{grid-template-columns:1fr;gap:20px}}
+  .doc .sig{border-top:1px solid var(--doc-ink);padding-top:8px}
+  .doc .sig .sig-name{font-size:13px;font-weight:600}
+  .doc .sig .sig-role{
+    font-family:-apple-system,"Segoe UI",Helvetica,Arial,sans-serif;
+    font-size:11px;color:var(--doc-soft);margin-top:2px;
+  }
+  .doc .doc-foot{
+    margin-top:28px;padding-top:12px;border-top:1px solid var(--doc-rule);
+    display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap;
+    font-family:ui-monospace,"SF Mono",Menlo,Consolas,monospace;
+    font-size:9.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--doc-soft);
+  }
+
+  /* ================= FRAMEWORK TABLE ================= */
+  .table-note{
+    margin-top:18px;font-family:-apple-system,"Segoe UI","Helvetica Neue",Helvetica,Arial,sans-serif;
+    font-size:13.5px;color:var(--faint);max-width:62ch;
+  }
+  .table-note strong{color:var(--ink);font-weight:600}
+  .table-scroll{margin-top:32px;overflow-x:auto;border:1px solid var(--rule);background:var(--paper-raised)}
+  table.fw{
+    border-collapse:collapse;width:100%;min-width:860px;
+    font-family:-apple-system,"Segoe UI","Helvetica Neue",Helvetica,Arial,sans-serif;
+    font-size:13.5px;
+  }
+  table.fw caption{
+    text-align:left;padding:16px 20px 14px;
+    font-family:ui-monospace,"SF Mono","Cascadia Mono",Menlo,Consolas,monospace;
+    font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:var(--signal);
+    border-bottom:2px solid var(--rule-strong);
+  }
+  table.fw th, table.fw td{
+    text-align:left;vertical-align:top;padding:14px 20px;
+    border-bottom:1px solid var(--rule);
+  }
+  table.fw thead th{
+    font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--faint);
+    font-weight:600;border-bottom:1px solid var(--rule-strong);padding-top:16px;
+  }
+  table.fw thead th:first-child{color:var(--ink)}
+  table.fw tbody th{
+    font-weight:600;color:var(--ink);font-size:14px;width:26%;
+  }
+  table.fw tbody th span{
+    display:block;font-weight:400;font-size:12px;color:var(--faint);margin-top:3px;
+  }
+  table.fw td{color:var(--ink-soft)}
+  table.fw td .m{
+    font-family:ui-monospace,"SF Mono","Cascadia Mono",Menlo,Consolas,monospace;
+    font-size:11px;letter-spacing:.06em;color:var(--signal);display:block;margin-bottom:3px;
+  }
+  table.fw tbody tr:last-child th, table.fw tbody tr:last-child td{border-bottom:none}
+
+  /* ================= ECONOMICS ================= */
+  .ledger{margin-top:40px;display:grid;grid-template-columns:1fr 1fr;border:1px solid var(--rule);background:var(--paper-raised)}
+  @media (max-width:860px){.ledger{grid-template-columns:1fr}}
+  .ledger .col{padding:34px 36px 38px}
+  .ledger .col + .col{border-left:1px solid var(--rule)}
+  @media (max-width:860px){.ledger .col + .col{border-left:none;border-top:1px solid var(--rule)}}
+  .ledger .col.ws{box-shadow:inset 0 3px 0 var(--signal)}
+  .ledger .l-label{
+    font-family:ui-monospace,"SF Mono","Cascadia Mono",Menlo,Consolas,monospace;
+    font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:var(--faint);
+  }
+  .ledger .col.ws .l-label{color:var(--signal)}
+  .ledger .l-fig{
+    margin-top:14px;font-size:clamp(30px,3.4vw,42px);font-weight:600;letter-spacing:-.015em;
+    font-variant-numeric:tabular-nums;line-height:1.1;
+  }
+  .ledger .l-fig sup.fn{vertical-align:super}
+  .ledger .l-fig sup.fn a{font-size:14px}
+  .ledger .l-fig .unit{
+    display:block;margin-top:10px;
+    font-family:-apple-system,"Segoe UI","Helvetica Neue",Helvetica,Arial,sans-serif;
+    font-size:11px;font-weight:600;letter-spacing:.16em;text-transform:uppercase;color:var(--faint);
+  }
+  .ledger dl{margin:26px 0 0;border-top:1px solid var(--rule)}
+  .ledger dl > div{
+    display:grid;grid-template-columns:120px minmax(0,1fr);gap:16px;
+    padding:11px 0;border-bottom:1px solid var(--rule);
+  }
+  .ledger dt{
+    font-family:-apple-system,"Segoe UI","Helvetica Neue",Helvetica,Arial,sans-serif;
+    font-size:11px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--faint);
+    padding-top:3px;
+  }
+  .ledger dd{margin:0;font-size:15px;color:var(--ink-soft)}
+  .ledger .col.ws dd{color:var(--ink)}
+
+  /* ================= COUNSEL Q&A ================= */
+  .qa{margin-top:40px;border-top:2px solid var(--rule-strong)}
+  .qa-item{border-bottom:1px solid var(--rule);padding:30px 0 32px}
+  .qa-item .q{
+    display:grid;grid-template-columns:88px minmax(0,1fr);gap:24px;
+  }
+  @media (max-width:720px){.qa-item .q{grid-template-columns:1fr;gap:10px}}
+  .qa-item .q-mark{
+    font-family:ui-monospace,"SF Mono","Cascadia Mono",Menlo,Consolas,monospace;
+    font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--signal);padding-top:6px;
+  }
+  .qa-item h3{font-size:21px;font-weight:600;letter-spacing:-.008em;max-width:34ch}
+  .qa-item .a{
+    display:grid;grid-template-columns:88px minmax(0,1fr);gap:24px;margin-top:14px;
+  }
+  @media (max-width:720px){.qa-item .a{grid-template-columns:1fr;gap:8px}}
+  .qa-item .a-mark{
+    font-family:ui-monospace,"SF Mono","Cascadia Mono",Menlo,Consolas,monospace;
+    font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--faint);padding-top:4px;
+  }
+  .qa-item .a p{font-size:16.5px;color:var(--ink-soft);max-width:60ch}
+  .qa-item .a p strong{color:var(--ink);font-weight:600}
+
+  /* ================= OPERATOR ================= */
+  .op-grid{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:64px;margin-top:36px}
+  @media (max-width:900px){.op-grid{grid-template-columns:1fr;gap:40px}}
+  .op-lede{font-size:19px;line-height:1.65;color:var(--ink-soft)}
+  .op-lede strong{color:var(--ink);font-weight:600}
+  .cv{border-top:2px solid var(--rule-strong)}
+  .cv-row{
+    display:grid;grid-template-columns:64px minmax(0,1fr);gap:20px;
+    padding:16px 0;border-bottom:1px solid var(--rule);
+  }
+  .cv-row .cv-yr{
+    font-family:ui-monospace,"SF Mono","Cascadia Mono",Menlo,Consolas,monospace;
+    font-size:12px;color:var(--signal);padding-top:4px;font-variant-numeric:tabular-nums;
+  }
+  .cv-row h3{font-size:16px;font-weight:600;font-family:-apple-system,"Segoe UI","Helvetica Neue",Helvetica,Arial,sans-serif}
+  .cv-row p{
+    margin-top:4px;font-family:-apple-system,"Segoe UI","Helvetica Neue",Helvetica,Arial,sans-serif;
+    font-size:13.5px;line-height:1.55;color:var(--faint);
+  }
+  .op-quote{
+    margin:36px 0 0;border-left:3px solid var(--signal);padding:4px 0 4px 24px;
+    font-size:20px;line-height:1.55;max-width:46ch;
+  }
+  .op-quote footer{
+    margin-top:14px;font-family:-apple-system,"Segoe UI",Helvetica,Arial,sans-serif;
+    font-size:13px;color:var(--faint);
+  }
+
+  /* ================= SUITE STRIP ================= */
+  .suite-strip{margin-top:36px;border-top:2px solid var(--rule-strong);display:grid;grid-template-columns:repeat(3,1fr)}
+  @media (max-width:900px){.suite-strip{grid-template-columns:repeat(2,1fr)}}
+  @media (max-width:560px){.suite-strip{grid-template-columns:1fr}}
+  .suite-cell{border-bottom:1px solid var(--rule);padding:22px 28px 24px 0}
+  .suite-cell .s-name{
+    font-family:ui-monospace,"SF Mono","Cascadia Mono",Menlo,Consolas,monospace;
+    font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--signal);
+  }
+  .suite-cell p{
+    margin-top:8px;font-family:-apple-system,"Segoe UI","Helvetica Neue",Helvetica,Arial,sans-serif;
+    font-size:13.5px;line-height:1.55;color:var(--faint);max-width:34ch;
+  }
+
+  /* ================= CTA LADDER ================= */
+  .ladder{margin-top:44px;border-top:2px solid var(--rule-strong)}
+  .rung{
+    display:grid;grid-template-columns:88px minmax(0,1fr) auto;gap:24px;align-items:center;
+    padding:26px 0;border-bottom:1px solid var(--rule);
+  }
+  @media (max-width:820px){
+    .rung{grid-template-columns:1fr;gap:14px;align-items:start}
+  }
+  .rung .r-no{
+    font-family:ui-monospace,"SF Mono","Cascadia Mono",Menlo,Consolas,monospace;
+    font-size:12px;letter-spacing:.14em;color:var(--signal);font-variant-numeric:tabular-nums;
+  }
+  .rung h3{font-size:20px;font-weight:600}
+  .rung .r-sub{
+    margin-top:5px;font-family:-apple-system,"Segoe UI","Helvetica Neue",Helvetica,Arial,sans-serif;
+    font-size:13.5px;color:var(--faint);max-width:52ch;
+  }
+  .rung .btn{white-space:nowrap}
+
+  /* ================= FOOTNOTES ================= */
+  .footnotes{border-top:2px solid var(--rule-strong);padding:56px 0 64px}
+  .footnotes h2{
+    font-family:ui-monospace,"SF Mono","Cascadia Mono",Menlo,Consolas,monospace;
+    font-size:12px;letter-spacing:.2em;text-transform:uppercase;font-weight:400;color:var(--signal);
+  }
+  .footnotes ol{
+    margin:26px 0 0;padding:0;list-style:none;
+    columns:2;column-gap:64px;
+  }
+  @media (max-width:860px){.footnotes ol{columns:1}}
+  .footnotes li{
+    font-family:-apple-system,"Segoe UI","Helvetica Neue",Helvetica,Arial,sans-serif;
+    font-size:13px;line-height:1.6;color:var(--faint);
+    padding:0 0 16px 30px;position:relative;break-inside:avoid;max-width:58ch;
+  }
+  .footnotes li .fn-no{
+    position:absolute;left:0;top:2px;
+    font-family:ui-monospace,"SF Mono","Cascadia Mono",Menlo,Consolas,monospace;
+    font-size:11px;color:var(--signal);
+  }
+  .footnotes li strong{color:var(--ink-soft);font-weight:600}
+
+  /* ================= FOOTER ================= */
+  footer.colophon{border-top:2px solid var(--rule-strong);padding:36px 0 64px}
+  .colo-grid{display:flex;justify-content:space-between;gap:24px;flex-wrap:wrap;align-items:baseline}
+  .colo-grid .wordmark{font-size:15px}
+  .colo-grid p{
+    font-family:ui-monospace,"SF Mono","Cascadia Mono",Menlo,Consolas,monospace;
+    font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--faint);
+  }
+  .colo-grid a{text-decoration:none}
+  .colo-grid a:hover{color:var(--signal)}
+</style>
+
+<a class="skip-link" href="#main">Skip to content</a>
+
+<header class="masthead">
+  <div class="shell">
+    <div class="mast-top">
+      <a class="wordmark" href="#main">Windshear<span class="wm-rule">&#8202;.</span></a>
+      <div class="mast-meta">
+        <span>The Board Brief &mdash; No. 1</span>
+        <span aria-hidden="true">&middot;</span>
+        <span>Prepared for risk committees</span>
+        <button class="theme-toggle" id="themeToggle" type="button" aria-pressed="false">Night reading: off</button>
+      </div>
+    </div>
+    <nav class="mast-nav" aria-label="Contents">
+      <a href="#question">I. The question</a>
+      <a href="#brief">II. The evidence</a>
+      <a href="#frameworks">III. Frameworks</a>
+      <a href="#economics">IV. Economics</a>
+      <a href="#counsel">V. Counsel&rsquo;s questions</a>
+      <a href="#operator">VI. The operator</a>
+      <a href="#next">Next steps</a>
+    </nav>
+  </div>
+</header>
+
+<main id="main">
+
+  <!-- ============ HERO ============ -->
+  <section class="hero">
+    <div class="shell">
+      <div class="hero-cols">
+        <div>
+          <p class="hero-kicker">The flight simulator for organizational AI</p>
+          <h1 class="hero-title">Readiness is no longer an opinion. It is a disclosure question.</h1>
+          <p class="hero-stand">The SEC allows four business days to disclose a material cybersecurity incident.<sup class="fn"><a href="#fn3" aria-label="Footnote 3">3</a></sup> The EU AI Act&rsquo;s obligations are phasing in through 2027.<sup class="fn"><a href="#fn4" aria-label="Footnote 4">4</a></sup> NIST AI RMF and ISO/IEC 42001 now define what credible AI governance looks like.<sup class="fn"><a href="#fn5" aria-label="Footnote 5">5</a></sup><sup class="fn"><a href="#fn6" aria-label="Footnote 6">6</a></sup> The board will ask whether the company could execute under these. <strong>Windshear rehearses your leadership team inside realistic AI crises, scores the response, and produces the evidence.</strong></p>
+          <div class="hero-ctas">
+            <a class="btn btn-signal" href="#brief">Read a sample board brief</a>
+            <a class="btn btn-line" href="mailto:hello@windshear.ai?subject=Readiness%20Snapshot">Request a 15-minute Readiness Snapshot</a>
+          </div>
+        </div>
+        <nav class="hero-toc" aria-label="In this brief">
+          <p class="toc-label">In this brief</p>
+          <ol>
+            <li><a href="#question"><span class="n">I.</span><span>The question the board will ask</span></a></li>
+            <li><a href="#brief"><span class="n">II.</span><span>The evidence &mdash; a sample board brief</span></a></li>
+            <li><a href="#frameworks"><span class="n">III.</span><span>Framework mapping, Exhibit A</span></a></li>
+            <li><a href="#economics"><span class="n">IV.</span><span>The economics of rehearsal</span></a></li>
+            <li><a href="#counsel"><span class="n">V.</span><span>Counsel&rsquo;s questions, answered</span></a></li>
+            <li><a href="#operator"><span class="n">VI.</span><span>The operator &amp; the suite</span></a></li>
+          </ol>
+          <p class="toc-close">Reading time: about six minutes. Footnoted throughout; sources at the end.</p>
+        </nav>
+      </div>
+
+      <div class="stats">
+        <div class="stat">
+          <p class="fig num">US$25.6<span class="unit">M</span></p>
+          <p class="cap"><strong>One deepfake video call.</strong> The 2024 Hong Kong fraud against engineering firm Arup &mdash; a finance employee, a staged call, cloned executives.<sup class="fn"><a href="#fn1" aria-label="Footnote 1">1</a></sup></p>
+        </div>
+        <div class="stat">
+          <p class="fig num">US$4.4<span class="unit">M</span></p>
+          <p class="cap"><strong>Average cost of a data breach,</strong> global, 2025. The figure the CFO already knows. The variable is how the first hours are handled.<sup class="fn"><a href="#fn2" aria-label="Footnote 2">2</a></sup></p>
+        </div>
+        <div class="stat">
+          <p class="fig num">4<span class="unit">&nbsp;business days</span></p>
+          <p class="cap"><strong>The SEC disclosure window</strong> once a cybersecurity incident is determined material. The clock does not pause for deliberation.<sup class="fn"><a href="#fn3" aria-label="Footnote 3">3</a></sup></p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ I. THE QUESTION ============ -->
+  <section class="band" id="question">
+    <div class="shell grid">
+      <div class="g-no"><span class="sec-no">SEC.&nbsp;I</span></div>
+      <div class="g-main">
+        <p class="kicker">The regulatory position</p>
+        <h2 class="sec-title">Four regimes now assume your executives can perform under pressure.</h2>
+        <p class="standfirst">Each was written for the file cabinet. Each will be tested in a hallway, at speed, with incomplete information. Policy is the easy half.</p>
+
+        <div class="reg-list">
+          <div class="reg-row">
+            <div class="reg-name">SEC cyber disclosure<span class="mono">Form 8-K, Item 1.05</span></div>
+            <p>A material cybersecurity incident must be disclosed within four business days of the materiality determination. That determination is itself a decision made under pressure &mdash; by people who have either rehearsed it or not.<sup class="fn"><a href="#fn3" aria-label="Footnote 3">3</a></sup></p>
+          </div>
+          <div class="reg-row">
+            <div class="reg-name">EU AI Act<span class="mono">Reg. (EU) 2024/1689</span></div>
+            <p>Obligations phase in through 2027: AI literacy for staff, risk management for high-risk systems, deployer duties, serious-incident reporting. Fines are calculated on global turnover. Evidence of a functioning program will matter.<sup class="fn"><a href="#fn4" aria-label="Footnote 4">4</a></sup></p>
+          </div>
+          <div class="reg-row">
+            <div class="reg-name">NIST AI RMF<span class="mono">AI 100-1 &middot; Govern / Map / Measure / Manage</span></div>
+            <p>The reference framework U.S. regulators, insurers, and counterparties increasingly cite. Its Govern and Manage functions presume the organization tests itself &mdash; not merely that it holds documents.<sup class="fn"><a href="#fn5" aria-label="Footnote 5">5</a></sup></p>
+          </div>
+          <div class="reg-row">
+            <div class="reg-name">ISO/IEC 42001<span class="mono">AI management systems, 2023</span></div>
+            <p>The certifiable AI management standard. Clauses on operation, performance evaluation, and improvement require evidence that the system works in practice and is corrected when it does not.<sup class="fn"><a href="#fn6" aria-label="Footnote 6">6</a></sup></p>
+          </div>
+        </div>
+
+        <p class="reg-close">The board will ask whether the company could execute under these. <strong>Windshear produces the evidence.</strong> Not attestations. Observed, scored, dated performance.</p>
+      </div>
+      <div class="g-aside">
+        <aside class="mnote">
+          <span class="mk">Margin note</span>
+          The four-day clock starts at the materiality <em>determination</em>, not at discovery. Delaying the determination is itself a judgment regulators may examine.
+        </aside>
+        <aside class="mnote">
+          <span class="mk">Margin note</span>
+          None of these regimes asks whether an incident occurred. All of them ask what the organization did next.
+        </aside>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ PULL QUOTE ============ -->
+  <div class="pull">
+    <div class="shell">
+      <blockquote>
+        <span class="qm">&ldquo;</span>The question is no longer whether the company has an AI policy. It is whether the leadership team can execute one on a Tuesday afternoon.<span class="qm">&rdquo;</span>
+      </blockquote>
+      <footer>The premise of this brief. Everything below is the supporting record.</footer>
+    </div>
+  </div>
+
+  <!-- ============ II. THE EVIDENCE ============ -->
+  <section class="band" id="brief">
+    <div class="shell grid">
+      <div class="g-no"><span class="sec-no">SEC.&nbsp;II</span></div>
+      <div class="g-main wide">
+        <p class="kicker">The proof artifact</p>
+        <h2 class="sec-title">What the audit &amp; risk committee receives each quarter.</h2>
+        <p class="standfirst">A Windshear exercise takes ninety minutes. What survives it is this document: a scored, dated record of how the leadership team performed, what broke, and what was fixed since last quarter. It is designed to be read in four minutes and forwarded in one.</p>
+
+        <figure class="doc-stage" style="margin-bottom:0">
+          <div class="doc">
+            <div class="lh">
+              <span class="lh-mark">Windshear</span>
+              <span class="lh-class">Board confidential</span>
+            </div>
+            <div class="doc-title">
+              <h3>Quarterly Readiness Brief</h3>
+              <p>Q2 2026 &middot; PREPARED FOR THE AUDIT &amp; RISK COMMITTEE</p>
+            </div>
+            <div class="doc-meta">
+              <div><span>Organization</span><strong>Sample &mdash; mid-cap health services</strong></div>
+              <div><span>Exercises this quarter</span><strong>3 &middot; scenarios WS-041&ndash;043</strong></div>
+              <div><span>Assessment basis</span><strong>Windshear Readiness Index</strong></div>
+            </div>
+            <div class="score-row">
+              <p class="score-big num">61<span class="of">&thinsp;/&thinsp;100</span></p>
+              <div class="score-desc">
+                <p><strong>Ready, with material gaps.</strong> Incident response and data protection score above peer median. AI governance and vendor risk remain below the threshold the committee set in Q4.</p>
+                <span class="delta num">&#9650; +9 vs. Q1 baseline</span>
+              </div>
+            </div>
+            <div class="findings">
+              <div class="f-row">
+                <span class="f-id">F-1<em>Critical</em></span>
+                <p>Executive escalation followed 34 minutes after the first credible signal of patient-data exposure. <span>Severity thresholds with named owners drafted; re-test scheduled within 30 days.</span></p>
+              </div>
+              <div class="f-row">
+                <span class="f-id">F-2<em>Critical</em></span>
+                <p>No AI system inventory existed to answer the simulated regulator&rsquo;s documentation request. <span>Inventory and decision log stood up from Windshear template; owner assigned.</span></p>
+              </div>
+              <div class="f-row">
+                <span class="f-id">F-3<em>Moderate</em></span>
+                <p>External statements from support, communications, and the CEO&rsquo;s office contradicted one another. <span>Single-spokesperson protocol adopted; holding statements pre-approved.</span></p>
+              </div>
+            </div>
+            <p class="map-line">EVIDENCE HEREIN MAPS TO: NIST AI RMF GOVERN&nbsp;/&nbsp;MANAGE &middot; EU AI ACT ARTS. 4, 9, 26 &middot; SEC ITEM 1.05 READINESS &middot; ISO/IEC 42001 CLAUSES 8&ndash;10. MAPPING IS EVIDENTIARY, NOT A CERTIFICATION.</p>
+            <div class="sig-row">
+              <div class="sig">
+                <p class="sig-name">Windshear Assessment Engine</p>
+                <p class="sig-role">Prepared &mdash; scored against 3 facilitated exercises</p>
+              </div>
+              <div class="sig">
+                <p class="sig-name">A. Dow</p>
+                <p class="sig-role">Reviewed &mdash; Windshear &middot; 30 June 2026</p>
+              </div>
+            </div>
+            <div class="doc-foot">
+              <span>Windshear Quarterly Readiness Brief</span>
+              <span>Page 1 of 6</span>
+            </div>
+          </div>
+          <figcaption class="doc-caption">Sample brief, page one. Illustrative organization; scores shown are representative of the report format, not of any client.</figcaption>
+        </figure>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ III. FRAMEWORKS ============ -->
+  <section class="band" id="frameworks">
+    <div class="shell grid">
+      <div class="g-no"><span class="sec-no">SEC.&nbsp;III</span></div>
+      <div class="g-main wide">
+        <p class="kicker">Framework mapping</p>
+        <h2 class="sec-title">Where exercise evidence lands in the frameworks your auditors cite.</h2>
+        <p class="table-note"><strong>A note on honesty.</strong> Windshear maps exercise evidence <em>to</em> these frameworks. It does not certify compliance with any of them, and no exercise substitutes for legal advice. The mapping tells your auditors and counsel where each artifact belongs.</p>
+
+        <div class="table-scroll" tabindex="0" role="region" aria-label="Framework mapping table, scrollable">
+          <table class="fw">
+            <caption>Exhibit A &mdash; Evidence mapping</caption>
+            <thead>
+              <tr>
+                <th scope="col">What Windshear exercises and measures</th>
+                <th scope="col">NIST AI RMF<sup class="fn"><a href="#fn5" aria-label="Footnote 5">5</a></sup></th>
+                <th scope="col">EU AI Act<sup class="fn"><a href="#fn4" aria-label="Footnote 4">4</a></sup></th>
+                <th scope="col">SEC disclosure readiness<sup class="fn"><a href="#fn3" aria-label="Footnote 3">3</a></sup></th>
+                <th scope="col">ISO/IEC 42001<sup class="fn"><a href="#fn6" aria-label="Footnote 6">6</a></sup></th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <th scope="row">Executive escalation &amp; incident decision-making<span>Timing, ownership, decision quality under pressure</span></th>
+                <td><span class="m">GOVERN &middot; MANAGE</span>Evidence the governance function operates, not merely exists</td>
+                <td><span class="m">ART. 26</span>Deployer oversight obligations, demonstrated</td>
+                <td><span class="m">ITEM 1.05</span>A rehearsed materiality process with named owners</td>
+                <td><span class="m">CLAUSE 8</span>Operational planning and control, in practice</td>
+              </tr>
+              <tr>
+                <th scope="row">Materiality determination under time pressure<span>Could the company start the 4-day clock correctly</span></th>
+                <td><span class="m">MEASURE &middot; MANAGE</span>Measured response to identified risk events</td>
+                <td><span class="m">ART. 73</span>Serious-incident reporting readiness</td>
+                <td><span class="m">ITEM 1.05</span>Timed, documented determination drill</td>
+                <td><span class="m">CLAUSE 9</span>Performance evaluation with records</td>
+              </tr>
+              <tr>
+                <th scope="row">AI system inventory &amp; documentation<span>Can the org answer &ldquo;what AI do you run, and why&rdquo;</span></th>
+                <td><span class="m">MAP</span>Context and system categorization evidence</td>
+                <td><span class="m">ART. 9</span>Risk-management system inputs</td>
+                <td><span class="m">REG S-K 106</span>Substance behind risk-management disclosure</td>
+                <td><span class="m">CLAUSES 7&ndash;8</span>Documented information and operation</td>
+              </tr>
+              <tr>
+                <th scope="row">Deepfake &amp; social-engineering response<span>Voice, video, and payment-change controls under attack</span></th>
+                <td><span class="m">MANAGE</span>Treatment of identified threat scenarios</td>
+                <td><span class="m">ART. 4</span>AI literacy, tested rather than attested</td>
+                <td><span class="m">ITEM 1.05</span>Materiality evidence for fraud-class incidents</td>
+                <td><span class="m">CLAUSE 8</span>Operational controls exercised</td>
+              </tr>
+              <tr>
+                <th scope="row">Regulator response &amp; disclosure drafting<span>Producing documentation on a regulator&rsquo;s timeline</span></th>
+                <td><span class="m">GOVERN</span>Accountability structures under scrutiny</td>
+                <td><span class="m">ARTS. 9, 26</span>Evidence packages for competent authorities</td>
+                <td><span class="m">ITEM 1.05</span>Draft-quality disclosure within the window</td>
+                <td><span class="m">CLAUSE 9</span>Evaluation records fit for audit</td>
+              </tr>
+              <tr>
+                <th scope="row">Remediation tracking &amp; re-testing<span>Were last quarter&rsquo;s gaps actually closed</span></th>
+                <td><span class="m">MANAGE</span>Documented risk treatment over time</td>
+                <td><span class="m">ART. 9</span>Continuous risk-management lifecycle</td>
+                <td><span class="m">REG S-K 106</span>A program that demonstrably improves</td>
+                <td><span class="m">CLAUSE 10</span>Nonconformity and continual improvement</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ IV. ECONOMICS ============ -->
+  <section class="band" id="economics">
+    <div class="shell grid">
+      <div class="g-no"><span class="sec-no">SEC.&nbsp;IV</span></div>
+      <div class="g-main">
+        <p class="kicker">The economics</p>
+        <h2 class="sec-title">The incumbent line item is an annual PDF.</h2>
+        <p class="body-copy">Most enterprises already pay for readiness once a year: a consultant-led tabletop. It is a good product for the year it was invented in. The exercise is generic by necessity, scheduled months out, and its deliverable begins aging the afternoon it is presented. The comparison is not close.</p>
+
+        <div class="ledger">
+          <div class="col">
+            <p class="l-label">Consultant-led tabletop</p>
+            <p class="l-fig num">$30&ndash;80K<sup class="fn"><a href="#fn7" aria-label="Footnote 7">7</a></sup><span class="unit">Per year &middot; one scenario</span></p>
+            <dl>
+              <div><dt>Cadence</dt><dd>Annual. Scheduled around consultant availability.</dd></div>
+              <div><dt>Scenarios</dt><dd>One. Largely generic, adapted at the margins.</dd></div>
+              <div><dt>Measurement</dt><dd>Narrative observations. No score, no baseline, no trend.</dd></div>
+              <div><dt>Deliverable</dt><dd>A PDF that ages immediately.</dd></div>
+              <div><dt>Follow-through</dt><dd>None. Gaps noted; closure untested until next year.</dd></div>
+            </dl>
+          </div>
+          <div class="col ws">
+            <p class="l-label">Windshear</p>
+            <p class="l-fig">Continuous<span class="unit">Platform subscription &middot; unlimited scenarios</span></p>
+            <dl>
+              <div><dt>Cadence</dt><dd>Quarterly or better. First exercise inside two weeks.</dd></div>
+              <div><dt>Scenarios</dt><dd>Unlimited. Generated from your industry, stack, and regulators.</dd></div>
+              <div><dt>Measurement</dt><dd>Scored Readiness Index, benchmarked against anonymized peers.</dd></div>
+              <div><dt>Deliverable</dt><dd>A quarterly board brief and a longitudinal record.</dd></div>
+              <div><dt>Follow-through</dt><dd>Flightpath tracks each gap to closure and re-tests it.</dd></div>
+            </dl>
+          </div>
+        </div>
+      </div>
+      <div class="g-aside">
+        <aside class="mnote">
+          <span class="mk">Margin note</span>
+          The relevant unit is not cost per exercise. It is cost per executive decision rehearsed before it must be made in production.
+        </aside>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ V. COUNSEL'S QUESTIONS ============ -->
+  <section class="band" id="counsel">
+    <div class="shell grid">
+      <div class="g-no"><span class="sec-no">SEC.&nbsp;V</span></div>
+      <div class="g-main">
+        <p class="kicker">Objections, on the record</p>
+        <h2 class="sec-title">The four questions general counsel will ask. Answered as counsel would want.</h2>
+
+        <div class="qa">
+          <div class="qa-item">
+            <div class="q"><span class="q-mark">Q.01</span><h3>Where does our data go, and does it train your models?</h3></div>
+            <div class="a"><span class="a-mark">Resp.</span><p><strong>It stays private, and no.</strong> Scenario generation runs on your organizational profile; exercise records remain your records. Client data is not used to train models. Data-handling terms are stated in the agreement, in writing, before the first exercise.</p></div>
+          </div>
+          <div class="qa-item">
+            <div class="q"><span class="q-mark">Q.02</span><h3>Does this become another consulting engagement?</h3></div>
+            <div class="a"><span class="a-mark">Resp.</span><p><strong>No consultants are required.</strong> The AI facilitator runs the exercise; your first is 90 minutes, end to end. There is no scoping phase, no workshop pre-read, no day rate.</p></div>
+          </div>
+          <div class="qa-item">
+            <div class="q"><span class="q-mark">Q.03</span><h3>Who sees our scores?</h3></div>
+            <div class="a"><span class="a-mark">Resp.</span><p><strong>You do.</strong> Scores are private to your organization. Peer benchmarks are computed from anonymized cohorts; no counterparty can identify, request, or purchase your results.</p></div>
+          </div>
+          <div class="qa-item">
+            <div class="q"><span class="q-mark">Q.04</span><h3>Will the scenarios actually resemble our risk?</h3></div>
+            <div class="a"><span class="a-mark">Resp.</span><p><strong>They are built from it.</strong> Scenarios are generated from your industry, your technology stack, and your regulators &mdash; the deepfake targets your approval chain, the regulator letter cites your jurisdiction. Generic content is the failure mode Windshear exists to replace.</p></div>
+          </div>
+        </div>
+      </div>
+      <div class="g-aside">
+        <aside class="mnote">
+          <span class="mk">Margin note</span>
+          Recommended diligence: request the data-processing terms alongside the sample brief. Both are one email.
+        </aside>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ VI. THE OPERATOR ============ -->
+  <section class="band" id="operator">
+    <div class="shell grid">
+      <div class="g-no"><span class="sec-no">SEC.&nbsp;VI</span></div>
+      <div class="g-main wide">
+        <p class="kicker">The operator</p>
+        <h2 class="sec-title">Built by the person who runs the national exercise.</h2>
+        <div class="op-grid">
+          <div>
+            <p class="op-lede">Windshear is led by <strong>Alex Dow</strong>, chair of <strong>Operation: Defend the North</strong> &mdash; siberX&rsquo;s national cybersecurity readiness exercise, run across Ottawa, Vancouver, Calgary, and Toronto. Two decades operational. Three mission-critical security operations centres, including the <strong>Vancouver 2010 Winter Olympics SOC</strong>. The method Windshear encodes is the one he has been running on cities.</p>
+            <blockquote class="op-quote">
+              &ldquo;Organizations don&rsquo;t rise to the occasion during a crisis. They fall back on their training. Windshear exists so there&rsquo;s something to fall back on.&rdquo;
+              <footer>&mdash; Alex Dow, Windshear</footer>
+            </blockquote>
+          </div>
+          <div class="cv">
+            <div class="cv-row"><span class="cv-yr">Now</span><div><h3>Chair, Operation: Defend the North (siberX)</h3><p>National readiness exercise for critical-sector leadership, held across four Canadian cities.</p></div></div>
+            <div class="cv-row"><span class="cv-yr">2017</span><div><h3>Co-founder &amp; Chief Innovation Officer, Mirai Security</h3><p>Built the consultancy on education and guided implementation over quick fixes.</p></div></div>
+            <div class="cv-row"><span class="cv-yr">2013</span><div><h3>Founder, BSides Vancouver</h3><p>Established the city&rsquo;s community security conference.</p></div></div>
+            <div class="cv-row"><span class="cv-yr">2010</span><div><h3>Vancouver Winter Olympics SOC</h3><p>One of three mission-critical SOCs in a twenty-year operational career. SANS Institute instructor.</p></div></div>
+          </div>
+        </div>
+
+        <div class="suite-strip" aria-label="The Windshear suite">
+          <div class="suite-cell"><span class="s-name">Windshear / Scenarios</span><p>Organization-specific crises, generated in minutes.</p></div>
+          <div class="suite-cell"><span class="s-name">Windshear / Storyline</span><p>The crisis arrives through every channel at once.</p></div>
+          <div class="suite-cell"><span class="s-name">Windshear / Facilitator</span><p>Adaptive AI moderation. No day rate.</p></div>
+          <div class="suite-cell"><span class="s-name">Windshear / Assessment</span><p>Behavior under pressure, turned into evidence.</p></div>
+          <div class="suite-cell"><span class="s-name">Windshear / Readiness Index</span><p>One score the board understands, benchmarked.</p></div>
+          <div class="suite-cell"><span class="s-name">Windshear / Flightpath</span><p>Every gap tracked to closure, then re-tested.</p></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ NEXT STEPS ============ -->
+  <section class="band" id="next">
+    <div class="shell grid">
+      <div class="g-no"><span class="sec-no">MOTION</span></div>
+      <div class="g-main">
+        <p class="kicker">Recommended next steps</p>
+        <h2 class="sec-title">Three steps, in ascending order of commitment.</h2>
+        <p class="body-copy">Each step produces something you can put in front of the committee. None requires a procurement cycle to begin.</p>
+
+        <div class="ladder">
+          <div class="rung">
+            <span class="r-no">STEP 01</span>
+            <div>
+              <h3>Read a sample board brief</h3>
+              <p class="r-sub">The full six-page document, of which page one appears above. Four minutes.</p>
+            </div>
+            <a class="btn btn-line" href="mailto:hello@windshear.ai?subject=Sample%20board%20brief">Request the sample</a>
+          </div>
+          <div class="rung">
+            <span class="r-no">STEP 02</span>
+            <div>
+              <h3>Free 15-minute Readiness Snapshot</h3>
+              <p class="r-sub">Your AI footprint, your exposure, your baseline &mdash; before anyone commits to anything.</p>
+            </div>
+            <a class="btn btn-line" href="mailto:hello@windshear.ai?subject=Readiness%20Snapshot">Book the snapshot</a>
+          </div>
+          <div class="rung">
+            <span class="r-no">STEP 03</span>
+            <div>
+              <h3>Book a 90-minute pilot exercise</h3>
+              <p class="r-sub">Your executive team, one scenario built for your industry, stack, and regulators. The scorecard follows within the week.</p>
+            </div>
+            <a class="btn btn-signal" href="mailto:hello@windshear.ai?subject=Pilot%20exercise">Book the pilot</a>
+          </div>
+        </div>
+      </div>
+      <div class="g-aside">
+        <aside class="mnote">
+          <span class="mk">Margin note</span>
+          A reasonable committee ask this quarter: page one of a real brief, with a date on it. Step 03 produces exactly that.
+        </aside>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ FOOTNOTES ============ -->
+  <section class="footnotes" id="footnotes">
+    <div class="shell">
+      <h2>Notes &amp; sources</h2>
+      <ol>
+        <li id="fn1"><span class="fn-no">1</span><strong>Arup deepfake fraud, 2024.</strong> A finance employee at engineering firm Arup transferred approximately HK$200M (&asymp;US$25.6M) after a video call in which senior officers were impersonated by deepfakes. Hong Kong, January 2024; company later confirmed publicly. Widely reported (CNN, Financial Times, May 2024).</li>
+        <li id="fn2"><span class="fn-no">2</span><strong>IBM, Cost of a Data Breach Report 2025.</strong> Global average cost of a data breach approximately US$4.4M. Figure rounded; see the report for methodology and regional variation.</li>
+        <li id="fn3"><span class="fn-no">3</span><strong>U.S. SEC cybersecurity disclosure rules, 2023.</strong> Form 8-K Item 1.05 requires disclosure of a material cybersecurity incident within four business days of the registrant&rsquo;s materiality determination. Related risk-management and governance disclosure under Regulation S-K Item 106.</li>
+        <li id="fn4"><span class="fn-no">4</span><strong>EU AI Act.</strong> Regulation (EU) 2024/1689, in force August 2024, with obligations applying in phases through 2027 &mdash; including AI literacy (Art. 4), risk management (Art. 9), deployer obligations (Art. 26), and serious-incident reporting (Art. 73).</li>
+        <li id="fn5"><span class="fn-no">5</span><strong>NIST AI Risk Management Framework.</strong> NIST AI 100-1 (AI RMF 1.0), January 2023. Functions: Govern, Map, Measure, Manage.</li>
+        <li id="fn6"><span class="fn-no">6</span><strong>ISO/IEC 42001:2023.</strong> Artificial intelligence management system standard. Windshear maps exercise evidence to the frameworks cited on this page; it does not certify, and does not claim certification of its own platform against, any of them.</li>
+        <li id="fn7"><span class="fn-no">7</span><strong>Tabletop cost range.</strong> Typical range for bespoke, consultant-led executive tabletop engagements: one scenario, delivered annually. Stated as a market observation, not a quotation from any named firm.</li>
+      </ol>
+    </div>
+  </section>
+</main>
+
+<footer class="colophon">
+  <div class="shell colo-grid">
+    <a class="wordmark" href="#main">Windshear<span class="wm-rule">&#8202;.</span></a>
+    <p>The flight simulator for organizational AI</p>
+    <p><a href="mailto:hello@windshear.ai">hello@windshear.ai</a> &nbsp;&middot;&nbsp; &copy; 2026 Windshear</p>
+  </div>
+</footer>
+
+<script>
+  (function(){
+    var btn = document.getElementById("themeToggle");
+    if(!btn) return;
+    var mq = window.matchMedia("(prefers-color-scheme: dark)");
+    function current(){
+      var t = document.documentElement.getAttribute("data-theme");
+      if(t === "dark" || t === "light") return t;
+      return mq.matches ? "dark" : "light";
+    }
+    function paint(){
+      var dark = current() === "dark";
+      btn.setAttribute("aria-pressed", dark ? "true" : "false");
+      btn.textContent = "Night reading: " + (dark ? "on" : "off");
+    }
+    btn.addEventListener("click", function(){
+      var next = current() === "dark" ? "light" : "dark";
+      document.documentElement.setAttribute("data-theme", next);
+      paint();
+    });
+    if(mq.addEventListener){ mq.addEventListener("change", paint); }
+    paint();
+  })();
+</script>

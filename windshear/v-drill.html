@@ -1,0 +1,1333 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Windshear — Tuesday, 09:47</title>
+<meta name="description" content="Windshear generates immersive, organization-specific AI crisis simulations, scores your leadership team's response, and closes the gap before the real thing arrives.">
+<style>
+/* ============================================================
+   TOKENS
+   The intro is a committed dark world (night tokens — never flip).
+   The pitch is theme-aware: "daylight debrief" light / cinematic dark.
+   ============================================================ */
+:root{
+  --bg:#F4F1E9;
+  --surface:#FFFFFF;
+  --ink:#151412;
+  --muted:#6A675C;
+  --line:#D9D4C6;
+  --line-strong:#151412;
+  --accent:#CE3512;
+  --accent-hi:#FF4A1F;
+  --on-accent:#FFF7F2;
+  --soft:#ECE8DC;
+
+  /* Night — fixed, used by the intro, debrief artifact, credibility band */
+  --n-bg:#0A0A0C;
+  --n-panel:#111114;
+  --n-ink:#F2EFE7;
+  --n-muted:#8E8B81;
+  --n-line:#2A2A2F;
+  --n-accent:#FF4A1F;
+  --n-on-accent:#0A0A0C;
+}
+@media (prefers-color-scheme: dark){
+  :root{
+    --bg:#0C0C0E;
+    --surface:#131316;
+    --ink:#F0EDE4;
+    --muted:#93907F;
+    --line:#28282D;
+    --line-strong:#F0EDE4;
+    --accent:#FF4A1F;
+    --accent-hi:#FF4A1F;
+    --on-accent:#0A0A0C;
+    --soft:#161619;
+  }
+}
+:root[data-theme="light"]{
+  --bg:#F4F1E9; --surface:#FFFFFF; --ink:#151412; --muted:#6A675C;
+  --line:#D9D4C6; --line-strong:#151412; --accent:#CE3512; --accent-hi:#FF4A1F;
+  --on-accent:#FFF7F2; --soft:#ECE8DC;
+}
+:root[data-theme="dark"]{
+  --bg:#0C0C0E; --surface:#131316; --ink:#F0EDE4; --muted:#93907F;
+  --line:#28282D; --line-strong:#F0EDE4; --accent:#FF4A1F; --accent-hi:#FF4A1F;
+  --on-accent:#0A0A0C; --soft:#161619;
+}
+
+/* ============================================================
+   BASE
+   ============================================================ */
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  margin:0;
+  background:var(--bg);
+  color:var(--ink);
+  font-family:"Helvetica Neue",Helvetica,-apple-system,"Segoe UI",Arial,sans-serif;
+  font-size:17px;
+  line-height:1.55;
+  -webkit-font-smoothing:antialiased;
+  overflow-x:hidden;
+}
+h1,h2,h3,p{margin:0}
+a{color:inherit}
+img,svg{max-width:100%}
+.mono{
+  font-family:ui-monospace,"SF Mono","Cascadia Mono","Roboto Mono",Menlo,Consolas,monospace;
+  font-variant-numeric:tabular-nums;
+}
+/* Condensed-feeling display type — system stacks pushed hard */
+.disp{
+  font-family:"Arial Narrow","Helvetica Neue Condensed","Helvetica Neue",Helvetica,Arial,sans-serif;
+  font-weight:800;
+  letter-spacing:-.02em;
+  text-transform:uppercase;
+  line-height:.95;
+  text-wrap:balance;
+}
+a:focus-visible,button:focus-visible,summary:focus-visible{
+  outline:3px solid var(--accent-hi);
+  outline-offset:3px;
+}
+.intro a:focus-visible,.intro button:focus-visible{
+  outline:3px solid var(--n-accent);
+  outline-offset:3px;
+}
+::selection{background:var(--accent-hi);color:var(--n-on-accent)}
+
+/* ============================================================
+   INTRO — T-MINUS. Always night.
+   ============================================================ */
+.intro{
+  background:var(--n-bg);
+  color:var(--n-ink);
+  min-height:100vh;
+  min-height:100svh;
+  display:flex;
+  flex-direction:column;
+  position:relative;
+  border-bottom:1px solid var(--n-line);
+}
+.intro-top{
+  display:flex;
+  flex-wrap:wrap;
+  justify-content:space-between;
+  align-items:baseline;
+  gap:8px 16px;
+  padding:22px clamp(20px,4vw,48px) 18px;
+  border-bottom:1px solid var(--n-line);
+  font-size:12px;
+  letter-spacing:.18em;
+  text-transform:uppercase;
+}
+@media (max-width:560px){
+  .intro-top{font-size:11px;letter-spacing:.12em}
+  .intro-top .stamp{order:3;width:100%}
+}
+.intro-top .brand{
+  font-weight:800;
+  letter-spacing:.22em;
+  color:var(--n-ink);
+  text-decoration:none;
+}
+.intro-top .brand span{color:var(--n-accent)}
+.stamp{color:var(--n-muted)}
+.clock{
+  color:var(--n-accent);
+  display:inline-flex;
+  align-items:baseline;
+  gap:10px;
+}
+.clock .dot{
+  width:8px;height:8px;border-radius:50%;
+  background:var(--n-accent);
+  align-self:center;
+  animation:blink 1.2s steps(2,start) infinite;
+}
+@keyframes blink{50%{opacity:.15}}
+.intro-main{
+  flex:1;
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+  padding:clamp(40px,6vh,72px) clamp(20px,4vw,48px);
+  max-width:1240px;
+  width:100%;
+  margin:0 auto;
+}
+.intro-grid{
+  display:grid;
+  grid-template-columns:1fr;
+  gap:40px;
+  align-items:start;
+}
+@media (min-width:1100px){
+  .intro-grid{grid-template-columns:1.35fr .65fr;gap:clamp(40px,6vw,96px)}
+}
+.signals{
+  display:none;
+  border-top:2px solid var(--n-line);
+  margin-top:6px;
+}
+@media (min-width:1100px){.signals{display:block}}
+.signals .s-label{
+  font-size:11px;
+  letter-spacing:.24em;
+  text-transform:uppercase;
+  color:var(--n-muted);
+  padding:12px 0 4px;
+}
+.signals .s-label strong{color:var(--n-accent);font-weight:700}
+.sig{
+  display:flex;
+  gap:14px;
+  padding:13px 0;
+  border-bottom:1px solid var(--n-line);
+  font-size:12.5px;
+  line-height:1.5;
+}
+.sig .s-t{
+  font-family:ui-monospace,"SF Mono","Cascadia Mono","Roboto Mono",Menlo,Consolas,monospace;
+  color:var(--n-accent);
+  min-width:44px;
+  padding-top:1px;
+  letter-spacing:.06em;
+}
+.sig p{color:var(--n-muted)}
+.sig p strong{
+  display:block;
+  color:var(--n-ink);
+  font-size:11px;
+  letter-spacing:.18em;
+  text-transform:uppercase;
+  margin-bottom:2px;
+}
+.sit-label{
+  font-size:12px;
+  letter-spacing:.24em;
+  text-transform:uppercase;
+  color:var(--n-muted);
+  margin-bottom:22px;
+}
+.sit-label strong{color:var(--n-accent);font-weight:700}
+.situation{
+  font-size:clamp(24px,4.2vw,52px);
+  font-weight:700;
+  letter-spacing:-.015em;
+  line-height:1.18;
+  max-width:24ch;
+  text-wrap:balance;
+}
+.situation em{
+  font-style:normal;
+  color:var(--n-accent);
+}
+.decide{
+  margin-top:clamp(36px,6vh,64px);
+}
+.decide-q{
+  font-size:clamp(30px,5.4vw,64px);
+  color:var(--n-ink);
+  margin-bottom:8px;
+}
+.decide-hint{
+  font-size:12px;
+  letter-spacing:.2em;
+  text-transform:uppercase;
+  color:var(--n-muted);
+  margin-bottom:22px;
+}
+.choices{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:12px;
+}
+@media (max-width:760px){.choices{grid-template-columns:1fr}}
+.choice{
+  appearance:none;
+  background:transparent;
+  border:1px solid var(--n-line);
+  color:var(--n-ink);
+  text-align:left;
+  padding:20px 20px 18px;
+  cursor:pointer;
+  font:inherit;
+  display:flex;
+  flex-direction:column;
+  gap:10px;
+  transition:border-color .15s ease,background .15s ease;
+}
+.choice:hover{border-color:var(--n-accent)}
+.choice .k{
+  font-family:ui-monospace,"SF Mono","Cascadia Mono","Roboto Mono",Menlo,Consolas,monospace;
+  font-size:11px;
+  letter-spacing:.2em;
+  color:var(--n-muted);
+}
+.choice .label{
+  font-family:"Arial Narrow","Helvetica Neue Condensed","Helvetica Neue",Helvetica,Arial,sans-serif;
+  font-weight:800;
+  text-transform:uppercase;
+  letter-spacing:-.01em;
+  font-size:clamp(20px,2.2vw,27px);
+  line-height:1;
+}
+.choice.picked{
+  border-color:var(--n-accent);
+  background:rgba(255,74,31,.08);
+}
+.choice.picked .k{color:var(--n-accent)}
+body.decided .choice:not(.picked){opacity:.38}
+body.decided .choice:not(.picked):hover{opacity:.75}
+
+/* Consequence slot — space reserved so the reveal never shoves the page */
+.consequence-slot{
+  margin-top:16px;
+  min-height:308px;
+}
+@media (max-width:760px){.consequence-slot{min-height:0}}
+.consequence{
+  display:none;
+  border:1px solid var(--n-line);
+  border-left:4px solid var(--n-accent);
+  background:var(--n-panel);
+  padding:24px clamp(20px,3vw,32px) 26px;
+}
+.consequence.active{display:block}
+.consequence:focus{outline:none}
+.consequence .c-head{
+  display:flex;
+  flex-wrap:wrap;
+  justify-content:space-between;
+  gap:8px 20px;
+  font-size:11px;
+  letter-spacing:.2em;
+  text-transform:uppercase;
+  color:var(--n-muted);
+  margin-bottom:14px;
+}
+.consequence .c-head strong{color:var(--n-accent);font-weight:700}
+.consequence p{
+  font-size:clamp(15.5px,1.5vw,18px);
+  line-height:1.6;
+  color:var(--n-ink);
+  max-width:76ch;
+}
+.consequence p + p{margin-top:10px}
+.refrain{
+  margin-top:18px;
+  padding-top:16px;
+  border-top:1px solid var(--n-line);
+  display:flex;
+  flex-wrap:wrap;
+  align-items:center;
+  justify-content:space-between;
+  gap:16px;
+}
+.refrain p{
+  font-weight:700;
+  color:var(--n-ink);
+  font-size:clamp(16px,1.6vw,19px);
+}
+.refrain p em{font-style:normal;color:var(--n-accent)}
+.go-btn{
+  display:inline-block;
+  background:var(--n-accent);
+  color:var(--n-on-accent);
+  text-decoration:none;
+  font-weight:800;
+  font-size:14px;
+  letter-spacing:.08em;
+  text-transform:uppercase;
+  padding:14px 22px;
+  white-space:nowrap;
+}
+.go-btn:hover{background:#FF5F38}
+.intro-foot{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  gap:16px;
+  padding:16px clamp(20px,4vw,48px) 20px;
+  border-top:1px solid var(--n-line);
+  font-size:12px;
+  letter-spacing:.16em;
+  text-transform:uppercase;
+  color:var(--n-muted);
+}
+.skip{
+  color:var(--n-muted);
+  text-decoration:none;
+  border-bottom:1px solid var(--n-line);
+  padding-bottom:2px;
+}
+.skip:hover{color:var(--n-ink);border-bottom-color:var(--n-ink)}
+
+/* ============================================================
+   PITCH — kinetic editorial, hard grid
+   ============================================================ */
+.sec{
+  border-top:1px solid var(--line);
+  padding:clamp(64px,9vw,120px) clamp(20px,4vw,48px);
+}
+.sec-inner{max-width:1240px;margin:0 auto}
+.marker{
+  font-family:ui-monospace,"SF Mono","Cascadia Mono","Roboto Mono",Menlo,Consolas,monospace;
+  font-size:12px;
+  letter-spacing:.22em;
+  text-transform:uppercase;
+  color:var(--accent);
+  display:flex;
+  align-items:center;
+  gap:12px;
+  margin-bottom:clamp(24px,4vw,44px);
+}
+.marker::after{content:"";flex:1;height:1px;background:var(--line)}
+.claim{
+  font-size:clamp(38px,7.2vw,104px);
+  max-width:14ch;
+}
+.claim .hit{color:var(--accent)}
+.sub{
+  margin-top:24px;
+  font-size:clamp(17px,1.7vw,20px);
+  color:var(--muted);
+  max-width:62ch;
+}
+.sub strong{color:var(--ink)}
+
+/* 01 — the gap */
+.gap-grid{
+  display:grid;
+  grid-template-columns:1.25fr .75fr;
+  gap:clamp(32px,5vw,72px);
+  align-items:end;
+}
+@media (max-width:900px){.gap-grid{grid-template-columns:1fr}}
+.gap-list{
+  border-top:2px solid var(--line-strong);
+  font-size:15px;
+}
+.gap-list li{
+  list-style:none;
+  padding:14px 0;
+  border-bottom:1px solid var(--line);
+  color:var(--muted);
+  display:flex;
+  gap:14px;
+}
+.gap-list{margin:0;padding:0}
+.gap-list .n{
+  font-family:ui-monospace,"SF Mono","Cascadia Mono","Roboto Mono",Menlo,Consolas,monospace;
+  font-size:11px;
+  color:var(--accent);
+  padding-top:3px;
+  letter-spacing:.1em;
+}
+.gap-list strong{color:var(--ink)}
+
+/* 02 — the clock */
+.mega{
+  font-size:clamp(120px,26vw,340px);
+  line-height:.82;
+  letter-spacing:-.05em;
+  color:var(--accent);
+}
+.mega-cap{
+  font-size:clamp(22px,3.4vw,40px);
+  margin-top:6px;
+}
+.reg-grid{
+  margin-top:clamp(36px,5vw,56px);
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  border-top:2px solid var(--line-strong);
+  border-left:1px solid var(--line);
+}
+@media (max-width:980px){.reg-grid{grid-template-columns:repeat(2,1fr)}}
+@media (max-width:560px){.reg-grid{grid-template-columns:1fr}}
+.reg{
+  border-right:1px solid var(--line);
+  border-bottom:1px solid var(--line);
+  padding:22px 20px 24px;
+}
+.reg .r-tag{
+  font-family:ui-monospace,"SF Mono","Cascadia Mono","Roboto Mono",Menlo,Consolas,monospace;
+  font-size:11px;
+  letter-spacing:.18em;
+  text-transform:uppercase;
+  color:var(--accent);
+  display:block;
+  margin-bottom:10px;
+}
+.reg h3{
+  font-size:18px;
+  font-weight:800;
+  letter-spacing:-.01em;
+  margin-bottom:6px;
+}
+.reg p{font-size:14px;color:var(--muted)}
+.clock-note{
+  margin-top:26px;
+  font-size:clamp(17px,1.8vw,21px);
+  font-weight:700;
+  max-width:52ch;
+}
+.clock-note em{font-style:normal;color:var(--accent)}
+
+/* 03 — precedent */
+.prec-grid{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:1px;
+  background:var(--line);
+  border:1px solid var(--line);
+}
+@media (max-width:820px){.prec-grid{grid-template-columns:1fr}}
+.prec{
+  background:var(--surface);
+  padding:clamp(28px,4vw,48px);
+}
+.prec .p-num{
+  font-size:clamp(56px,8.5vw,120px);
+  letter-spacing:-.04em;
+  line-height:.9;
+}
+.prec .p-num sup{font-size:.35em;letter-spacing:0;vertical-align:super}
+.prec .p-src{
+  font-family:ui-monospace,"SF Mono","Cascadia Mono","Roboto Mono",Menlo,Consolas,monospace;
+  font-size:11px;
+  letter-spacing:.16em;
+  text-transform:uppercase;
+  color:var(--accent);
+  display:block;
+  margin:18px 0 10px;
+}
+.prec p{font-size:15.5px;color:var(--muted);max-width:48ch}
+.prec p strong{color:var(--ink)}
+
+/* 04 — the system */
+.sys-grid{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  border-top:2px solid var(--line-strong);
+  border-left:1px solid var(--line);
+}
+@media (max-width:980px){.sys-grid{grid-template-columns:repeat(2,1fr)}}
+@media (max-width:600px){.sys-grid{grid-template-columns:1fr}}
+.mod{
+  border-right:1px solid var(--line);
+  border-bottom:1px solid var(--line);
+  padding:26px 22px 30px;
+  display:flex;
+  flex-direction:column;
+  gap:10px;
+}
+.mod .m-i{
+  font-family:ui-monospace,"SF Mono","Cascadia Mono","Roboto Mono",Menlo,Consolas,monospace;
+  font-size:11px;
+  letter-spacing:.2em;
+  color:var(--muted);
+}
+.mod h3{
+  font-family:"Arial Narrow","Helvetica Neue Condensed","Helvetica Neue",Helvetica,Arial,sans-serif;
+  font-weight:800;
+  text-transform:uppercase;
+  font-size:24px;
+  letter-spacing:-.01em;
+  line-height:1;
+}
+.mod h3 span{color:var(--accent)}
+.mod p{font-size:14.5px;color:var(--muted)}
+
+/* 05 — the artifact (always night: it's the product) */
+.artifact{
+  background:var(--n-bg);
+  color:var(--n-ink);
+  border:1px solid var(--n-line);
+}
+.artifact .marker{color:var(--n-accent)}
+.artifact .marker::after{background:var(--n-line)}
+.artifact-wrap{
+  display:grid;
+  grid-template-columns:.9fr 1.1fr;
+  gap:clamp(32px,5vw,72px);
+  align-items:start;
+}
+@media (max-width:960px){.artifact-wrap{grid-template-columns:1fr}}
+.artifact .claim{color:var(--n-ink);font-size:clamp(34px,4.6vw,64px)}
+.artifact .sub{color:var(--n-muted)}
+.artifact .sub strong{color:var(--n-ink)}
+.score-card{
+  border:1px solid var(--n-line);
+  background:var(--n-panel);
+}
+.score-head{
+  display:flex;
+  justify-content:space-between;
+  flex-wrap:wrap;
+  gap:8px 16px;
+  padding:14px 22px;
+  border-bottom:1px solid var(--n-line);
+  font-size:11px;
+  letter-spacing:.18em;
+  text-transform:uppercase;
+  color:var(--n-muted);
+}
+.score-head strong{color:var(--n-accent);font-weight:700}
+.score-main{
+  display:flex;
+  align-items:baseline;
+  gap:20px;
+  padding:26px 22px 8px;
+  flex-wrap:wrap;
+}
+.score-num{
+  font-size:clamp(88px,10vw,140px);
+  line-height:.8;
+  letter-spacing:-.04em;
+  color:var(--n-accent);
+}
+.score-verdict .v1{
+  font-size:13px;
+  letter-spacing:.22em;
+  text-transform:uppercase;
+  font-weight:800;
+}
+.score-verdict .v2{
+  font-size:12px;
+  color:var(--n-muted);
+  margin-top:4px;
+  letter-spacing:.06em;
+}
+.dims{padding:20px 22px 8px;display:flex;flex-direction:column;gap:9px}
+.dim{
+  display:grid;
+  grid-template-columns:minmax(120px,168px) 1fr 34px;
+  gap:12px;
+  align-items:center;
+  font-size:12px;
+}
+.dim .d-n{color:var(--n-muted);letter-spacing:.05em;text-transform:uppercase;font-size:10.5px}
+.dim .bar{height:7px;background:var(--n-line);overflow:hidden}
+.dim .bar i{display:block;height:100%;background:var(--n-ink)}
+.dim.warn .bar i{background:var(--n-accent)}
+.dim .d-v{text-align:right;color:var(--n-ink)}
+.gaps{
+  margin:16px 22px 22px;
+  border-top:1px solid var(--n-line);
+  padding-top:16px;
+  display:flex;
+  flex-direction:column;
+  gap:12px;
+}
+.gap-row{display:flex;gap:14px;font-size:13.5px;line-height:1.5}
+.gap-row .g-t{
+  font-family:ui-monospace,"SF Mono","Cascadia Mono","Roboto Mono",Menlo,Consolas,monospace;
+  font-size:11px;
+  color:var(--n-accent);
+  min-width:72px;
+  padding-top:2px;
+  letter-spacing:.06em;
+}
+.gap-row p{color:var(--n-muted)}
+.gap-row p strong{color:var(--n-ink)}
+.score-foot{
+  border-top:1px solid var(--n-line);
+  padding:13px 22px;
+  font-size:11px;
+  letter-spacing:.16em;
+  text-transform:uppercase;
+  color:var(--n-muted);
+  display:flex;
+  justify-content:space-between;
+  flex-wrap:wrap;
+  gap:8px;
+}
+.art-link{
+  display:inline-block;
+  margin-top:26px;
+  color:var(--n-ink);
+  text-decoration:none;
+  font-weight:800;
+  font-size:14px;
+  letter-spacing:.08em;
+  text-transform:uppercase;
+  border:1px solid var(--n-ink);
+  padding:14px 22px;
+}
+.art-link:hover{border-color:var(--n-accent);color:var(--n-accent)}
+
+/* 06 — the math */
+.math-grid{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:1px;
+  background:var(--line);
+  border:1px solid var(--line);
+}
+@media (max-width:820px){.math-grid{grid-template-columns:1fr}}
+.math-col{background:var(--surface);padding:clamp(26px,4vw,44px)}
+.math-col.win{background:var(--soft)}
+.math-col .m-tag{
+  font-family:ui-monospace,"SF Mono","Cascadia Mono","Roboto Mono",Menlo,Consolas,monospace;
+  font-size:11px;
+  letter-spacing:.2em;
+  text-transform:uppercase;
+  display:block;
+  margin-bottom:16px;
+  color:var(--muted);
+}
+.math-col.win .m-tag{color:var(--accent)}
+.math-num{
+  font-size:clamp(44px,6.5vw,84px);
+  letter-spacing:-.035em;
+  line-height:.9;
+}
+.math-col.win .math-num{color:var(--accent)}
+.math-lines{margin:20px 0 0;padding:0;border-top:1px solid var(--line)}
+.math-lines li{
+  list-style:none;
+  padding:11px 0;
+  border-bottom:1px solid var(--line);
+  font-size:15px;
+  color:var(--muted);
+}
+.math-lines li strong{color:var(--ink)}
+
+/* 07 — objections */
+.obj-grid{
+  display:grid;
+  grid-template-columns:repeat(2,1fr);
+  border-top:2px solid var(--line-strong);
+  border-left:1px solid var(--line);
+}
+@media (max-width:760px){.obj-grid{grid-template-columns:1fr}}
+.obj{
+  border-right:1px solid var(--line);
+  border-bottom:1px solid var(--line);
+  padding:26px 24px 30px;
+}
+.obj .o-q{
+  font-family:ui-monospace,"SF Mono","Cascadia Mono","Roboto Mono",Menlo,Consolas,monospace;
+  font-size:12px;
+  letter-spacing:.14em;
+  text-transform:uppercase;
+  color:var(--muted);
+  display:block;
+  margin-bottom:12px;
+}
+.obj h3{
+  font-size:clamp(20px,2.2vw,26px);
+  font-weight:800;
+  letter-spacing:-.015em;
+  line-height:1.15;
+  margin-bottom:8px;
+}
+.obj p{font-size:15px;color:var(--muted);max-width:44ch}
+
+/* 08 — credibility (night band) */
+.cred{
+  background:var(--n-bg);
+  color:var(--n-ink);
+  border-top:1px solid var(--n-line);
+}
+.cred .marker{color:var(--n-accent)}
+.cred .marker::after{background:var(--n-line)}
+.cred .claim{color:var(--n-ink);font-size:clamp(34px,5vw,72px)}
+.cred-grid{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:clamp(32px,5vw,72px);
+  margin-top:clamp(28px,4vw,48px);
+  align-items:start;
+}
+@media (max-width:900px){.cred-grid{grid-template-columns:1fr}}
+.cred .bio{font-size:17px;color:var(--n-muted);max-width:56ch}
+.cred .bio strong{color:var(--n-ink)}
+.cred-quote{
+  margin:28px 0 0;
+  border-left:3px solid var(--n-accent);
+  padding:4px 0 4px 20px;
+  font-size:clamp(18px,2vw,22px);
+  line-height:1.45;
+  font-weight:600;
+  max-width:44ch;
+}
+.cred-quote footer{
+  font-size:12px;
+  letter-spacing:.14em;
+  text-transform:uppercase;
+  color:var(--n-muted);
+  margin-top:12px;
+  font-weight:400;
+}
+.record{margin:0;padding:0;border-top:2px solid var(--n-ink)}
+.record li{
+  list-style:none;
+  display:flex;
+  gap:18px;
+  padding:16px 0;
+  border-bottom:1px solid var(--n-line);
+}
+.record .yr{
+  font-family:ui-monospace,"SF Mono","Cascadia Mono","Roboto Mono",Menlo,Consolas,monospace;
+  font-size:12px;
+  color:var(--n-accent);
+  min-width:52px;
+  padding-top:3px;
+  letter-spacing:.08em;
+}
+.record h3{font-size:16px;font-weight:800;letter-spacing:-.01em}
+.record p{font-size:13.5px;color:var(--n-muted);margin-top:3px}
+
+/* 09 — the ladder */
+.ladder{margin-top:clamp(28px,4vw,48px);border-top:2px solid var(--line-strong)}
+.rung{
+  display:grid;
+  grid-template-columns:88px 1fr auto;
+  gap:clamp(16px,3vw,40px);
+  align-items:center;
+  padding:clamp(22px,3vw,34px) 0;
+  border-bottom:1px solid var(--line);
+}
+@media (max-width:760px){
+  .rung{grid-template-columns:1fr;gap:14px}
+}
+.rung .r-n{
+  font-size:clamp(40px,5vw,64px);
+  letter-spacing:-.03em;
+  color:var(--muted);
+  line-height:.9;
+}
+.rung h3{
+  font-size:clamp(22px,2.6vw,32px);
+  font-weight:800;
+  letter-spacing:-.02em;
+}
+.rung .r-d{font-size:15px;color:var(--muted);margin-top:5px;max-width:52ch}
+.cta{
+  display:inline-block;
+  text-decoration:none;
+  font-weight:800;
+  font-size:14px;
+  letter-spacing:.08em;
+  text-transform:uppercase;
+  padding:16px 26px;
+  border:1px solid var(--ink);
+  color:var(--ink);
+  white-space:nowrap;
+}
+.cta:hover{border-color:var(--accent);color:var(--accent)}
+.cta.solid{
+  background:var(--accent);
+  border-color:var(--accent);
+  color:var(--on-accent);
+}
+.cta.solid:hover{background:var(--accent-hi);border-color:var(--accent-hi);color:var(--n-on-accent)}
+.callback{
+  margin-top:clamp(48px,7vw,88px);
+  text-align:left;
+}
+.callback .cb-line{
+  font-size:clamp(36px,7vw,100px);
+  max-width:13ch;
+  color:var(--ink);
+}
+.callback .cb-line .hit{color:var(--accent)}
+.callback p{
+  margin-top:20px;
+  font-size:16px;
+  color:var(--muted);
+  max-width:52ch;
+}
+
+/* footer */
+.foot{
+  border-top:1px solid var(--line);
+  padding:32px clamp(20px,4vw,48px) 44px;
+}
+.foot-inner{
+  max-width:1240px;
+  margin:0 auto;
+  display:flex;
+  justify-content:space-between;
+  gap:20px;
+  flex-wrap:wrap;
+  font-size:13px;
+  color:var(--muted);
+}
+.foot .brand{
+  font-weight:800;
+  letter-spacing:.22em;
+  text-transform:uppercase;
+  color:var(--ink);
+  font-size:13px;
+}
+.foot .brand span{color:var(--accent)}
+.foot a{color:var(--ink);text-decoration:none;border-bottom:1px solid var(--line)}
+.foot a:hover{border-bottom-color:var(--accent);color:var(--accent)}
+
+/* ============================================================
+   REDUCED MOTION — everything static, decision still works
+   ============================================================ */
+@media (prefers-reduced-motion: reduce){
+  html{scroll-behavior:auto}
+  .clock .dot{animation:none}
+  .choice,.go-btn,.cta,.art-link{transition:none}
+}
+</style>
+</head>
+<body>
+
+<!-- ================= INTRO: THE DRILL ================= -->
+<section class="intro" aria-label="Opening scenario: a simulated AI incident">
+  <div class="intro-top mono">
+    <a class="brand" href="#brief">WIND<span>SHEAR</span></a>
+    <span class="stamp">TUESDAY&nbsp;/&nbsp;09:47</span>
+    <span class="clock"><span class="dot" aria-hidden="true"></span>ELAPSED&nbsp;<span id="clock" aria-hidden="true">T+00:00</span></span>
+  </div>
+
+  <div class="intro-main">
+    <div class="intro-grid">
+      <div>
+        <p class="sit-label mono"><strong>THIS IS A SIMULATION.</strong> IT IS ALREADY IN PROGRESS.</p>
+        <h1 class="situation">Your AI support agent has been quoting other patients&rsquo; records for three weeks. A reporter has the screenshots. <em>Her deadline is 5&nbsp;PM.</em></h1>
+      </div>
+      <aside class="signals" aria-label="Inbound signals in the simulated incident">
+        <p class="s-label mono"><strong>INBOUND</strong> &middot; LAST 35 MIN</p>
+        <div class="sig"><span class="s-t">09:12</span><p><strong>Support queue</strong>Ticket volume nominal. Agent handling 84% without escalation.</p></div>
+        <div class="sig"><span class="s-t">09:31</span><p><strong>Slack &middot; #support</strong>&ldquo;is the bot quoting someone else&rsquo;s chart, or am I reading this wrong&rdquo;</p></div>
+        <div class="sig"><span class="s-t">09:44</span><p><strong>Voicemail</strong>Reporter, national desk. Second attempt this morning.</p></div>
+        <div class="sig"><span class="s-t">09:47</span><p><strong>Email &middot; to CEO, CISO</strong>Subject: REQUEST FOR COMMENT — DEADLINE 5PM.</p></div>
+      </aside>
+    </div>
+
+    <div class="decide">
+      <h2 class="decide-q disp" id="decide-q">What do you do first?</h2>
+      <p class="decide-hint mono">CHOOSE ONE. THE CLOCK IS RUNNING.</p>
+
+      <div class="choices" role="group" aria-labelledby="decide-q">
+        <button class="choice" type="button" data-target="c-legal" aria-controls="c-legal">
+          <span class="k">OPTION A</span>
+          <span class="label">Call legal</span>
+        </button>
+        <button class="choice" type="button" data-target="c-kill" aria-controls="c-kill">
+          <span class="k">OPTION B</span>
+          <span class="label">Shut down the agent</span>
+        </button>
+        <button class="choice" type="button" data-target="c-draft" aria-controls="c-draft">
+          <span class="k">OPTION C</span>
+          <span class="label">Draft the statement</span>
+        </button>
+      </div>
+
+      <div class="consequence-slot" aria-live="polite">
+        <div class="consequence" id="c-legal" tabindex="-1">
+          <div class="c-head mono"><span><strong>YOU CALLED LEGAL.</strong>&nbsp;THE RIGHT CALL — AND FORTY MINUTES AWAY.</span><span>DECISION LOGGED <span class="t-log">T+—:—</span></span></div>
+          <p>Outside counsel has to convene, conflict-check, and get read in. While you hold, the agent answers the morning&rsquo;s tickets the same way it has for three weeks, and someone in the support channel posts a screenshot to a group chat.</p>
+          <p>Legal will tell you what you can say. It cannot tell you what to do — and the reporter&rsquo;s deadline didn&rsquo;t move.</p>
+          <div class="refrain">
+            <p>That hesitation you just felt? <em>That&rsquo;s the gap. Windshear closes it.</em></p>
+            <a class="go-btn" href="#brief">See how &darr;</a>
+          </div>
+        </div>
+
+        <div class="consequence" id="c-kill" tabindex="-1">
+          <div class="c-head mono"><span><strong>YOU SHUT DOWN THE AGENT.</strong>&nbsp;THE LEAK STOPS. THE CRISIS DOESN&rsquo;T.</span><span>DECISION LOGGED <span class="t-log">T+—:—</span></span></div>
+          <p>You just took your support channel offline on the worst support day of the year. Hold times climb, customers move to social to ask why, and your own team learns about the incident from an outage banner.</p>
+          <p>And the story doesn&rsquo;t need a live agent. The reporter already has the screenshots.</p>
+          <div class="refrain">
+            <p>That hesitation you just felt? <em>That&rsquo;s the gap. Windshear closes it.</em></p>
+            <a class="go-btn" href="#brief">See how &darr;</a>
+          </div>
+        </div>
+
+        <div class="consequence" id="c-draft" tabindex="-1">
+          <div class="c-head mono"><span><strong>YOU DRAFTED THE STATEMENT.</strong>&nbsp;IT&rsquo;S CLEAN. IT&rsquo;S ALSO CONTRADICTED.</span><span>DECISION LOGGED <span class="t-log">T+—:—</span></span></div>
+          <p>Your draft calls the issue &ldquo;isolated and contained.&rdquo; Support has spent three weeks telling affected patients something different — in writing. The reporter has those messages too.</p>
+          <p>Now the story isn&rsquo;t the leak. It&rsquo;s the contradiction. The statement is fine; it&rsquo;s just not connected to anything else you&rsquo;re doing.</p>
+          <div class="refrain">
+            <p>That hesitation you just felt? <em>That&rsquo;s the gap. Windshear closes it.</em></p>
+            <a class="go-btn" href="#brief">See how &darr;</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="intro-foot mono">
+    <span>SIM 047 &ldquo;QUIET LEAK&rdquo; &middot; HEALTHCARE</span>
+    <a class="skip" href="#brief">skip to the point &darr;</a>
+  </div>
+</section>
+
+<noscript>
+  <style>
+    .consequence{display:block;margin-top:16px}
+    .choices{display:none}
+    .decide-hint{display:none}
+    .consequence-slot{min-height:0}
+    .clock .dot{animation:none}
+  </style>
+</noscript>
+
+<main>
+
+<!-- ================= 01 / THE GAP ================= -->
+<section class="sec" id="brief" aria-labelledby="h-brief">
+  <div class="sec-inner">
+    <p class="marker mono">01 / THE GAP</p>
+    <div class="gap-grid">
+      <div>
+        <h2 class="claim disp" id="h-brief">There was no <span class="hit">right</span> answer up there.</h2>
+        <p class="sub">Every choice cost you something, because the work wasn&rsquo;t done before Tuesday. <strong>Windshear is the flight simulator for organizational AI</strong> — it generates immersive, organization-specific crisis simulations, scores how your leadership team actually responds, and turns the debrief into a plan. So the first time your executives face a deepfake CFO or a leaking agent, it isn&rsquo;t the first time.</p>
+      </div>
+      <ul class="gap-list">
+        <li><span class="n">A</span><span><strong>You rehearse it</strong> — a 90-minute exercise built from your industry, your stack, your regulators.</span></li>
+        <li><span class="n">B</span><span><strong>You get measured</strong> — decisions, escalation timing, and communications scored while you respond.</span></li>
+        <li><span class="n">C</span><span><strong>You get faster</strong> — a prioritized fix list, then a harder scenario next quarter to prove it worked.</span></li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- ================= 02 / THE CLOCK ================= -->
+<section class="sec" id="clock-sec" aria-labelledby="h-clock">
+  <div class="sec-inner">
+    <p class="marker mono">02 / THE CLOCK</p>
+    <div class="mega disp" aria-hidden="true">4</div>
+    <h2 class="mega-cap disp" id="h-clock">Business days. That&rsquo;s the SEC&rsquo;s disclosure window once an incident is material.</h2>
+    <p class="sub">In the drill you just ran, hesitation cost you a news cycle. In a real incident, the deadlines are written into law — and they assume you already know who decides, who speaks, and what your AI systems actually did.</p>
+    <div class="reg-grid">
+      <div class="reg">
+        <span class="r-tag">SEC</span>
+        <h3>4-business-day disclosure</h3>
+        <p>Material cybersecurity incidents must be disclosed within four business days of the materiality determination.</p>
+      </div>
+      <div class="reg">
+        <span class="r-tag">EU AI ACT</span>
+        <h3>Obligations, phased in now</h3>
+        <p>Risk-based duties for AI systems you have already deployed — governance, transparency, incident handling.</p>
+      </div>
+      <div class="reg">
+        <span class="r-tag">NIST AI RMF</span>
+        <h3>The reference framework</h3>
+        <p>The baseline your board, customers, and insurers increasingly measure your AI risk practice against.</p>
+      </div>
+      <div class="reg">
+        <span class="r-tag">ISO/IEC 42001</span>
+        <h3>AI management systems</h3>
+        <p>The standard buyers are starting to ask about in procurement. Rehearsal is how you build the evidence.</p>
+      </div>
+    </div>
+    <p class="clock-note">The clock that starts during a real incident is <em>regulatory, not just reputational.</em> Windshear exercises run your team against those deadlines before they count.</p>
+  </div>
+</section>
+
+<!-- ================= 03 / PRECEDENT ================= -->
+<section class="sec" aria-labelledby="h-prec">
+  <div class="sec-inner">
+    <p class="marker mono">03 / PRECEDENT</p>
+    <h2 class="claim disp" id="h-prec" style="margin-bottom:clamp(28px,4vw,48px)">This is not a <span class="hit">hypothetical</span> genre.</h2>
+    <div class="prec-grid">
+      <div class="prec">
+        <div class="p-num disp">$25<span aria-hidden="true">M</span><span style="position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)"> million US dollars</span></div>
+        <span class="p-src">2024 · HONG KONG · WIDELY REPORTED</span>
+        <p>A finance employee at engineering firm <strong>Arup</strong> transferred roughly US$25&nbsp;million after a video call in which every other participant — including the CFO — was a <strong>deepfake</strong>. The controls assumed faces and voices were real.</p>
+      </div>
+      <div class="prec">
+        <div class="p-num disp">$4.4<span aria-hidden="true">M</span><span style="position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)"> million US dollars</span></div>
+        <span class="p-src">IBM · COST OF A DATA BREACH 2025</span>
+        <p>The global average cost of a data breach, per IBM&rsquo;s 2025 report. The expensive part is rarely the technology — it&rsquo;s the <strong>unrehearsed hours</strong> of leadership response around it.</p>
+      </div>
+    </div>
+    <p class="sub" style="margin-top:26px">Nobody on that video call had rehearsed the moment. That&rsquo;s the variable Windshear exists to change.</p>
+  </div>
+</section>
+
+<!-- ================= 04 / THE SYSTEM ================= -->
+<section class="sec" aria-labelledby="h-sys">
+  <div class="sec-inner">
+    <p class="marker mono">04 / THE SYSTEM</p>
+    <h2 class="claim disp" id="h-sys" style="margin-bottom:clamp(28px,4vw,48px)">Six modules. One <span class="hit">discipline.</span></h2>
+    <div class="sys-grid">
+      <div class="mod">
+        <span class="m-i">WS/01</span>
+        <h3>Windshear <span>Scenarios</span></h3>
+        <p>Generates the crisis — deepfake executives, leaking agents, regulator letters — built from your industry, tech stack, and regulatory exposure. No two exercises repeat.</p>
+      </div>
+      <div class="mod">
+        <span class="m-i">WS/02</span>
+        <h3>Windshear <span>Storyline</span></h3>
+        <p>Delivers it the way real crises arrive: email, chat injects, simulated press, social reaction, board questions. Pressure through every channel at once.</p>
+      </div>
+      <div class="mod">
+        <span class="m-i">WS/03</span>
+        <h3>Windshear <span>Facilitator</span></h3>
+        <p>Moderates live — escalating difficulty, challenging assumptions, logging decisions. Expert facilitation without the expert&rsquo;s day rate.</p>
+      </div>
+      <div class="mod">
+        <span class="m-i">WS/04</span>
+        <h3>Windshear <span>Assessment</span></h3>
+        <p>Scores what actually happened: decision quality, escalation timing, communications discipline, governance under pressure.</p>
+      </div>
+      <div class="mod">
+        <span class="m-i">WS/05</span>
+        <h3>Windshear <span>Readiness Index</span></h3>
+        <p>One number your board understands, built on dimensions your team can act on — tracked exercise over exercise.</p>
+      </div>
+      <div class="mod">
+        <span class="m-i">WS/06</span>
+        <h3>Windshear <span>Flightpath</span></h3>
+        <p>Turns findings into a prioritized 30/90-day plan — owners, policies, thresholds — then re-tests to prove the gap closed.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= 05 / THE ARTIFACT ================= -->
+<section class="sec artifact" id="debrief" aria-labelledby="h-art">
+  <div class="sec-inner">
+    <p class="marker mono">05 / THE ARTIFACT</p>
+    <div class="artifact-wrap">
+      <div>
+        <h2 class="claim disp" id="h-art">You leave with evidence, not a warm feeling.</h2>
+        <p class="sub">Ninety minutes after the exercise starts, this document exists: your <strong>Readiness Index</strong>, the exact minutes where the response broke, and a Flightpath to fix each one. Board-ready. Benchmarked against anonymized peers. Yours.</p>
+        <a class="art-link" href="mailto:hello@windshear.ai?subject=Sample%20debrief">See a sample debrief</a>
+      </div>
+      <div class="score-card" role="img" aria-label="Sample post-exercise debrief showing a Readiness Index of 61 out of 100, seven scored dimensions, and three timestamped findings">
+        <div class="score-head mono"><span><strong>POST-EXERCISE DEBRIEF</strong> · SIM 047 &ldquo;QUIET LEAK&rdquo;</span><span>SAMPLE</span></div>
+        <div class="score-main">
+          <div class="score-num disp">61</div>
+          <div class="score-verdict">
+            <p class="v1">READY, WITH GAPS</p>
+            <p class="v2 mono">WINDSHEAR READINESS INDEX / 100 · Q3</p>
+          </div>
+        </div>
+        <div class="dims">
+          <div class="dim"><span class="d-n">Incident response</span><span class="bar"><i style="width:78%"></i></span><span class="d-v mono">78</span></div>
+          <div class="dim"><span class="d-n">Data protection</span><span class="bar"><i style="width:74%"></i></span><span class="d-v mono">74</span></div>
+          <div class="dim warn"><span class="d-n">Executive readiness</span><span class="bar"><i style="width:58%"></i></span><span class="d-v mono">58</span></div>
+          <div class="dim warn"><span class="d-n">Communications</span><span class="bar"><i style="width:55%"></i></span><span class="d-v mono">55</span></div>
+          <div class="dim warn"><span class="d-n">Regulatory prep</span><span class="bar"><i style="width:52%"></i></span><span class="d-v mono">52</span></div>
+          <div class="dim warn"><span class="d-n">Vendor risk</span><span class="bar"><i style="width:41%"></i></span><span class="d-v mono">41</span></div>
+          <div class="dim warn"><span class="d-n">AI governance</span><span class="bar"><i style="width:33%"></i></span><span class="d-v mono">33</span></div>
+        </div>
+        <div class="gaps">
+          <div class="gap-row"><span class="g-t">T+00:34</span><p><strong>Escalation delayed.</strong> 34 minutes between first credible signal and executive notification. Flightpath: severity thresholds with named owners.</p></div>
+          <div class="gap-row"><span class="g-t">T+00:51</span><p><strong>Contradictory comms.</strong> Support, PR, and the CEO statement told three different stories. Flightpath: single-spokesperson protocol, pre-approved holding language.</p></div>
+          <div class="gap-row"><span class="g-t">T+01:12</span><p><strong>No governance record.</strong> Nobody could answer the regulator&rsquo;s documentation request. Flightpath: AI system inventory and decision log, mapped to your regulators.</p></div>
+        </div>
+        <div class="score-foot mono"><span>NEXT EXERCISE: Q4 · HARDER CONDITIONS</span><span>RE-TEST IN 30 DAYS</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= 06 / THE MATH ================= -->
+<section class="sec" aria-labelledby="h-math">
+  <div class="sec-inner">
+    <p class="marker mono">06 / THE MATH</p>
+    <h2 class="claim disp" id="h-math" style="margin-bottom:clamp(28px,4vw,48px)">Rehearsal used to be a <span class="hit">luxury.</span></h2>
+    <div class="math-grid">
+      <div class="math-col">
+        <span class="m-tag">THE CONSULTANT TABLETOP</span>
+        <div class="math-num disp">$30–80K</div>
+        <ul class="math-lines">
+          <li><strong>Once a year</strong> — scheduled around the consultants, not the threat.</li>
+          <li><strong>One scenario</strong> — generic by design, stale by delivery.</li>
+          <li><strong>Weeks of prep</strong> — scoping calls, pre-reads, workshop logistics.</li>
+          <li><strong>Output: a PDF</strong> — filed, unread, unmeasured.</li>
+        </ul>
+      </div>
+      <div class="math-col win">
+        <span class="m-tag">WINDSHEAR</span>
+        <div class="math-num disp">Every quarter</div>
+        <ul class="math-lines">
+          <li><strong>Every scenario</strong> — deepfakes, agent failures, regulator probes, vendor compromise.</li>
+          <li><strong>90 minutes</strong> — your team, your context, no consultants required.</li>
+          <li><strong>Measured</strong> — a Readiness Index that moves, exercise over exercise.</li>
+          <li><strong>Output: a practice</strong> — findings, Flightpath, re-test, repeat.</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= 07 / OBJECTIONS ================= -->
+<section class="sec" aria-labelledby="h-obj">
+  <div class="sec-inner">
+    <p class="marker mono">07 / YOU&rsquo;RE THINKING</p>
+    <h2 class="claim disp" id="h-obj" style="margin-bottom:clamp(28px,4vw,48px)">Fair <span class="hit">questions.</span></h2>
+    <div class="obj-grid">
+      <div class="obj">
+        <span class="o-q">&ldquo;Our data in an AI product?&rdquo;</span>
+        <h3>Your data never trains our models.</h3>
+        <p>Scenario context stays yours. Client data is not used for model training. Full stop.</p>
+      </div>
+      <div class="obj">
+        <span class="o-q">&ldquo;We don&rsquo;t have the bandwidth.&rdquo;</span>
+        <h3>No consultants. Ninety minutes.</h3>
+        <p>No scoping engagement, no pre-reads, no workshop logistics. Your team shows up; the exercise runs itself.</p>
+      </div>
+      <div class="obj">
+        <span class="o-q">&ldquo;Who sees our score?&rdquo;</span>
+        <h3>Scores are private. Benchmarks are anonymized.</h3>
+        <p>Your Readiness Index is yours. Peer comparisons are aggregated and anonymized — you see where you stand, not who&rsquo;s standing where.</p>
+      </div>
+      <div class="obj">
+        <span class="o-q">&ldquo;Generic scenarios won&rsquo;t fool us.&rdquo;</span>
+        <h3>Built from your industry, your stack, your regulators.</h3>
+        <p>The scenario that opened this page was healthcare. Yours will be yours — sector, systems, and the regulators who actually write to you.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= 08 / THE OPERATOR ================= -->
+<section class="sec cred" aria-labelledby="h-cred">
+  <div class="sec-inner">
+    <p class="marker mono">08 / THE OPERATOR</p>
+    <h2 class="claim disp" id="h-cred">Built by someone who runs this drill at <span style="color:var(--n-accent)">national scale.</span></h2>
+    <div class="cred-grid">
+      <div>
+        <p class="bio">Windshear is led by <strong>Alex Dow</strong> — chair of <strong>Operation: Defend the North</strong>, siberX&rsquo;s national cybersecurity readiness exercise, run across Ottawa, Vancouver, Calgary, and Toronto. Two decades operational. Three mission-critical SOCs, including the <strong>Vancouver 2010 Winter Olympics</strong> Security Operations Centre. He has spent a career watching what leadership teams do under pressure — and building the exercises that change it.</p>
+        <blockquote class="cred-quote">
+          &ldquo;Organizations don&rsquo;t rise to the occasion during a crisis. They fall back on their training. Windshear exists so there&rsquo;s something to fall back on.&rdquo;
+          <footer>Alex Dow &middot; Windshear</footer>
+        </blockquote>
+      </div>
+      <ul class="record">
+        <li><span class="yr">NOW</span><div><h3>Chair, Operation: Defend the North</h3><p>siberX&rsquo;s national readiness exercise — immersive crisis simulation for critical-sector leaders across four Canadian cities.</p></div></li>
+        <li><span class="yr">2017</span><div><h3>Co-founder &amp; Chief Innovation Officer, Mirai Security</h3><p>Guided implementation and education over quick fixes — the philosophy Windshear turns into software.</p></div></li>
+        <li><span class="yr">2013</span><div><h3>Founder, BSides Vancouver</h3><p>Established Vancouver&rsquo;s community security conference.</p></div></li>
+        <li><span class="yr">2010</span><div><h3>Vancouver Winter Olympics SOC</h3><p>One of three mission-critical Security Operations Centres in a two-decade operational career. SANS Institute instructor.</p></div></li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- ================= 09 / THE LADDER ================= -->
+<section class="sec" id="start" aria-labelledby="h-start">
+  <div class="sec-inner">
+    <p class="marker mono">09 / WHERE TO START</p>
+    <h2 class="claim disp" id="h-start">Three rungs. Start on the <span class="hit">easy one.</span></h2>
+    <div class="ladder">
+      <div class="rung">
+        <span class="r-n disp mono">01</span>
+        <div>
+          <h3>See a sample debrief</h3>
+          <p class="r-d">The actual artifact — Readiness Index, timestamped findings, Flightpath. Two minutes to read.</p>
+        </div>
+        <a class="cta" href="mailto:hello@windshear.ai?subject=Sample%20debrief">Send me the sample</a>
+      </div>
+      <div class="rung">
+        <span class="r-n disp mono">02</span>
+        <div>
+          <h3>Free 15-minute Readiness Snapshot</h3>
+          <p class="r-d">Your AI footprint, your exposure, your baseline score. No exercise required yet.</p>
+        </div>
+        <a class="cta" href="mailto:hello@windshear.ai?subject=Readiness%20Snapshot">Get my snapshot</a>
+      </div>
+      <div class="rung">
+        <span class="r-n disp mono">03</span>
+        <div>
+          <h3>Book a 90-minute pilot exercise</h3>
+          <p class="r-d">Your leadership team, inside a crisis built for your organization. Debrief in hand the same day.</p>
+        </div>
+        <a class="cta solid" href="mailto:hello@windshear.ai?subject=Pilot%20exercise">Book the pilot</a>
+      </div>
+    </div>
+    <div class="callback">
+      <p class="cb-line disp">Next time, it won&rsquo;t be <span class="hit">a webpage.</span></p>
+      <p>You met this scenario with sixty seconds of warning and three imperfect options. The real one arrives with none. Rehearse it first.</p>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<footer class="foot">
+  <div class="foot-inner">
+    <div>
+      <span class="brand">WIND<span>SHEAR</span></span><br>
+      <span class="mono" style="font-size:11px;letter-spacing:.16em">THE FLIGHT SIMULATOR FOR ORGANIZATIONAL AI</span>
+    </div>
+    <div style="text-align:right">
+      <a href="mailto:hello@windshear.ai">hello@windshear.ai</a><br>
+      <span class="mono" style="font-size:11px;letter-spacing:.12em">&copy; 2026 WINDSHEAR &middot; SIM 047 HAS ENDED. TUESDAY HASN&rsquo;T.</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+(function(){
+  "use strict";
+  var reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  var clockEl = document.getElementById("clock");
+  var seconds = 0;
+  var frozen = false;
+  var timer = null;
+
+  function fmt(s){
+    var m = Math.floor(s / 60);
+    var r = s % 60;
+    return "T+" + (m < 10 ? "0" : "") + m + ":" + (r < 10 ? "0" : "") + r;
+  }
+
+  if (clockEl && !reduced){
+    timer = setInterval(function(){
+      if (frozen) return;
+      seconds += 1;
+      clockEl.textContent = fmt(seconds);
+    }, 1000);
+  }
+
+  var buttons = document.querySelectorAll(".choice");
+  var panels = document.querySelectorAll(".consequence");
+
+  function choose(btn){
+    var target = document.getElementById(btn.getAttribute("data-target"));
+    if (!target) return;
+
+    if (!frozen){
+      frozen = true;
+      if (timer) clearInterval(timer);
+      document.body.classList.add("decided");
+    }
+
+    var i;
+    for (i = 0; i < buttons.length; i++){
+      buttons[i].classList.remove("picked");
+      buttons[i].setAttribute("aria-expanded", "false");
+    }
+    btn.classList.add("picked");
+    btn.setAttribute("aria-expanded", "true");
+
+    for (i = 0; i < panels.length; i++){
+      panels[i].classList.remove("active");
+    }
+    var logs = target.querySelectorAll(".t-log");
+    for (i = 0; i < logs.length; i++){
+      logs[i].textContent = reduced ? "T+—:—" : fmt(seconds);
+    }
+    target.classList.add("active");
+    target.focus({preventScroll: true});
+    if (!reduced && target.scrollIntoView){
+      target.scrollIntoView({behavior: "smooth", block: "nearest"});
+    }
+  }
+
+  for (var i = 0; i < buttons.length; i++){
+    buttons[i].setAttribute("aria-expanded", "false");
+    buttons[i].addEventListener("click", function(){ choose(this); });
+  }
+})();
+</script>
+
+</body>
+</html>
