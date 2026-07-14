@@ -1,52 +1,35 @@
-# VetIntel Internal Vision Deck — Expanded Slide Outline (v0.4)
+# VetIntel Team Vision Deck — Restructured Outline (v0.5)
 
-**Deck:** Content + Data + New Products — the team vision deck
+**Deck:** The next 90 days — one veterinary intelligence company
 **Window:** July 10 – October 8, 2026
-**Audience:** the full VetIntel / Antelligence operating team — **including people who joined in the last month and have never heard the strategy told end-to-end**
-**Drafted:** 2026-07-13, from the 90-Day Operating Plan, Vision & Strategy hub, the Gates v0.2 deck brief (appendix), today's Granola notes from the Helena / Adam / Ben data chat, and this week's live evidence (refresh progress, newsfeed pilot, pipeline motion)
+**Audience:** the full VetIntel / Antelligence operating team, including people who joined in the last month
+**Drafted:** 2026-07-14, restructured on Adam's direction after v0.4
+
+## What changed and why (read first)
+
+Adam's feedback: the earlier draft was "all over the place" and "not very specific visually." The fix is a **clear spine** and a **specific visual per slide**:
+
+1. **Vision first, driven by the flywheel.** We open on where we're going — VetIntel becomes the **commercial interface** to the veterinary industry, which unlocks deeper, more proprietary data, which compounds. Reuse the flywheel slide from the `VetIntel_June.pdf` deck (the one sent to VANE).
+2. **Two active pillars, not three co-equal ones.** **Data is the commercial engine**; **Content is audience intelligence**. The **editorial network + jobs board is the post-90 horizon** — the third pillar we build toward once the foundation is set.
+3. **"What we learned" moved up front** — the culture is fantastic (jump in, get it done), but it shows up as heavy manual work and no visibility into what's working. That single insight motivates both pillars and the automation approach.
+4. **A "how we work" slide** — our automation method (observe → build → dogfood → introduce → transition off the manual way), shown explicitly.
+5. **Structure = goal → where we're going → people's roles within it**, with Data framed as the commercial side.
+
+**Every slide below carries a `Visual:` line** (the concrete layout / hero graphic) so the design build isn't vague, plus a design-system master-slide mapping.
+
+**Clarity rules kept from v0.4:** no unexplained acronym on a slide; every workstream has an owner's name; "gate/go-no-go" framed as decision discipline; one claim per slide; glossary appendix doubles as a new-hire cheat sheet.
 
 ---
 
-## Communication job
+# ACT 1 — THE VISION (where we're going)
 
-By the last slide, every person in the room — including someone in week one — should be able to:
+## 1 — Cover
 
-1. **Repeat the sentence** — say what VetIntel is building in one line.
-2. **Tell the origin story** — who we are, what we acquired, and why, in under a minute.
-3. **Place themselves** — point at the pillar, the 30/60/90 row, and the name that is theirs.
-4. **Feel the momentum** — see that the plan is already moving, not aspirational.
-5. **Know the finish line** — name what must be true on October 8 and why it matters.
+**Claim:** One veterinary intelligence company — the next 90 days.
 
-## Narrative arc
+**On slide:** "The Next 90 Days" · July 10 → October 8 · *From trusted assets to one living system.*
 
-The deck is a story in six beats, not a status report:
-
-**Here's who we are → we bought something real → we learned where the value leaks → we're wiring it into one system → here's exactly what the next 90 days prove → here's your part.**
-
-## New-team clarity rules (enforced throughout)
-
-These fix everything that wasn't clear in the earlier drafts for someone new:
-
-- **No unexplained acronym ever appears on a slide.** EPD and IPD are defined the first time they appear, in plain words, on the slide itself — not in speaker notes.
-- **Every piece of work has a first name on it.** New people learn who does what from the deck, and veterans see their name next to their commitment.
-- **Every term of art gets a plain-language gloss** the first time it's used ("the refresh — our quarterly update of every practice record"). A full glossary ships as the deck's appendix (bottom of this doc) and doubles as a new-hire cheat sheet.
-- **"Gate" and "go/no-go" are framed as discipline, not threat**: we decide with evidence on a date, instead of drifting. Said exactly that way, once, and reused consistently.
-- **Concrete before abstract.** The flywheel gets a one-customer walk-through in words before anyone sees a circular diagram.
-- **One claim per slide.** If content doesn't serve the claim, cut the content, not the claim.
-
----
-
-# The slides
-
-## 1 — Cover: "The Next 90 Days"
-
-**Claim:** VetIntel is turning trusted industry assets into one veterinary intelligence company.
-
-**On slide:**
-- The Next 90 Days — July 10 → October 8
-- One company. One system. Three reinforcing pillars.
-
-**Speaker notes:** This is not a kickoff for a new project. It's the plan for connecting what already works — the data, the publications, the customer relationships — into a single compounding system, with hard proof points along the way. Everything in this deck has a name and a date on it.
+**Visual:** Full-bleed title, VetIntel mark, a single thin horizon line that becomes the flywheel motif carried through the deck.
 
 **Design system:** master slide 1 (cover).
 
@@ -54,340 +37,340 @@ These fix everything that wasn't clear in the earlier drafts for someone new:
 
 ## 2 — Who we are, in one minute
 
-**Claim:** VetIntel is a new company built on a 30-year foundation — and everyone in this room is part of both.
+**Claim:** A new company built on a 30-year foundation — everyone here is part of both.
 
-**On slide (two columns joined by an arrow):**
+**On slide (two panels joined by an arrow):**
+- **Antelligence (the foundation):** 30 years of industry intelligence. The Fountain Report (flagship), Pet Care Weekly, VSI. Two proprietary practice databases sold to the industry's biggest players. Built by Duane Thurman; grown by Chris Kelly, Steve Kirton, Chris Ragland.
+- **→ VetIntel (the next chapter):** The Veterinary Intelligence Company. Founded June 2026 by Adam Little (CEO) and Ben Church (CTO). Acquired Antelligence to build on it. Mission: make these assets the **data backbone of the veterinary industry**.
 
-**Antelligence** *(the foundation)*
-- Three decades of veterinary industry intelligence
-- **The Fountain Report** — the industry's trusted newsletter — plus Pet Care Weekly and VSI (Veterinary Student Insider)
-- Two proprietary databases of veterinary practices, sold to the industry's biggest companies
-- Built by Duane Thurman, grown by Chris Kelly, Steve Kirton, and Chris Ragland
+**Visual:** Left panel warm/legacy, right panel bright/forward, one connecting arrow. Founders and lineage named in small type.
 
-**→ VetIntel** *(the next chapter)*
-- The Veterinary Intelligence Company — founded June 2026 by Adam Little (CEO) and Ben Church (CTO)
-- Acquired Antelligence to build on it, not replace it
-- Mission: turn these assets from quarterly files and PDFs into the **data backbone of the veterinary industry**
-
-**Speaker notes:** For the newest people: you joined a company that is both 30 years old and 30 days old. Nothing that earned trust is being thrown away — the whole plan is about connecting it. For the veterans: this is why the new company exists, said out loud.
-
-**Design system:** master slide 3 or 4 (two-panel story).
+**Design system:** master slide 3 (two-panel story).
 
 ---
 
-## 3 — The sentence
+## 3 — The vision: the flywheel  ★ hero slide
 
-**Claim:** Everyone here should be able to say what we're building in one line.
+**Claim:** Become the commercial interface to the industry → unlock deeper proprietary data → compound.
 
-**On slide (full-bleed statement, nothing else):**
+**On slide (reuse the `VetIntel_June.pdf` flywheel):**
+The loop we showed VANE — **users → data → use → distribution**, with VetIntel as the layer underneath supporting it all:
+- We become the **commercial interface** companies use to see and reach the veterinary market.
+- Using the platform generates proprietary signals no one else has.
+- Those signals deepen the data, which makes the interface more valuable, which pulls more use.
 
-> **"VetIntel is building the data backbone of the veterinary industry — trusted data about every practice and every person, delivered through a platform customers actually work in, maintained by a network that has a reason to keep it true."**
+**Visual:** The flywheel graphic lifted from the VANE deck (`VetIntel_June.pdf`) — reproduce it faithfully as the hero. Center = VetIntel platform; ring = data → use → distribution → richer data; small "tenants" sitting on top of the platform layer.
 
-**Speaker notes:** This answers the open founder decision "what sentence should every team member repeat?" If Adam and Ben land on different wording, only this slide changes — the rest of the deck supports whatever the sentence is. Test at the end of the meeting: ask three people to say it back.
+> **⚠️ To fetch:** the exact flywheel artwork lives in `VetIntel_June.pdf` (emailed to VANE, Jul 2) — needs a download/parse pass (email-attachment access wasn't grantable in this session). Rebuild from it, or I can recreate it from the description above.
 
-**Design system:** master slide 4 or 14 (statement / section break).
-
----
-
-## 4 — What we start with: the assets are real
-
-**Claim:** We are not starting from zero — we're starting from assets the industry already trusts.
-
-**On slide (four asset tiles, acronyms defined in place):**
-- **The map:** two databases covering the whole profession — the **EPD** (Enterprise Practice Database: ~9,700 corporate-owned clinic locations) and the **IPD** (Independent Practice Database: ~19,000 independent practices). The most complete picture of veterinary care that exists.
-- **The trust:** The Fountain Report, Pet Care Weekly, and VSI — decades of earned attention with the exact audience the data describes.
-- **The customers:** 54 active subscriptions, a $245K book of data renewals, and advertisers and sponsors already paying on both sides.
-- **The people:** the team in this room — the operators who built and maintain all of it.
-
-**Speaker notes:** Pause on the scale: nobody else has both the map *and* the trusted channel to the people on the map. That combination is the whole company. New folks: "the refresh" you'll hear about constantly is the quarterly update of these two databases — it's the heartbeat of the data business.
-
-**Design system:** master slide 3 or 5 (asset grid).
+**Design system:** master slide 12 (system/loop diagram).
 
 ---
 
-## 5 — What the first month taught us
+## 4 — Where we're going: the shift, in one line
 
-**Claim:** The value leaks at the seams between the assets — that's exactly what we fix.
+**Claim:** Two inherited "static" businesses become one living, measured system.
 
-**On slide (three learnings, each with its consequence):**
-- The **data is valuable, but customers still do too much manual work** — matching records, cleaning files, moving data into their own systems. → *So we build a platform they can work in directly.*
-- The **content is trusted, but we can't see which stories create value** — no story-level measurement exists today. → *So we wire every story to its performance data and measure everything.*
-- The **assets behave like three separate businesses** — data, media, and products don't feed each other yet. → *So the 90-day plan is one loop, not three lanes.*
+**On slide (two "from → to" rows):**
+- **Data:** static quarterly CSV files → a **living data platform** customers work in and connect to their own systems. *(Quarterly files are the inherited delivery mechanism — not the product.)*
+- **Content:** manual, unmeasured publishing → **measured audience intelligence** that feeds the data business and the ad business.
 
-**Speaker notes:** These aren't consultant observations — they came from real renewal calls, the pipeline review, and a month of working inside the systems. This is the "earned insight" slide; it's why the plan looks the way it does.
+**Visual:** Two bold "FROM ▸ TO" bars stacked; left side muted (CSV icon, PDF icon), right side live (platform + signal-pulse icon). This is the thesis slide — keep it to four words per side.
+
+**Design system:** master slide 4 (statement / transition).
+
+---
+
+# ACT 2 — WHAT WE LEARNED
+
+## 5 — What we learned in month one
+
+**Claim:** The culture is a superpower — and it's spending itself on manual work we can automate.
+
+**On slide (one strength, three consequences):**
+- **The culture is fantastic** — jump in, get it done, ship the issue on time, every time.
+- **But it manifests as heavy manual work and email** — sourcing, assembling, formatting, coordinating are all by hand, so there's little time for strategic work.
+- **On data:** the data is valuable, but customers redo manual matching and cleaning before they can use it.
+- **On content:** we have **almost no traffic data** — we can't see which stories resonate, which weakens ad sales and contributor value.
+
+**Visual:** An iceberg or "hours" bar showing how much effort sits below the waterline in manual work; the three consequences as callouts. Honors the team ("this is because you care and hustle"), then points at the fix.
 
 **Design system:** master slide 3 (what we learned).
 
 ---
 
-## 6 — One intelligence system: the flywheel
+# ACT 3 — HOW WE GET THERE: TWO PILLARS
 
-**Claim:** Each asset makes the others more valuable — that's the whole strategy.
+## 6 — Two pillars, one horizon — and the names on them
 
-**On slide (walk-through first, then the loop):**
+**Claim:** Data is the commercial engine, Content is audience intelligence, and together they build the network.
 
-*Top half — one customer, in words:*
-A pet-food company buys our data to find the right clinics → they use our platform and we see what they still can't answer → their question needs workforce data we're building → the people in that workforce join our network because we offer them career value → what the network learns becomes a story in The Fountain Report → the story surfaces clinics we're missing → **the data gets better, and the next customer gets more.**
+**On slide (two columns + a horizon band):**
+- **Pillar 1 — Data (the commercial engine):** Paul, Helena, Chris, Ben. *Make the data living, usable, and connected — and monetize it at renewal.*
+- **Pillar 2 — Content (audience intelligence):** Mark, Laura, Graham, Monica, Connor, Adam. *Automate the manual work and measure what resonates.*
+- **Horizon (post-90) — The network:** editorial/contributor network + jobs board. *What the foundation unlocks next.*
 
-*Bottom half — the loop, compressed:*
-Data → Platform → Customer workflows → Workforce records → Jobs & network → Content & audience → Knowledge work → **back into better data.**
-
-**Speaker notes:** Walk the top half slowly — it's one company's journey through our system. Then show the loop as the same thing compressed. The punchline: a competitor can copy a database or a newsletter; they cannot copy a compounding loop. Every project this quarter is a segment of this circle.
-
-**Design system:** master slide 12 (loop / system diagram).
-
----
-
-## 7 — Three pillars, one quarter — and the names on them
-
-**Claim:** The 90 days are organized into three pillars, and every pillar has names, proof, and a date.
-
-**On slide (three columns, names included):**
-- **Data + Platform** — Paul, Ben, Chris, Helena. Make trusted data usable, current, and connected. *Proof: customers work in the platform.*
-- **Content + Audience** — Adam, Mark, Laura, Monica, Graham, Brent, Matt. Measure what earns attention and turn it into intelligence. *Proof: story-level measurement live.*
-- **New Products** — Adam, Ben, Chris, Connor. Use the combined system to solve new customer problems. *Proof: jobs-board decision ready.*
-
-**Speaker notes:** Everyone in the room appears on this slide — that's deliberate. The next three slides go one level deeper on each pillar; that's where people find their specific work. If someone's name is missing or in the wrong place, fix it before presenting, not after.
+**Visual:** Two strong vertical columns (Data | Content) standing on a thin "Network (post-90)" plinth, everyone's name placed in their column. The flywheel motif faint behind.
 
 **Design system:** master slide 4 (section overview).
 
 ---
 
-## 8 — Pillar 1: Data + Platform
+## PILLAR 1 — DATA (the commercial engine)
 
-**Claim:** July's refresh is the last one delivered as CSV files — from August, customers work in the platform.
+### 7 — The data model: access for everyone, upsell as they use it
 
-**On slide (three time horizons, owners named):**
+**Claim:** Every EPD/IPD customer gets the platform; we monetize what they do next.
 
-**First 30 days (by Jul 31):**
-- Ship the July refresh of both databases — accurate, on time, **no fields removed** (Paul; Ben and Chris sign off).
-- Load the same data into the platform and **reconcile it against the customer files** — same counts, same fields (Ben + Paul).
-- Finalize the shelter and workforce data models; first ingestion planned (Ben + Helena).
-- Onboarding runbook, permissions, and support path ready.
+**On slide:**
+- **EPD** = Enterprise Practice Database (~9,700 corporate-owned clinic locations). **IPD** = Independent Practice Database (~19,000 independent practices).
+- Every existing EPD/IPD member gets **platform access**. If all they want is the CSV, they still get it — exported from the same platform.
+- Inside the platform they **generate their own reports, build and export lists, and ask questions** — and we surface upsell as they work.
+- **Renewal is the moment**: every renewal call is a platform demo and an upsell conversation.
 
-**Days 30–90:**
-- Customer onboarding begins in August. Two real customers complete the three core platform jobs — **produce a report, build and export a list, ask a question of the data** — without us doing it for them (Ben).
-- First shelter/workforce data becomes usable in the platform.
-- Platform demos join every renewal and prospect conversation (Chris).
-- First **CRM connector** launched — customers' own systems talk to our data safely (Ben + Paul).
+**Visual:** A funnel/ladder graphic: "CSV (floor)" → "Platform access" → "Self-serve reports & lists" → "Upsell surfaces." Renewal shown as the trigger point on the ladder.
 
-**Post-90:**
-- Faster refresh cycles, continuous enrichment; the platform becomes the normal way customers receive everything.
-
-**Speaker notes — live proof (as of this week):** Paul reports the refresh on track and posted the first change-stats today (with the honest caveat that most early change is fixing bad data — going forward the deltas mean more). Helena finished the shelter review Friday — **9,000+ records, every one human-reviewed** with an accept / defer / reject / enrich decision — and is already onto the next file (~100 EPD/IPD changes from Paul, walkthrough call tonight). This pillar isn't a plan; it's underway.
-
-**The quality story worth telling here (from today's data chat):** shelters were harder than the practice databases because there's no existing database to run automated comparisons against — county records surfaced county names instead of actual shelter names, and many rows had only a name and a phone number. The answer was human judgment on every record, with deferred items preserved for later rather than discarded. That's "trust and provenance are product features" made concrete: our AI does the comparisons where a trusted base exists, and a person makes the call where it doesn't. Helena's review also surfaced that the market is more granular than our categories — shelters vs. sanctuaries (wildlife / farm / reptile), animal control units, breeders, TNR clinics — and each split is a future dataset with a real buyer behind it (Hills nutrition programs, shelter app partners like PetSol). Today's review work is literally tomorrow's product map.
-
-**Design system:** master slide 9 (three-horizon activity slide).
+**Design system:** master slide 5 (model / product).
 
 ---
 
-## 9 — Pillar 2: Content + Audience
+### 8 — The upsell ladder: what we monetize
 
-**Claim:** We keep the trust and the schedule — and finally see which stories earn their keep.
+**Claim:** More data, more frequency, more connections — that's the revenue.
 
-**On slide (three time horizons, owners named):**
+**On slide (three upsell rungs + the money):**
+- **+ More data** — workforce analysis first (data about the *people* in every clinic), then new domains (e.g., shelters; potentially a digital dataset, financials).
+- **+ More frequency** — increased refresh cadence beyond quarterly (toward a real-time pulse).
+- **+ More connections** — **CRM connectors**, starting with controlled **match-and-return** (customer sends a file → we match, fix, enrich, return it import-ready → they control the import).
+- **Targets:** ~**$250–260K booked** in the 90 days → on track to **$500K revenue by year-end**, positioned to upsell into 2027.
 
-**First 30 days:**
-- Map the full path a story travels: discovery → publication → performance. Name the hidden manual steps (Adam + Graham).
-- Define **story-level measurement** — every story gets an ID, tracked links, and a performance readout (Ben + Monica).
-- The morning **newsfeed agent** — an AI that gathers candidate stories daily for editors to judge — runs every day with Mark & Laura's feedback (pilot live now).
-- Weekly editorial-performance review stands up (Graham + Adam).
+**Owners:** **Chris** — data partnerships & renewals-led upsell. **Helena + Paul** — the transition and the verification/quality process behind it. **Ben** — platform + connectors.
 
-**Days 30–90:**
-- Story-level measurement live across all three publications; email performance joined to stories, topics, and companies.
-- Published stories flow back into the archive automatically; ad and content reporting automated (Monica + Ben).
-- Evidence starts changing the editorial mix; **first data story published** — a story only we can write, because it's built on our data; editorial board formalized (Adam).
+**Visual:** A three-rung ladder ("+data / +frequency / +connections") climbing to a revenue marker; base rung labeled "platform access." Keep dollar figures on one clean marker.
 
-**Post-90:**
-- Personalized newsfeed; expanded contributor network; audience signals become surveys, research, and new intelligence products.
+> *Sensitivity: the $250–260K (90-day) and $500K (year-end) revenue figures come from the founders' gates doc and are cleared for the team story — confirm before presenting. Keep the $500K raise, runway math, and individual goals OUT (the raise is separate: $1.5M already closed from Jon Ayers).*
 
-**Speaker notes:** The July 16 content-strategy session with Mark, Laura, and Ben is where this pillar gets planned in detail — it's on the calendar and protected. Say the reassurance out loud: the publication schedule is untouchable throughout. Nothing we build is allowed to break the thing customers already trust — the tools exist to remove drudgery, not judgment.
+**Design system:** master slide 8 (commercial / ladder).
+
+---
+
+### 9 — Data: first 30 / 60 / 90 (with owners)
+
+**Claim:** The data plan is specific, owned, and dated.
+
+**On slide (three horizons):**
+- **By Jul 31:** ship the July EPD/IPD refresh — no fields dropped (Paul; Ben + Chris sign off). Load the same data into the platform and **reconcile it to the customer files** (Ben + Paul). Verification process stood up (Helena + Paul).
+- **Aug (30–60):** two existing customers complete report / list / question on a real use case (Ben). **Workforce pilot dataset** produced and reviewed (Ben + Helena). **VANE follow-up** → agree the integration and migration plan (Adam + Chris; meeting ~Jul 23).
+- **Sep → Oct 8 (60–90):** first **CRM connector** launched (Ben + Paul). Begin migrating customers — including **VANE users** — onto the platform toward a **unified offering**. Next quarterly refresh runs platform-primary.
+
+**Visual:** Three-column horizon board, owner chips on every item, the two hard dates (Jul 31, Oct 8) emphasized. VANE steps flagged with a small partner tag.
+
+**Design system:** master slide 9 (three-horizon activities).
+
+---
+
+## PILLAR 2 — CONTENT (audience intelligence)
+
+### 10 — The content vision: flip the iceberg, personalize the feed
+
+**Claim:** Aggregated news becomes the raw layer; original, data-led content becomes the product.
+
+**On slide (the iceberg flip + three goals):**
+- **Flip the iceberg:** aggregation sits below the surface as the discovery layer; **original reporting, data analysis, and informed perspective become the visible product.** Data patterns generate story leads; stories add context to data.
+- **Three goals:**
+  1. **Personalize the newsfeed** and treat content as its own dataset — track all EPD/IPD-related news.
+  2. **Link content to existing stories first** (already done on the current platform), then bring in new stories and new content.
+  3. **Understand performance** — know what resonates.
+
+**Visual:** A literal iceberg that flips — "aggregation" shrinks below the waterline, "original + data-led" rises above. Three goal chips alongside.
+
+**Design system:** master slide 5 or 12.
+
+---
+
+### 11 — The measurement fix: from no signal to click-through → ad sales
+
+**Claim:** We can't sell or serve an audience we can't see — so we're going to see it.
+
+**On slide:**
+- **The gap:** ~30,000–40,000 readers, and today we can't say **who they are, who they represent, or what they read.**
+- **The fix:** add **Bitly links** across stories and ads, keep the **PDF for the first 90 days**, and join click-through to **Mailchimp** performance → story-level resonance.
+- **The payoff:** connect resonant stories to **ad sales** (Connor) and give **contributors** a reason to write for us.
+- **Owner:** **Graham** leads understanding the current platform and the audience; **Monica** owns the placement/Mailchimp joins; **Adam** on analytics.
+
+**Visual:** A flow: [30–40K unknown readers] → [Bitly + Mailchimp join] → [story-level click-through chart] → [ad-sales pipeline]. Show a sample resonance bar chart so it reads as concrete.
+
+**Design system:** master slide 8 (measurement → commercial).
+
+---
+
+### 12 — Content: first 30 / 60 / 90 (with owners)
+
+**Claim:** The content plan removes manual work and turns on measurement — without breaking the publications.
+
+**On slide (three horizons):**
+- **By Jul 31:** the **Newsfeed Intake Agent** (already built) runs daily, scoring candidates against our 551-story archive; Mark & Laura give accept/reject feedback (Mark, Laura). Add Bitly links; map the manual workflow (Adam, Graham). Weekly editorial-performance review stands up (Graham + Adam).
+- **Aug (30–60):** story-level measurement live across FR / PCW / VSI; agent adds **story categorization/reasoning**; published stories write back to the archive; ad reporting automated (Monica + Ben). **First data story published** (Adam).
+- **Sep → Oct 8 (60–90):** evidence changes the editorial mix; contributor/editorial-board outreach begins (end of month) — the on-ramp to the post-90 network.
+
+**Guardrail on slide:** the publication schedule is untouchable; automation removes retrieval and formatting, never editorial judgment.
+
+**Visual:** Three-horizon board mirroring slide 9's layout (visual rhyme between the two pillars), owner chips, a "PDF kept · email-first later" note.
 
 **Design system:** master slide 9.
 
 ---
 
-## 10 — Pillar 3: New Products
+# ACT 4 — THE HORIZON + HOW WE WORK
 
-**Claim:** We earn the right to build by proving demand first — the jobs board is decision-ready by day 90, not a leap of faith.
+## 13 — The horizon: the network (post-90)
 
-**On slide (three time horizons, owners named):**
+**Claim:** The data + content foundation unlocks a third pillar — the network.
 
-**First 30 days:**
-- Define the customer problem and required proof for the **jobs-board decision**; set explicit success criteria up front (Adam).
-- Identify the workflow and knowledge-product opportunities the data/content loop creates.
+**On slide:**
+- **Editorial / contributor network** — reach out to contributors and industry experts this month; formalize the editorial board (Natalie Marks, David Haworth, and others as anchors).
+- **Jobs board** — the first network-building product; gives veterinary professionals a reason to join and maintain their own records, which makes workforce data self-sustaining.
+- **Framing:** this becomes the third pillar **once the foundation is set** — decision-ready at day 90, built in the fall.
 
-**Days 30–90:**
-- **Workforce pilot dataset** produced and reviewed (Aug) — the first data about veterinary *people* and roles, with clear rules for sourcing, consent, and history (Ben).
-- Package the jobs-board decision for October 8; test the smallest product concepts with real customers and partners (Adam + Chris + Connor).
-- Choose the first post-90 product wedge.
+**Visual:** The two columns from slide 6 grow a third column ("Network") that lights up in a "post-90" future state. Keeps the pillar metaphor consistent.
 
-**Post-90:**
-- Launch the jobs board **if the evidence says yes**; build knowledge products that also generate fresh signals for the platform.
-
-**Speaker notes:** The discipline is the story: "go/no-go on October 8" means we decide with evidence on a date instead of drifting into building — that's a strength, not a threat. The jobs board isn't a listings side-business; it's how veterinary professionals get a reason to join and maintain their own records, which makes the workforce data self-sustaining. And the demand is already named: the Zoetis specialist conversation and the Vet Together vendor pilots both depend on workforce data existing.
-
-**Design system:** master slide 9.
+**Design system:** master slide 4 / 14.
 
 ---
 
-## 11 — Why three pillars beat three businesses
+## 14 — How we work: our automation approach
 
-**Claim:** The pillars are one system — each one's output is another one's input.
+**Claim:** We automate the same way every time — observe, build, dogfood, introduce, transition.
 
-**On slide (loop with concrete arrows):**
-- Better **data** → better stories (data stories only we can write).
-- Better **stories** → audience signals that reveal market demand.
-- **New products** → solve that demand and capture new data (workforce records, verified profiles).
-- New data → back into the platform customers pay for. **The loop compounds.**
+**On slide (five-step loop):**
+1. **Observe & understand** the real workflow.
+2. **Build** a narrow agent for the manual part.
+3. **Dogfood** it against what we've already done (e.g., the 551-story archive).
+4. **Add value & introduce** the people who own the workflow.
+5. **Transition off** the manual way.
 
-**Speaker notes:** Give one concrete trace — and we now have a real one from this week: Helena's shelter review didn't just clean 9,000+ records, it revealed the market is more granular than our categories (sanctuaries, animal control, TNR clinics) → each split is a dataset a named buyer wants (Hills nutrition programs, shelter app partners) → those datasets become data stories only we can write → the stories surface organizations we're missing → the map gets better. Data work became product map became content pipeline, in one review pass. One loop, real names.
+**Examples on slide:** Chris's **morning meeting-brief** agent · the **Newsfeed Intake Agent** · Mark's **story categorization**.
+**Principle:** automation removes retrieval, formatting, and admin so people spend time on judgment, taste, and relationships.
 
-**Design system:** master slide 12.
+**Visual:** A five-step horizontal loop with the three real examples pinned beneath the matching step. This is the "we're not hand-waving about AI" slide — make the loop the hero.
+
+**Design system:** master slide 12 (process loop).
 
 ---
 
-## 12 — The moments that make it real
+## 15 — The moments that make it real
 
-**Claim:** This quarter has public moments with dates on them — we're building toward days, not vibes.
+**Claim:** We're building toward dated moments, not vibes.
 
-**On slide (single timeline, one lane per family):**
+**On slide (single timeline):**
 
-| When | Moment | What it proves |
+| When | Moment | Proves |
 |---|---|---|
+| **~Jul 23** | VANE follow-up (proposal in hand) | The partnership + migration path |
 | **Jul 31** | July refresh shipped + platform load reconciled | The core promise is protected |
-| **Aug** | Customer onboarding begins; platform demos in every commercial conversation | The platform is real |
-| **Aug 15–18** | WVC Nashville | Market mapping against targets |
-| **Aug 28 – Sep 1** | Fetch KC filming → **KC Animal Health Corridor Summit** | The public moment: company story, website, contributor announcements |
-| **Sep 9–12** | VHMA — Adam speaking | Practice-manager audience + reusable content |
-| **Sep 30** | **The checkpoint:** booked-revenue review + first CRM connector live | The commercial engine works |
-| **Oct 1–3** | **Vet Together, Las Vegas** | Platform launch moment candidate — live vendor pilots |
-| **Oct 8** | Jobs-board decision + 90-day retro | We decide with evidence |
+| **Aug** | Customer onboarding; platform demos in every renewal | The platform is real |
+| **Aug 28 – Sep 1** | Fetch KC → **KC Animal Health Corridor Summit** | Public moment: story, website, contributors |
+| **Sep 30** | Booked-revenue **checkpoint** + first CRM connector live | The commercial engine works |
+| **Oct 1–3** | **Vet Together, Las Vegas** | Platform-launch / vendor-pilot moment |
+| **Oct 8** | Jobs-board & editorial decisions + 90-day retro | We decide with evidence |
 
-**Speaker notes:** The KC Corridor week (Aug 31–Sep 1) is the likely public announcement window — acquisition story, new website, platform narrative, with contributor announcements ~1 week prior. Until then, the story stays inside this room: every conversation before the announcement extends the confidentiality surface. Vet Together (Oct 1–3) is the candidate platform-launch moment — 85% of their vendors don't buy from us yet. For new folks, name the events: WVC and Fetch are major veterinary conferences; the KC Corridor Summit is where the industry's companies and investors gather; VHMA is the practice-managers' association; Vet Together is a partner event in Las Vegas.
+**Visual:** One horizontal timeline, partner/event moments tagged, the two "proof" dates (Jul 31, Sep 30) emphasized.
 
-**Design system:** master slide 12 or 9, one lane per milestone family.
+**Design system:** master slide 12 / 9.
 
 ---
 
-## 13 — What must be true on October 8
+## 16 — What must be true on October 8
 
 **Claim:** Day 90 is a checklist, not a feeling.
 
-**On slide (proof scoreboard — checkbox layout):**
-- ☐ **$260K in booked revenue** across renewals, new data deals, ads, and subscriptions
-- ☐ Current data loaded in the platform; **customer onboarding underway** (two customers through report / list / question)
+**On slide (checkbox scoreboard):**
+- ☐ ~**$250–260K booked** (renewals + upsell + ads + subs); on track to $500K year-end
+- ☐ Platform live; **customers onboarded** (report / list / question)
 - ☐ **Story-level measurement live** across publications
-- ☐ **Shelter/workforce dataset launched**
+- ☐ **Workforce dataset launched**
 - ☐ **First CRM connector launched**
+- ☐ **VANE integration + migration underway** toward a unified offering
 - ☐ **Head of Content hired** — plan of record
-- ☐ Pricing-data access secured or a clear route confirmed
-- ☐ **$500K additional-investment raise** progressing toward the broader $2M round ($1.5M already closed)
+- ☐ Jobs-board & editorial-network decisions made **with evidence**
 
-**Speaker notes:** Every box has an owner and appears on the weekly scorecard — nothing here is aspirational garnish. Frame the revenue number as the team's shared scoreboard, not a sales-only problem: the platform demo is the renewal sweetener, the content measurement feeds the ad product, the workforce pilot feeds the Zoetis conversation. For new people: "booked" means signed commitments, not cash collected. *(Sensitivity note for Adam/Ben: the $260K target and $500K/$1.5M raise figures come from the founders-only gates doc — the v0.2 brief already marked them for team sharing, but confirm before presenting. Gate consequences, runway math, and individual goal numbers stay out of the deck entirely.)*
+**Visual:** Clean checkbox column, each with a tiny owner chip. "Booked = signed, not collected" footnote for new folks.
 
-**Design system:** master slide 5 or 8 (proof / checklist).
-
----
-
-## 14 — It's already moving
-
-**Claim:** This plan started last week — here's the evidence from the last five days.
-
-**On slide (live ticker, dated items):**
-- ✅ July refresh **on track** — first change-stats posted today (Jul 13)
-- ✅ **9,000+ shelter records human-reviewed** — first new dataset beyond practices, finished Friday; next review file (EPD/IPD changes) already in motion
-- ✅ Morning **newsfeed pilot live** with Mark & Laura
-- ✅ Platform data load underway toward the Jul 31 reconciliation
-- ✅ Pipeline rebuilt in Notion — every renewal and quote now visible in one place
-- ✅ $1.5M of the seed **closed**; remaining raise in active outreach
-- 📅 Jul 16 — content-strategy working session (Mark, Laura, Ben)
-- 📅 ~Jul 21 — Vet Together follow-up: 2026 plan + platform demo
-
-**Speaker notes:** This slide is the credibility close — refresh it with the latest wins the night before presenting. Momentum, not promises, is what makes the ask on the next slide reasonable.
-
-**Design system:** master slide 3 or 8.
+**Design system:** master slide 5 / 8.
 
 ---
 
-## 15 — What we need from you
+## 17 — It's already moving
+
+**Claim:** This started last week — here's the proof.
+
+**On slide (dated ticker):**
+- ✅ July refresh **on track** — first change-stats posted (Jul 13)
+- ✅ **9,000+ shelter records human-reviewed** (accept / defer / reject / enrich) — first new dataset beyond practices
+- ✅ **Newsfeed Intake Agent built** — first supervised run scored 15 candidates against the 551-story archive
+- ✅ Pipeline rebuilt in Notion — every renewal & quote visible in one place
+- ✅ **VANE partnership proposal in hand**; follow-up ~Jul 23
+- ✅ $1.5M of the seed **closed**
+- 📅 Jul 16 — content-strategy session (Mark, Laura, Ben)
+
+**Visual:** A live "changelog" list with green checks and dates; designed to be refreshed the night before presenting.
+
+**Design system:** master slide 3 / 8.
+
+---
+
+## 18 — What we need from you
 
 **Claim:** One system only works if everyone works in it.
 
-**On slide (five asks):**
-1. **Work from the shared system** — Notion is the company brain; if it's not in there, it didn't happen.
-2. **Make blockers visible early** — Monday: name your deliverable; Wednesday: show live artifacts; Friday: scorecard.
-3. **Own one measurable outcome** — every person maps to a scorecard row.
-4. **Feed the loop** — after every customer call, log what they're trying to decide and what data would help.
-5. **Learn the new tools** — hands-on training is coming; the newsfeed agent, morning briefs, and pipeline automation are how we get leverage without headcount.
+**On slide (five asks + close):**
+1. **Work from the shared system** — Notion is the company brain.
+2. **Make blockers visible early** — Mon deliverable / Wed artifacts / Fri scorecard.
+3. **Own one measurable outcome.**
+4. **Feed the loop** — after every customer call, log the decision they're making and the data that would help.
+5. **Lean into the tools** — the meeting-brief and newsfeed agents are how we get leverage without headcount.
 
-**Close (return to the sentence):**
-> One company. One system. Three reinforcing pillars.
-> **The next 90 days prove the loop works.**
+**Close:** *One company. One system. One flywheel — Data is the engine, Content is the intelligence, the network is what we build next.*
 
-**Speaker notes:** End by asking someone to say the sentence from slide 3 back. If they can, the deck did its job.
+**Visual:** Five asks as icons; close returns to the flywheel from slide 3, now labeled with the pillars.
 
 **Design system:** master slide 14 (close).
 
 ---
 
-# Appendix slide / handout — Words we use
+# Appendix — Words we use (new-hire cheat sheet)
 
-Ships as the final appendix slide or a one-page handout; doubles as a new-hire cheat sheet.
-
-| Term | What it means |
+| Term | Meaning |
 |---|---|
-| **EPD** | Enterprise Practice Database — ~9,700 corporate-owned veterinary clinic locations |
-| **IPD** | Independent Practice Database — ~19,000 independent veterinary practices |
-| **The refresh** | The quarterly update of the EPD and IPD — the heartbeat of the data business |
-| **Field parity** | The platform shows every field the customer files have — nothing lost in the move |
-| **The platform** | The product where customers use our data directly: run reports, build lists, ask questions |
-| **Report / list / question** | The three core jobs the platform must do for a customer in V1 |
-| **Match-and-return** | A customer sends us their file; we match it to our data, fix and enrich it, and send it back CRM-ready |
-| **CRM connector** | The next step after match-and-return: the customer's own system talks to our data directly |
-| **Shadow mode** | Data loaded into the platform and verified while customers still receive files as usual |
-| **Anchor customer** | A named customer who commits to a real workflow with us and proves a product works — a data buyer, a workforce buyer, and a verification partner |
-| **Workforce data** | Data about veterinary *people* — roles, experience, credentials, movement — not just practices |
-| **Data story** | A published story built on our own data — a story nobody else can write |
-| **Newsfeed agent** | The AI that gathers candidate stories each morning for editors to accept or reject |
-| **Hydrant** | The internal tool where data records are reviewed (accept / defer / reject / enrich) |
-| **Go/no-go** | A decision made with evidence on a set date — instead of drifting into (or away from) building |
-| **The checkpoint (Sep 30)** | The scheduled review of booked revenue and progress that sets the pace for what comes next |
-| **FR / PCW / VSI** | The Fountain Report, Pet Care Weekly, Veterinary Student Insider — our three publications |
+| **EPD / IPD** | Enterprise Practice Database (~9,700 corporate locations) / Independent Practice Database (~19,000 independent practices) |
+| **The refresh** | The quarterly update of the EPD/IPD — moving toward a more frequent, "living" pulse |
+| **The platform** | The product where customers use our data directly: reports, lists, questions, exports |
+| **Report / list / question** | The three core jobs the platform must do in V1 |
+| **Match-and-return** | Customer sends a file → we match, fix, and enrich it → return it import-ready → they control the import |
+| **CRM connector** | The step after match-and-return: the customer's system talks to our data directly |
+| **Upsell ladder** | More data / more frequency / more connections — how platform access converts to revenue |
+| **Workforce data** | Data about the *people* in clinics — roles, tenure, credentials, movement |
+| **VANE** | Partner (vane.vet); CEO Dr. Natalie Marks, w/ Peter Glassman. Partnership proposal in hand; users migrate onto our platform toward a unified offering |
+| **Newsfeed Intake Agent** | The built agent that scans sources each morning and scores candidate stories against our 551-story archive for editors to accept/reject |
+| **Iceberg flip** | Shifting the visible product from aggregated news to original, data-led content |
+| **Bitly / story-level measurement** | Tracked links + Mailchimp joins that finally show which stories resonate |
+| **Data story** | A published story built on our own data — one nobody else can write |
+| **The checkpoint (Sep 30)** | Scheduled review of booked revenue and progress that paces what comes next |
+| **Go/no-go** | A decision made with evidence on a set date — not drift |
+| **FR / PCW / VSI** | The Fountain Report / Pet Care Weekly / Veterinary Student Insider |
 
 ---
 
-# What changed from v0.3 → v0.4 (the new-team pass)
+# Still to fold in (blocked in this session)
 
-Audit question: *what would someone who joined last week not understand?* Fixes:
-
-1. **Added slide 2 ("Who we are, in one minute")** — the deck previously assumed everyone knew VetIntel acquired Antelligence and who founded what. Now the origin story is told on a slide, honoring both the 30-year foundation and the new chapter.
-2. **All acronyms now defined on-slide at first use** — EPD/IPD spelled out with plain-language descriptions on slide 4, not buried in notes. WVC, Fetch, VHMA, KC Corridor, and Vet Together each get a one-phrase identification in slide 12's notes.
-3. **Names moved from speaker notes onto slides** — slide 7 puts every team member's name on a pillar; slides 8–10 name owners per work item. A new person learns who does what from the deck itself.
-4. **"Gate" reframed as "checkpoint" in team-facing language** — slide 12 and the glossary present Sep 30 as a scheduled evidence review, and "go/no-go" as decision discipline ("we decide with evidence on a date"). The private gate mechanics stay in the founders' doc.
-5. **Flywheel gets a concrete walk-through before the diagram** (slide 6) — one customer's journey through the system in words, then the compressed loop. Abstract-only diagrams don't land with people who haven't lived the strategy.
-6. **Added the "Words we use" glossary appendix** — 17 terms of art defined in one place; doubles as a new-hire cheat sheet beyond the deck.
-7. **Platform jobs spelled out in plain words** — "produce a report, build and export a list, ask a question of the data" stated fully on slide 8 instead of the shorthand "report/list/question."
-8. **Jargon softened in asks and notes** — "booked" defined (signed, not collected); newsfeed agent described as what it does; match-and-return explained as send-file → we-fix → send-back.
-
-## Carried from v0.3
-
-- One claim per slide, enforced in the outline.
-- The proposed repeatable sentence (now slide 3) answering founder decision #1.
-- Merged single milestone timeline; live momentum ticker; sensitivity guardrail on financial figures.
-- Today's Granola-call material: Helena's 9,000+ record shelter review as the trust/provenance proof (slide 8) and the real flywheel trace (slide 11).
-
-## Still to fold in
-
-- Notes from today's 9:00 AM Chris / Adam / Ben call — visible in Granola but not yet readable from this session (connector needs enabling for this chat). Likely feeds slides 12–14 with renewal/commercial color.
+- **The flywheel artwork** from `VetIntel_June.pdf` and the **exact VANE proposal terms** (`VANE-VetIntel_Partnership_Proposal_final_7.12.26.docx`) — both are email attachments; parsing them needs a download/approval pass that wasn't grantable here. These sharpen slides 3, 8, 9, 13, 15.
+- **The `VetIntel_Overview_for_Graham` doc** (Drive) — vision/data-domains detail ("real-time pulse," new data domains: stock financials, podcasts); Drive read needed approval this session.
+- **Today's Granola calls** — the 9:00 AM Chris/Adam/Ben sync and the marketing call; Granola is connected but **toggled off for this chat**. Enable it and I'll fold in renewal/commercial and content color.
 
 # Sources
 
-- [90-Day Operating Plan | July 10 – October 8, 2026](https://app.notion.com/p/399fed47878c81eb9711d923b1aefc5e)
-- [What We Are Building Toward | Vision and 90-Day Strategy](https://app.notion.com/p/398fed47878c805f99dad61e3f4e8fa8)
-- [Private | 90-Day Gates, Financial Reality & Team Goals (v0.2)](https://app.notion.com/p/39afed47878c815ea9c6cc110ef06af1) — appendix "Gamma Deck Brief" is the baseline this expands
-- [Create a Vision Deck task (Exec Board)](https://app.notion.com/p/398fed47878c801ea593ea3d3028648f)
-- [$500K Round — Target List & Mechanics](https://app.notion.com/p/39afed47878c81a38202c1d66b5254e8) (updated Jul 13)
-- Granola notes, Jul 13: "Helena / Adam / Ben data chat" (shared by Ben via email) — shelter review process (9,000+ records, accept/defer/reject/enrich), taxonomy gaps (shelters vs. sanctuaries, animal control, breeders, TNR), next EPD/IPD change-file review, commercial whitespace flags (Hills, PetSol)
-- Live signal, week of Jul 13: Paul's refresh change-stats (Slack, product-and-engineering, Jul 13), Mark & Laura newsfeed pilot task, Jul 16 content-session task, Connor's pre-vacation advertiser wrap-up
+- Notion: [Data and Platform Strategy](https://app.notion.com/p/399fed47878c8162b491e6c4f65ec9a5), [Content and Audience Strategy](https://app.notion.com/p/399fed47878c81b2ac37c79080e71f36), [90-Day Operating Plan](https://app.notion.com/p/399fed47878c81eb9711d923b1aefc5e), [Vision & 90-Day Strategy](https://app.notion.com/p/398fed47878c805f99dad61e3f4e8fa8), [Private Gates v0.2](https://app.notion.com/p/39afed47878c815ea9c6cc110ef06af1)
+- Notion: [Newsfeed Intake Agent task](https://app.notion.com/p/38efed47878c8002ae32e79e710abdb7) (551-story archive, first run Jul 4), [Bitly/QR tracking discussion](https://app.notion.com/p/395fed47878c81dbb6d1f5bd9bd19ffe)
+- Gmail: "Vet Intel Deck" thread (Jul 2–12) — `VetIntel_June.pdf`; VANE partnership proposal from Natalie Marks / Peter Glassman; follow-up ~Jul 23
+- Drive (highlight only): `VetIntel_Overview_for_Graham` — real-time pulse, new data domains
+- Live signal, week of Jul 13: refresh change-stats, Helena shelter review (9,000+ records), newsfeed pilot, Jul 16 content session
