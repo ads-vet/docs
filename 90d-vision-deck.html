@@ -31,15 +31,15 @@
   .eyebrow .act{color:var(--grey-2)}
   .s-dark .eyebrow .act,.s-dark2 .eyebrow .act{color:#6b7883}
   .appx-tag{background:var(--ink); color:#EAF0F2; border-radius:3px; padding:3px 9px; font-size:11px; letter-spacing:.1em}
+  .demo-tag{background:var(--amber); color:#2a2100; border-radius:3px; padding:3px 9px; font-size:11px; font-weight:700; letter-spacing:.06em; text-transform:uppercase}
 
-  h1,h2{font-family:var(--f-serif); font-weight:700; letter-spacing:-.01em; text-wrap:balance; line-height:1.05}
+  h1,h2{font-family:var(--f-serif); font-weight:700; letter-spacing:-.01em; text-wrap:balance; line-height:1.06}
   h1{font-size:clamp(40px,6.4vw,86px)}
   h2{font-size:clamp(26px,3.6vw,47px); line-height:1.08}
   .hl{background:var(--lime); color:var(--ink); padding:.02em .16em; box-decoration-break:clone; -webkit-box-decoration-break:clone}
   .sub{font-size:clamp(15px,1.45vw,19px); color:var(--grey); margin-top:16px; max-width:64ch; font-weight:400}
   .s-dark .sub,.s-dark2 .sub{color:#9fb0bb}
 
-  /* quote */
   .quote{border-left:4px solid var(--lime-deep); padding:4px 0 4px 20px; margin:0}
   .quote p{font-family:var(--f-serif); font-size:clamp(19px,2.3vw,30px); line-height:1.24; color:var(--ink); text-wrap:balance}
   .s-dark .quote p,.s-dark2 .quote p{color:#EAF0F2}
@@ -47,6 +47,8 @@
   .quote.sm p{font-size:15px; line-height:1.35}
   .quote.sm{border-left-width:3px; padding-left:14px}
   .quote.sm cite{margin-top:7px; font-size:11.5px}
+  .qframe{margin-top:14px; font-size:14.5px; color:var(--grey); max-width:60ch}
+  .qframe b{color:var(--ink)}
 
   .grid{display:grid; gap:16px; margin-top:26px}
   .g2{grid-template-columns:1fr 1fr}
@@ -74,33 +76,70 @@
   .cover-kick{font-size:13px; font-weight:700; letter-spacing:.2em; text-transform:uppercase; color:#7f8c97; margin-bottom:24px}
   .horizon{height:2px; width:132px; background:linear-gradient(90deg,var(--lime),transparent); margin:30px 0 0}
 
-  /* two-column learned */
   .split{display:grid; grid-template-columns:1fr 1fr; gap:16px; margin-top:22px}
   @media(max-width:820px){.split{grid-template-columns:1fr}}
 
   /* engines */
-  .engines{display:grid; grid-template-columns:1fr 1fr; gap:16px; margin-top:8px}
+  .engines{display:grid; grid-template-columns:1fr 1fr; gap:16px; margin-top:22px}
   @media(max-width:820px){.engines{grid-template-columns:1fr}}
-  .engine{border:1px solid var(--hair); border-radius:3px; padding:20px 22px; background:#fff}
+  .engine{border:1px solid var(--hair); border-radius:3px; padding:22px 24px; background:#fff}
   .engine.data{border-top:4px solid var(--pine)}
   .engine.content{border-top:4px solid var(--lav-deep)}
-  .engine h3{font-family:var(--f-serif); font-size:22px; margin-bottom:10px}
-  .engine ul{list-style:none}
-  .engine li{font-size:13.5px; color:var(--grey); padding:5px 0 5px 16px; position:relative; line-height:1.4}
-  .engine li::before{content:"›"; position:absolute; left:0; color:var(--lime-deep); font-weight:700}
-  .loopbar{margin-top:16px; border:1px dashed var(--lav-deep); border-radius:3px; padding:14px 16px; background:var(--panel)}
-  .loopbar .lt{font-size:11px; font-weight:800; letter-spacing:.12em; text-transform:uppercase; color:var(--lav-deep); margin-bottom:10px}
-  .loop5{display:flex; align-items:stretch; gap:0; flex-wrap:wrap}
-  .loop5 .st{flex:1 1 0; min-width:130px; padding:2px 8px}
-  .loop5 .st .n{width:22px; height:22px; border-radius:999px; background:var(--ink); color:#fff; display:flex; align-items:center; justify-content:center; font-weight:700; font-size:12px; margin-bottom:6px}
-  .loop5 .st p{font-size:12px; color:var(--ink); line-height:1.35}
-  .loop5 .ar{align-self:center; color:var(--lime-deep); font-weight:800; padding:0 3px}
-  @media(max-width:820px){.loop5 .ar{transform:rotate(90deg)}}
-  .loopback{margin-top:8px; font-size:12px; font-style:italic; font-family:var(--f-serif); color:var(--grey)}
+  .engine .k{font-size:11px; font-weight:800; letter-spacing:.12em; text-transform:uppercase; color:var(--grey-2)}
+  .engine h3{font-family:var(--f-serif); font-size:24px; margin:5px 0 10px}
+  .engine p{font-size:14.5px; color:var(--grey)}
+  .engine p b{color:var(--ink)}
+  .transition{margin-top:16px; text-align:center; font-family:var(--f-serif); font-style:italic; color:var(--grey); font-size:15px}
+
+  /* loop ring */
+  .loop-wrap{display:grid; grid-template-columns:auto 1fr; gap:44px; align-items:center; margin-top:16px}
+  @media(max-width:900px){.loop-wrap{grid-template-columns:1fr; gap:26px}}
+  .ring{position:relative; width:min(400px,86vw); aspect-ratio:1/1; margin:0 auto}
+  .ring svg{position:absolute; inset:0; width:100%; height:100%}
+  .rnode{position:absolute; width:30%; transform:translate(-50%,-50%); background:#fff; border:1.5px solid var(--ink); border-radius:3px; padding:8px 6px; text-align:center}
+  .rnode .n{position:absolute; top:-11px; left:-11px; width:22px; height:22px; display:flex; align-items:center; justify-content:center; font-size:12px; font-weight:800; border:1.5px solid var(--ink); background:var(--lime)}
+  .rnode:nth-of-type(even) .n{background:var(--lav)}
+  .rnode .nm{font-size:9.5px; font-weight:800; letter-spacing:.02em; text-transform:uppercase; line-height:1.15}
+  .rnode.p1{left:50%; top:17.5%} .rnode.p2{left:80.9%; top:40%} .rnode.p3{left:69.1%; top:76.3%}
+  .rnode.p4{left:30.9%; top:76.3%} .rnode.p5{left:19.1%; top:40%}
+  .rhub{position:absolute; left:50%; top:50%; transform:translate(-50%,-50%); text-align:center; width:30%}
+  .rhub .lab{font-family:var(--f-serif); font-weight:700; font-size:12px; line-height:1.15}
+  .rhub .lab .g{color:var(--pine)}
+  .rhub .ul{height:3px; width:46px; background:var(--lime); margin:6px auto 0}
+  .loop-list{display:flex; flex-direction:column; gap:8px}
+  .li{display:flex; gap:12px; align-items:baseline; font-size:13.5px; color:var(--ink)}
+  .li b{font-weight:700}
+  .li .ln{font-family:var(--f-serif); color:var(--lime-deep); font-weight:700; width:16px; flex:none}
+
+  /* demo */
+  .demo{display:grid; grid-template-columns:1fr 1fr; gap:16px; margin-top:22px}
+  @media(max-width:820px){.demo{grid-template-columns:1fr}}
+  .screen{border:1px solid var(--hair); border-radius:4px; background:#fff; overflow:hidden}
+  .screen .bar{background:var(--ink); height:28px; display:flex; align-items:center; gap:6px; padding:0 12px}
+  .screen .bar i{width:9px; height:9px; border-radius:999px; background:#3a4650; display:block}
+  .screen .body{padding:16px 18px}
+  .screen h4{font-size:14.5px; font-weight:700; margin-bottom:4px}
+  .screen p{font-size:12.5px; color:var(--grey)}
+  .usecases{margin-top:16px; display:flex; gap:8px; flex-wrap:wrap}
+  .usecases .c{background:var(--panel-2); border:1px solid var(--hair); border-radius:999px; padding:6px 13px; font-size:12.5px; font-weight:600}
+
+  /* pipeline (accounts calendar) */
+  .pipe{display:grid; grid-template-columns:repeat(4,1fr); gap:14px; margin-top:22px}
+  @media(max-width:900px){.pipe{grid-template-columns:1fr 1fr}}
+  @media(max-width:560px){.pipe{grid-template-columns:1fr}}
+  .pcol{border:1px solid var(--hair); border-radius:3px; padding:16px; background:#fff}
+  .pcol .h{font-size:11px; font-weight:800; letter-spacing:.06em; text-transform:uppercase; margin-bottom:6px; display:flex; align-items:center; gap:7px}
+  .dot{width:9px; height:9px; border-radius:999px; flex:none}
+  .d-green{background:var(--pine)} .d-lav{background:var(--lav-deep)} .d-amber{background:var(--amber)} .d-ink{background:var(--ink)}
+  .pcol .names{font-size:13.5px; font-weight:600; color:var(--ink); line-height:1.5}
+  .pcol .goal{font-size:12px; color:var(--grey); margin-top:8px; border-top:1px solid var(--hair); padding-top:8px}
+  .pcol .goal b{color:var(--ink)}
+  .logos{margin-top:14px; font-size:12.5px; color:var(--grey)}
+  .logos b{color:var(--ink)}
 
   /* swimlanes */
   .swim-wrap{overflow-x:auto; margin-top:20px; border:1px solid var(--hair); border-radius:3px}
-  table.swim{border-collapse:collapse; width:100%; min-width:820px}
+  table.swim{border-collapse:collapse; width:100%; min-width:800px}
   table.swim th,table.swim td{text-align:left; padding:13px 15px; vertical-align:top; border-bottom:1px solid var(--hair); border-right:1px solid var(--hair)}
   table.swim thead th{background:var(--ink); color:#EAF0F2; font-size:11px; letter-spacing:.1em; text-transform:uppercase; font-weight:700}
   table.swim thead th:first-child{background:var(--ink-soft)}
@@ -112,20 +151,6 @@
   table.swim td li{font-size:12.5px; color:var(--ink); padding:4px 0 4px 14px; position:relative; line-height:1.35}
   table.swim td li::before{content:"›"; position:absolute; left:0; color:var(--lime-deep); font-weight:700}
 
-  /* accounts */
-  .acct{display:grid; grid-template-columns:repeat(4,1fr); gap:14px; margin-top:22px}
-  @media(max-width:900px){.acct{grid-template-columns:1fr 1fr}}
-  @media(max-width:560px){.acct{grid-template-columns:1fr}}
-  .acol{border:1px solid var(--hair); border-radius:3px; padding:16px; background:#fff}
-  .acol .h{font-size:11px; font-weight:800; letter-spacing:.08em; text-transform:uppercase; margin-bottom:10px; display:flex; align-items:center; gap:7px}
-  .dot{width:9px; height:9px; border-radius:999px; flex:none}
-  .d-green{background:var(--pine)} .d-lav{background:var(--lav-deep)} .d-amber{background:var(--amber)} .d-ink{background:var(--ink)}
-  .acol ul{list-style:none}
-  .acol li{font-size:13px; padding:4px 0; color:var(--ink); font-weight:600}
-  .acol li small{display:block; font-weight:400; color:var(--grey-2); font-size:11px}
-  .logos{margin-top:14px; font-size:12.5px; color:var(--grey)}
-  .logos b{color:var(--ink)}
-
   /* checklist */
   .check{display:grid; grid-template-columns:1fr 1fr; gap:11px 30px; margin-top:22px}
   @media(max-width:820px){.check{grid-template-columns:1fr}}
@@ -135,28 +160,12 @@
   .check .item small{display:block; font-weight:600; font-size:11px; color:var(--grey-2); text-transform:uppercase; letter-spacing:.06em; margin-top:3px}
   .footnote{margin-top:14px; font-size:12px; color:var(--grey)}
 
-  /* team map */
-  .team{display:grid; grid-template-columns:1fr 1fr 1fr; gap:14px; margin-top:22px}
-  @media(max-width:820px){.team{grid-template-columns:1fr}}
-  .tcol{border:1px solid var(--hair); border-radius:3px; padding:16px 18px; background:#fff}
-  .tcol .lane{font-size:11px; font-weight:800; letter-spacing:.1em; text-transform:uppercase; margin-bottom:8px}
-  .tcol.data .lane{color:var(--pine)} .tcol.commercial .lane{color:var(--lime-deep)} .tcol.content .lane{color:var(--lav-deep)}
-  .tcol .names{font-family:var(--f-serif); font-size:16px; line-height:1.5}
-  .tcol p{font-size:12.5px; color:var(--grey); margin-top:6px}
-  .spot{margin-top:16px; display:grid; grid-template-columns:auto 1fr; gap:18px; align-items:center; border:1px solid var(--hair); border-left:4px solid var(--lav-deep); border-radius:3px; padding:16px 18px; background:var(--panel)}
-  @media(max-width:600px){.spot{grid-template-columns:1fr}}
-  .spot .mug{width:56px; height:56px; border:2px solid var(--ink); border-radius:3px; display:flex; align-items:center; justify-content:center; font-family:var(--f-serif); font-size:26px; font-weight:700; background:var(--lime)}
-  .spot .role{font-size:10.5px; font-weight:800; letter-spacing:.1em; text-transform:uppercase; color:var(--pine)}
-  .spot h4{font-family:var(--f-serif); font-size:19px; margin:2px 0 4px}
-  .spot p{font-size:13px; color:var(--grey)}
-  .spot .flag{font-size:11px; color:var(--grey-2)}
-
   /* moments */
   .moments{display:grid; grid-template-columns:repeat(3,1fr); gap:14px; margin-top:22px}
   @media(max-width:820px){.moments{grid-template-columns:1fr}}
   .moment{border:1px solid var(--hair); border-radius:3px; padding:18px; background:#fff; border-top:4px solid var(--lime)}
   .moment:nth-child(2){border-top-color:var(--lav-deep)} .moment:nth-child(3){border-top-color:var(--amber)}
-  .moment .when{font-size:11px; font-weight:800; letter-spacing:.08em; text-transform:uppercase; color:var(--grey-2)}
+  .moment .when{font-size:11px; font-weight:800; letter-spacing:.06em; text-transform:uppercase; color:var(--grey-2)}
   .moment h3{font-family:var(--f-serif); font-size:19px; margin:5px 0 7px}
   .moment p{font-size:13px; color:var(--grey)}
   .tl{margin-top:16px; border-collapse:collapse; width:100%}
@@ -164,27 +173,28 @@
   .tl .when{font-weight:700; white-space:nowrap; color:var(--pine); width:120px}
   .tl .moment-c{font-weight:600}
 
-  /* loop + principles + support */
-  .loop{display:flex; align-items:stretch; gap:0; margin-top:20px; flex-wrap:wrap}
-  .loop .lstep{flex:1 1 0; min-width:130px; padding:15px; border:1px solid var(--hair); border-radius:3px; background:#fff}
-  .loop .lstep .n{width:25px; height:25px; border-radius:999px; background:var(--ink); color:#fff; display:flex; align-items:center; justify-content:center; font-weight:700; font-size:12px; margin-bottom:9px}
-  .loop .lstep h4{font-size:14px; font-weight:700}
-  .loop .lstep p{font-size:11.5px; color:var(--grey); margin-top:3px}
-  .loop .arr{align-self:center; padding:0 5px; color:var(--lime-deep); font-weight:800}
-  @media(max-width:820px){.loop .arr{transform:rotate(90deg); padding:4px 0}}
-  .princ{display:flex; gap:9px; flex-wrap:wrap; margin-top:16px}
+  /* close + how we work */
+  .loop5{display:flex; align-items:stretch; gap:0; margin-top:20px; flex-wrap:wrap}
+  .loop5 .lstep{flex:1 1 0; min-width:130px; padding:15px; border:1px solid var(--hair); border-radius:3px; background:#fff}
+  .loop5 .lstep .n{width:25px; height:25px; border-radius:999px; background:var(--ink); color:#fff; display:flex; align-items:center; justify-content:center; font-weight:700; font-size:12px; margin-bottom:9px}
+  .loop5 .lstep h4{font-size:14px; font-weight:700}
+  .loop5 .lstep p{font-size:11.5px; color:var(--grey); margin-top:3px}
+  .loop5 .arr{align-self:center; padding:0 5px; color:var(--lime-deep); font-weight:800}
+  @media(max-width:820px){.loop5 .arr{transform:rotate(90deg); padding:4px 0}}
+  .princ{display:flex; gap:9px; flex-wrap:wrap; margin-top:18px}
   .princ .p{background:var(--panel-2); border-radius:999px; padding:8px 15px; font-size:13px; font-weight:600; border:1px solid var(--hair)}
-  .s-dark2 .princ .p{background:rgba(255,255,255,.05); border-color:var(--hair-dark); color:#dfe7ea}
-  .princ .p b{color:var(--pine)} .s-dark2 .princ .p b{color:var(--lime)}
-  .two{display:grid; grid-template-columns:1fr 1fr; gap:18px; margin-top:20px}
+  .princ .p b{color:var(--pine)}
+  .two{display:grid; grid-template-columns:1fr 1fr; gap:18px; margin-top:22px}
   @media(max-width:820px){.two{grid-template-columns:1fr}}
   .two .side{border:1px solid var(--hair-dark); border-radius:3px; padding:18px; background:rgba(255,255,255,.04)}
   .two .side.need{border-top:3px solid var(--lime)} .two .side.support{border-top:3px solid var(--lav)}
   .two .side h3{font-family:var(--f-serif); font-size:19px; color:#EAF0F2; margin-bottom:10px}
-  .two .side li{font-size:13px; color:#c4d0d8; margin:6px 0}
+  .two .side li{font-size:13.5px; color:#c4d0d8; margin:7px 0}
   .two .side li b{color:#EAF0F2}
+  .closer{margin-top:24px; font-family:var(--f-serif); font-size:clamp(18px,2.2vw,27px); color:#EAF0F2; line-height:1.28; text-wrap:balance}
+  .closer b{background:var(--lime); color:var(--ink); padding:.02em .14em; font-weight:700}
 
-  /* vet together */
+  /* vet together / why now */
   .vt{display:grid; grid-template-columns:repeat(3,1fr); gap:14px; margin-top:8px}
   @media(max-width:820px){.vt{grid-template-columns:1fr}}
   .vt .ph{border:1px solid var(--hair); border-radius:3px; padding:16px; background:#fff}
@@ -195,6 +205,7 @@
   .stats{display:flex; gap:22px; flex-wrap:wrap; margin-top:16px; padding-top:14px; border-top:1px solid var(--hair)}
   .stat .v{font-family:var(--f-serif); font-size:26px; font-weight:700}
   .stat .l{font-size:11.5px; color:var(--grey); text-transform:uppercase; letter-spacing:.04em}
+  .note{margin-top:14px; font-size:12.5px; color:var(--grey); border-left:3px solid var(--lime); padding-left:14px}
 
   .prog{position:fixed; top:0; left:0; height:3px; background:var(--lime); width:0; z-index:50; transition:width .15s}
   .counter{position:fixed; top:14px; right:16px; z-index:50; font-size:11px; letter-spacing:.1em; color:#c7d0d6;
@@ -204,15 +215,14 @@
   .gloss .term{break-inside:avoid; padding:9px 0; border-bottom:1px solid var(--hair)}
   .gloss .term dt{font-weight:700; font-size:14px}
   .gloss .term dd{font-size:12.5px; color:var(--grey); margin-top:2px}
-  .note{margin-top:14px; font-size:12.5px; color:var(--grey); border-left:3px solid var(--lime); padding-left:14px}
 </style>
 
 <div class="prog" id="prog"></div>
-<div class="counter"><span id="cur">01</span> / 16</div>
+<div class="counter"><span id="cur">01</span> / <span id="tot">18</span></div>
 
 <main class="deck" id="deck">
 
-  <!-- 1 COVER -->
+  <!-- COVER -->
   <section class="slide s-dark">
     <div class="stage">
       <div class="cover-kick">The Veterinary Intelligence Company</div>
@@ -220,283 +230,259 @@
       <div class="horizon"></div>
       <p class="sub">July 10 → October 8, 2026 &nbsp;·&nbsp; One commercial interface, powered by two reinforcing engines.</p>
     </div>
-    <div class="foot"><span class="brand">VETINTEL</span><span>Internal · Team Vision</span></div>
+    <div class="foot"><span class="brand">VETINTEL</span><span class="num"></span></div>
   </section>
 
-  <!-- 2 WHAT WE LEARNED -->
+  <!-- WHAT WE LEARNED -->
   <section class="slide s-light">
     <div class="stage">
       <div class="eyebrow">What we learned <span class="act">· from the team and from customers</span></div>
       <blockquote class="quote">
-        <p>"You've got a horse that can run here. A thoroughbred — and we're treating it like a mule."</p>
+        <p>"You've got a horse that can run here — a thoroughbred."</p>
         <cite>Andrew Chisholm, Phibro · July 8</cite>
       </blockquote>
+      <p class="qframe">What he's really saying: <b>the data is powerful, but customers can't fully use it yet.</b> That gap — not the team, not the data — is the problem we solve.</p>
       <div class="split">
         <div class="card pine">
           <h3>From the team</h3>
           <ul>
-            <li>The culture is fantastic — the team jumps in, absorbs last-minute edits, and ships every issue on time.</li>
-            <li>But it manifests as heavy manual work; there's little time for the strategic work.</li>
-            <li>On content, <b>we can't measure it</b> — we can't see which stories land, with whom, or why.</li>
+            <li>The culture is fantastic — jump in, absorb last-minute edits, ship every issue on time.</li>
+            <li>But it's heavy manual work, so there's little time to ask where the content could go.</li>
+            <li><b>We can't measure it:</b> only ~1% click through the PDF, so the vast majority never reach the stories.</li>
           </ul>
         </div>
         <div class="card lav">
           <h3>From customers</h3>
           <ul>
             <li>The data is valuable — but they redo manual matching and cleaning before they can use it.</li>
-            <li>They want it in one place, updated regularly, connected to their systems.</li>
+            <li>They want more data, and help activating it in their own workflow.</li>
             <li>We can't see how they use it — and they tell us they want to use it <b>more</b>.</li>
           </ul>
         </div>
       </div>
     </div>
-    <div class="foot"><span class="brand">VETINTEL</span><span class="num">02</span></div>
+    <div class="foot"><span class="brand">VETINTEL</span><span class="num"></span></div>
   </section>
 
-  <!-- 3 THE VISION -->
+  <!-- THE VISION -->
   <section class="slide s-dark2">
     <div class="stage">
       <div class="eyebrow">The vision</div>
       <h2 style="color:#EAF0F2">Become the <span class="hl">commercial interface</span> for veterinary intelligence.</h2>
-      <p class="sub">Not three loosely connected businesses — <b style="color:#EAF0F2">one commercial interface</b> the whole industry runs through. Data creates proprietary intelligence and customer utility. Content creates trust, attention, feedback, and distribution. The commercial plan turns both into renewals, expansion, advertising, partnerships, and better products.</p>
-      <blockquote class="quote" style="margin-top:28px; border-left-color:var(--lime)">
+      <p class="sub">Today, Antelligence runs as three siloed units — <b style="color:#EAF0F2">data, subscriptions, and ads</b> — built up one at a time. There are so many linkages between them we can build and align that they become <b style="color:#EAF0F2">one interface</b>, each side making the others stronger.</p>
+      <blockquote class="quote" style="margin-top:26px; border-left-color:var(--lime)">
         <p style="font-size:clamp(18px,2.1vw,26px)">"To successfully sell anything to veterinarians, you want to run through our pipes."</p>
-        <cite style="color:#8b97a1">Our north star, as told to Vet Together · July 7</cite>
+        <cite style="color:#8b97a1">Our north star</cite>
       </blockquote>
     </div>
-    <div class="foot"><span class="brand">VETINTEL</span><span class="num">03</span></div>
+    <div class="foot"><span class="brand">VETINTEL</span><span class="num"></span></div>
   </section>
 
-  <!-- 4 TWO ENGINES / FLYWHEEL -->
+  <!-- TWO PRODUCTS -->
   <section class="slide s-panel">
     <div class="stage">
-      <div class="eyebrow">One platform <span class="act">· two compounding engines</span></div>
-      <h2>Data and Content — <span class="hl">each makes the other stronger</span>.</h2>
+      <div class="eyebrow">Two products, coming together</div>
+      <h2>Data and Content — <span class="hl">built separately, now they link up</span>.</h2>
       <div class="engines">
         <div class="engine data">
+          <div class="k">The data engine</div>
           <h3>Data</h3>
-          <ul>
-            <li>Practices, people, shelters, vendors, software, history</li>
-            <li>More useful, more current, connected to customer workflows</li>
-            <li>Reports, lists, questions, CRM connections, verified updates</li>
-          </ul>
+          <p><b>More data, connected to more places, served up more frequently.</b> The living view of the market — practices, people, shelters, vendors, software, history — customers work inside and connect to their own systems.</p>
         </div>
         <div class="engine content">
+          <div class="k">The content engine</div>
           <h3>Content</h3>
-          <ul>
-            <li>Automated discovery across hundreds of sources</li>
-            <li>Personalized feeds by role, account, company, and interest</li>
-            <li>Data-led stories only VetIntel can produce</li>
-            <li>Audience &amp; story signals that improve editorial and commercial decisions</li>
-          </ul>
+          <p><b>Automate the manual steps</b> so we can drive a personalized aggregation feed <b>plus original content only we can produce</b> — trusted reach we can finally measure and aim.</p>
         </div>
       </div>
-      <div class="loopbar">
-        <div class="lt">The loop — this is the flywheel</div>
-        <div class="loop5">
-          <div class="st"><div class="n">1</div><p>Data spots important changes, stories, people, and accounts.</p></div>
-          <div class="ar">→</div>
-          <div class="st"><div class="n">2</div><p>Content explains them and reaches the right audience.</p></div>
-          <div class="ar">→</div>
-          <div class="st"><div class="n">3</div><p>Engagement reveals interests and commercial intent.</p></div>
-          <div class="ar">→</div>
-          <div class="st"><div class="n">4</div><p>The platform personalizes and captures verification.</p></div>
-          <div class="ar">→</div>
-          <div class="st"><div class="n">5</div><p>Those signals strengthen the data and open the next deal.</p></div>
-        </div>
-        <div class="loopback">↺ …and each turn makes the next one bigger.</div>
-      </div>
+      <p class="transition">Built in a legacy way, one piece at a time. The opportunity is the loop between them.</p>
     </div>
-    <div class="foot"><span class="brand">VETINTEL</span><span class="num">04</span></div>
+    <div class="foot"><span class="brand">VETINTEL</span><span class="num"></span></div>
   </section>
 
-  <!-- 5 WHAT MUST BE TRUE OCT 8 -->
+  <!-- THE LOOP -->
   <section class="slide s-light">
     <div class="stage">
-      <div class="eyebrow">The 90-day goals</div>
-      <h2>What must be <span class="hl">true on October 8</span>.</h2>
-      <div class="check">
-        <div class="item"><div class="box"></div><div><span>July data set refreshed &amp; loaded</span><small>the core promise, protected · Paul·Ben</small></div></div>
-        <div class="item"><div class="box"></div><div><span>Platform live; customers onboarded</span><small>report / list / question · Ben</small></div></div>
-        <div class="item"><div class="box"></div><div><span>Story-level measurement live</span><small>across publications · Graeme</small></div></div>
-        <div class="item"><div class="box"></div><div><span>Workforce &amp; shelter dataset launched</span><small>Ben·Helena</small></div></div>
-        <div class="item"><div class="box"></div><div><span>First CRM connector launched</span><small>Ben·Paul</small></div></div>
-        <div class="item"><div class="box"></div><div><span>Content prepared to flow into the platform</span><small>Graeme·Adam</small></div></div>
-        <div class="item"><div class="box"></div><div><span>Head of Content hired</span><small>plan of record · Adam</small></div></div>
-        <div class="item"><div class="box"></div><div><span>Pricing-data access secured</span><small>or a clear route confirmed</small></div></div>
-        <div class="item"><div class="box"></div><div><span>~$260K booked</span><small>on track to ~$500K H2 revenue</small></div></div>
-        <div class="item"><div class="box"></div><div><span>Additional $500K raise — a target</span><small>toward the broader $2M round · Adam</small></div></div>
+      <div class="eyebrow">Why it compounds <span class="act">· the loop</span></div>
+      <h2>Each turn makes the next one <span class="hl">bigger</span>.</h2>
+      <div class="loop-wrap">
+        <div class="ring" role="img" aria-label="The loop: data spots changes, content explains and reaches the audience, engagement reveals intent, the platform personalizes and verifies, and those signals strengthen the data — repeating.">
+          <svg viewBox="0 0 400 400" aria-hidden="true">
+            <defs><marker id="ah" markerWidth="9" markerHeight="9" refX="5" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6 Z" fill="#0B0F14"></path></marker></defs>
+            <circle cx="200" cy="200" r="130" fill="none" stroke="#c3ccd2" stroke-width="1.5" stroke-dasharray="3 6"></circle>
+            <path d="M200,70 A130 130 0 0 1 323.7,159.8" fill="none" stroke="#0B0F14" stroke-width="1.6" marker-end="url(#ah)"></path>
+            <path d="M323.7,159.8 A130 130 0 0 1 276.4,305.2" fill="none" stroke="#0B0F14" stroke-width="1.6" marker-end="url(#ah)"></path>
+            <path d="M276.4,305.2 A130 130 0 0 1 123.6,305.2" fill="none" stroke="#0B0F14" stroke-width="1.6" marker-end="url(#ah)"></path>
+            <path d="M123.6,305.2 A130 130 0 0 1 76.3,159.8" fill="none" stroke="#0B0F14" stroke-width="1.6" marker-end="url(#ah)"></path>
+            <path d="M76.3,159.8 A130 130 0 0 1 200,70" fill="none" stroke="#0B0F14" stroke-width="1.6" marker-end="url(#ah)"></path>
+          </svg>
+          <div class="rnode p1"><span class="n">1</span><div class="nm">Data spots<br>changes</div></div>
+          <div class="rnode p2"><span class="n">2</span><div class="nm">Content<br>explains</div></div>
+          <div class="rnode p3"><span class="n">3</span><div class="nm">Engagement<br>reveals intent</div></div>
+          <div class="rnode p4"><span class="n">4</span><div class="nm">Platform<br>personalizes</div></div>
+          <div class="rnode p5"><span class="n">5</span><div class="nm">Signals<br>enrich data</div></div>
+          <div class="rhub"><div class="lab">One<br><span class="g">platform</span></div><div class="ul"></div></div>
+        </div>
+        <div class="loop-list">
+          <div class="li"><span class="ln">1</span><div><b>Data</b> spots the important changes, stories, people, and accounts.</div></div>
+          <div class="li"><span class="ln">2</span><div><b>Content</b> explains them and reaches the right audience.</div></div>
+          <div class="li"><span class="ln">3</span><div><b>Engagement</b> reveals interests and commercial intent.</div></div>
+          <div class="li"><span class="ln">4</span><div>The <b>platform</b> personalizes the experience and captures verification.</div></div>
+          <div class="li"><span class="ln">5</span><div>Those <b>signals</b> strengthen the data and open the next deal.</div></div>
+        </div>
       </div>
-      <p class="footnote">Booked = signed, not collected. The raise is a cushion and a milestone — not a prerequisite for the July load or August onboarding.</p>
     </div>
-    <div class="foot"><span class="brand">VETINTEL</span><span class="num">05</span></div>
+    <div class="foot"><span class="brand">VETINTEL</span><span class="num"></span></div>
   </section>
 
-  <!-- 6 THREE SWIM LANES -->
+  <!-- DATA: LIVING PLATFORM -->
   <section class="slide s-panel">
     <div class="stage">
-      <div class="eyebrow">The plan on one page <span class="act">· three swim lanes, dated and owned</span></div>
-      <h2>Data · Commercial Plan · Content — <span class="hl">here is all the work</span>.</h2>
+      <div class="eyebrow">The data engine <span class="act">· from a static file to a living platform</span></div>
+      <h2>The data <span class="hl">changes constantly</span> — that's exactly why it's valuable.</h2>
+      <blockquote class="quote sm" style="margin-top:8px"><p>Of the ~30,000 practices we track, roughly <b>20,000 change every quarter.</b> Fresh, connected data is the product — not the CSV.</p></blockquote>
+      <div class="grid g3" style="margin-top:20px">
+        <div class="card pine"><h3>Living &amp; verified</h3><p>Move the trusted EPD/IPD into the platform; stand up verification; show every change with its evidence. Cadence rises from quarterly toward real-time.</p></div>
+        <div class="card"><h3>New datasets</h3><p>Workforce first (the people in every clinic), then the ~4,000–5,000 cleaned shelters, then vendor / software / financials.</p></div>
+        <div class="card lav"><h3>Three ways to upsell</h3><p>More <b>data</b> (workforce, shelters) · more <b>connections</b> (CRM) · more <b>frequency</b> (monthly, weekly, real-time).</p></div>
+      </div>
+      <p class="note">What we're hearing: <b>Clipper</b> wants match rates from 85% → 95% and a real sales database; <b>Vetway</b> needs the practice, the prescriber, and the affiliation — fast. <span style="color:var(--grey-2)">(Customer paraphrase — direct quotes pending transcript verification.)</span></p>
+    </div>
+    <div class="foot"><span class="brand">VETINTEL</span><span class="num"></span></div>
+  </section>
+
+  <!-- PLATFORM DEMO -->
+  <section class="slide s-light">
+    <div class="stage">
+      <div class="eyebrow"><span class="demo-tag">Live demo</span> See it working</div>
+      <h2>This is what unlocks <span class="hl">2–4× the spend</span>.</h2>
+      <div class="demo">
+        <div class="screen"><div class="bar"><i></i><i></i><i></i></div><div class="body"><h4>Clinic &amp; workforce view</h4><p>Every clinic, the people inside it, and how they move — live.</p></div></div>
+        <div class="screen"><div class="bar"><i></i><i></i><i></i></div><div class="body"><h4>Vendor comparison</h4><p>Who uses what software and services, side by side.</p></div></div>
+        <div class="screen"><div class="bar"><i></i><i></i><i></i></div><div class="body"><h4>Custom reports</h4><p>Ask a question, get a reusable, sourced answer.</p></div></div>
+        <div class="screen"><div class="bar"><i></i><i></i><i></i></div><div class="body"><h4>Change tracking</h4><p>Follow an account and see exactly what changed since last quarter.</p></div></div>
+      </div>
+      <div class="usecases">
+        <span class="c">Territory planning</span><span class="c">Competitive intelligence</span><span class="c">Account-change tracking</span><span class="c">Load times in milliseconds</span>
+      </div>
+      <p class="note">Ben walks the team through it live (3–4 min). The point: these are budgets a CSV could never reach.</p>
+    </div>
+    <div class="foot"><span class="brand">VETINTEL</span><span class="num"></span></div>
+  </section>
+
+  <!-- COMMERCIAL PIPELINE -->
+  <section class="slide s-panel">
+    <div class="stage">
+      <div class="eyebrow">The commercial pipeline <span class="act">· what's coming up, and the goal for each</span></div>
+      <h2>Real names, real relationships — and a <span class="hl">goal for every one</span>.</h2>
+      <div class="pipe">
+        <div class="pcol"><div class="h"><span class="dot d-green"></span>Renewing now</div><div class="names">Ammo · Butterfly<br>United Pet Care</div><div class="goal"><b>Goal:</b> renew onto the platform, not a CSV.</div></div>
+        <div class="pcol"><div class="h"><span class="dot d-lav"></span>One dataset today</div><div class="names">Wedgewood · Cubex<br>Felix</div><div class="goal"><b>Goal:</b> get them on the platform and sell both EPD + IPD.</div></div>
+        <div class="pcol"><div class="h"><span class="dot d-amber"></span>Win back</div><div class="names">Teravet (lapsed)<br>Chewy</div><div class="goal"><b>Goal:</b> re-engage with the change story + new platform.</div></div>
+        <div class="pcol"><div class="h"><span class="dot d-ink"></span>Grow the anchors</div><div class="names">Hills · Zoetis<br>Merck</div><div class="goal"><b>Goal:</b> shelters, workforce, and far bigger asks.</div></div>
+      </div>
+      <p class="logos">The renewal message writes itself: <b>your data is out of date — and here's how much changed.</b> Every renewal is a discovery call and a platform demo.</p>
+    </div>
+    <div class="foot"><span class="brand">VETINTEL</span><span class="num"></span></div>
+  </section>
+
+  <!-- CONTENT -->
+  <section class="slide s-light">
+    <div class="stage">
+      <div class="eyebrow">The content engine <span class="act">· automate, personalize, integrate</span></div>
+      <h2>Free the team from manual work — then make content <span class="hl">personal and measurable</span>.</h2>
+      <div class="grid g3">
+        <div class="card"><h3>Automate</h3><p>The Newsfeed Intake Agent scans hundreds of sources daily against our 551-story archive; add Bitly tracking. The low-value retrieval and formatting goes away — the team gets promoted into judgment and original work.</p></div>
+        <div class="card lav"><h3>Personalize</h3><p>Not 400 Mailchimp segments — bring content <b>into the platform</b>, linked to the data, so feeds personalize by role, account, and interest.</p></div>
+        <div class="card pine"><h3>New insights</h3><p>Data-led stories only VetIntel can produce — breaking news on every executive's desk. Plus the contributor network for taste and reach.</p></div>
+      </div>
+      <blockquote class="quote sm" style="margin-top:16px"><p>"We moved away from vendor-curated content because we weren't seeing engagement… now the member engagement is just phenomenal."</p><cite>Kim London, TVC · July 14 — measurement makes editorial better, not more sponsored</cite></blockquote>
+      <p class="note" style="color:var(--grey-2)">Visual to add: contributor-network screenshots + a personalized-newsfeed mockup.</p>
+    </div>
+    <div class="foot"><span class="brand">VETINTEL</span><span class="num"></span></div>
+  </section>
+
+  <!-- SWIM LANES -->
+  <section class="slide s-panel">
+    <div class="stage">
+      <div class="eyebrow">The plan on one page <span class="act">· Data · Commercial Plan · Content</span></div>
+      <h2>Here is <span class="hl">all the work</span>.</h2>
       <div class="swim-wrap">
         <table class="swim">
           <thead><tr><th>Lane</th><th>First 30 days</th><th>Days 30–90</th><th>After day 90</th></tr></thead>
           <tbody>
             <tr>
               <td class="lane data">Data</td>
-              <td><ul><li>Ship refresh; load platform</li><li>Reconcile files</li><li>Establish verification</li></ul></td>
-              <td><ul><li>Onboard customers</li><li>Launch workforce &amp; shelter datasets</li><li>Prove CRM connection</li></ul></td>
-              <td><ul><li>Increase refresh frequency</li><li>Expand vendor / software / financial data</li></ul></td>
+              <td><ul><li>Ship refresh; load the platform</li><li>Stand up verification</li></ul></td>
+              <td><ul><li>Onboard customers</li><li>Launch workforce &amp; shelter datasets</li><li>Prove the CRM connection</li></ul></td>
+              <td><ul><li>More frequent refresh</li><li>Vendor / software / financial data</li></ul></td>
             </tr>
             <tr>
               <td class="lane commercial">Commercial Plan</td>
-              <td><ul><li>Confirm renewal book</li><li>Run discovery on every call</li><li>Select anchor accounts</li></ul></td>
-              <td><ul><li>Platform demos; renewal conversion</li><li>Account expansion</li><li>Proposal automation</li><li>Subscription renewal rhythm live</li></ul></td>
-              <td><ul><li>Scale bundled offers</li><li>Partnerships</li><li>Account-based selling</li></ul></td>
+              <td><ul><li>Discovery on every renewal call</li><li>Select anchor accounts</li></ul></td>
+              <td><ul><li>Platform demos → renewals &amp; expansion</li><li>Automate proposals</li></ul></td>
+              <td><ul><li>Bundled offers &amp; partnerships</li><li>Subscription renewal rhythm</li></ul></td>
             </tr>
             <tr>
               <td class="lane content">Content</td>
-              <td><ul><li>Automate news discovery</li><li>Map production</li><li>Add story tracking</li></ul></td>
-              <td><ul><li>Personalize feeds</li><li>Bring content into the platform</li><li>Publish first data stories</li></ul></td>
-              <td><ul><li>Expand contributor network</li><li>Original formats</li><li>Personalized distribution</li></ul></td>
+              <td><ul><li>Automate news discovery</li><li>Add story-level tracking</li></ul></td>
+              <td><ul><li>Personalize feeds; bring content into the platform</li><li>Publish first data stories</li></ul></td>
+              <td><ul><li>Expand the contributor network</li><li>Personalized distribution</li></ul></td>
             </tr>
           </tbody>
         </table>
       </div>
     </div>
-    <div class="foot"><span class="brand">VETINTEL</span><span class="num">06</span></div>
+    <div class="foot"><span class="brand">VETINTEL</span><span class="num"></span></div>
   </section>
 
-  <!-- 7 DATA PLAN -->
+  <!-- WHAT MUST BE TRUE -->
   <section class="slide s-light">
     <div class="stage">
-      <div class="eyebrow">Data plan <span class="act">· living platform, workforce, shelters, verification, connection</span></div>
-      <h2>From a static file to a <span class="hl">living platform</span> customers work inside.</h2>
-      <div class="grid g3">
-        <div class="card pine"><h3>Living &amp; verified</h3><p>Move the trusted EPD/IPD into the platform; stand up verification so records are current and evidence-backed. Cadence rises from quarterly toward real-time.</p></div>
-        <div class="card"><h3>New datasets</h3><p>Workforce first (the people in every clinic), then the 9,000+ shelters already reviewed, then vendor / software / financials.</p></div>
-        <div class="card lav"><h3>Connection, not just records</h3><p>Match-and-return, then CRM connectors — so the data lands where decisions actually happen.</p></div>
+      <div class="eyebrow">What we're building toward <span class="act">· what must be true on October 8</span></div>
+      <h2>Day 90 is a <span class="hl">checklist</span>, not a feeling.</h2>
+      <div class="check">
+        <div class="item"><div class="box"></div><div><span>July data set refreshed &amp; loaded</span><small>the core promise, protected · Paul·Ben</small></div></div>
+        <div class="item"><div class="box"></div><div><span>Platform live; customers onboarded</span><small>report / list / question · Ben</small></div></div>
+        <div class="item"><div class="box"></div><div><span>Story-level measurement live</span><small>we can finally see what resonates</small></div></div>
+        <div class="item"><div class="box"></div><div><span>Workforce &amp; shelter dataset launched</span><small>Ben·Helena</small></div></div>
+        <div class="item"><div class="box"></div><div><span>First CRM connector launched</span><small>Ben·Paul</small></div></div>
+        <div class="item"><div class="box"></div><div><span>Newsletter production largely automated</span><small>team freed for higher-value work</small></div></div>
+        <div class="item"><div class="box"></div><div><span>Head of Content hired</span><small>a commercial leader to grow 30K → 100K readers</small></div></div>
+        <div class="item"><div class="box"></div><div><span>Pricing-data access secured</span><small>or a clear route confirmed</small></div></div>
+        <div class="item"><div class="box"></div><div><span>~$260K booked</span><small>on track to ~$500K H2 revenue</small></div></div>
+        <div class="item"><div class="box"></div><div><span>Additional $500K raise — a target</span><small>toward the broader $2M round</small></div></div>
       </div>
-      <div class="split" style="margin-top:16px">
-        <blockquote class="quote sm"><p>"If we can take it from 85 to 95… we can be more proficient with cleaner data and build a database for our sales organization."</p><cite>Amy Harlacher, Clipper · July 8 — the CRM &amp; matching opportunity</cite></blockquote>
-        <blockquote class="quote sm"><p>"The immediate need would be the practice, the prescriber, and knowing what practice they're affiliated with."</p><cite>Isaiah, Vetway · July 9 — the workforce proof point</cite></blockquote>
-      </div>
+      <p class="footnote">These are the targets we've represented to our investors — the ones we all rally behind. Booked = signed, not collected.</p>
     </div>
-    <div class="foot"><span class="brand">VETINTEL</span><span class="num">07</span></div>
+    <div class="foot"><span class="brand">VETINTEL</span><span class="num"></span></div>
   </section>
 
-  <!-- 8 COMMERCIAL PLAN -->
+  <!-- MILESTONES -->
   <section class="slide s-panel">
     <div class="stage">
-      <div class="eyebrow">Commercial plan <span class="act">· named accounts, renewals, expansion, advertising</span></div>
-      <h2>The pipeline is <span class="hl">real names, real relationships</span> — and Chris knows every one.</h2>
-      <div class="acct">
-        <div class="acol"><div class="h"><span class="dot d-green"></span>Renewing now</div><ul><li>Ammo<small>monthly · data</small></li><li>Butterfly<small>EPD · quarterly</small></li><li>United Pet Care<small>EPD + IPD</small></li></ul></div>
-        <div class="acol"><div class="h"><span class="dot d-lav"></span>Expansion</div><ul><li>United Pet Care<small>add connectors</small></li><li>Felix<small>go deeper, multi-year</small></li><li>EPD-only accounts<small>cross-sell IPD</small></li></ul></div>
-        <div class="acol"><div class="h"><span class="dot d-amber"></span>Re-engaging</div><ul><li>Wedgewood<small>relationship reset</small></li><li>Mashur / Cubex<small>value now clear</small></li></ul></div>
-        <div class="acol"><div class="h"><span class="dot d-ink"></span>Advertising &amp; pipeline</div><ul><li>Van Beek<small>in negotiation</small></li><li>Ad sales<small>Connor · proposal automation</small></li></ul></div>
-      </div>
-      <p class="logos">Anchor enterprise relationships already in the book: <b>Merck · Zoetis · Boehringer · Hills · Dechra · Chewy · Antech</b>. Every renewal call runs discovery; proposals get automated so we quote faster and sharper.</p>
-    </div>
-    <div class="foot"><span class="brand">VETINTEL</span><span class="num">08</span></div>
-  </section>
-
-  <!-- 9 CONTENT PLAN -->
-  <section class="slide s-light">
-    <div class="stage">
-      <div class="eyebrow">Content plan <span class="act">· automate, personalize, integrate</span></div>
-      <h2>Automate the manual work, then <span class="hl">pull content into the platform</span>.</h2>
-      <div class="grid g3">
-        <div class="card"><h3>Automate</h3><p>The Newsfeed Intake Agent (already built) scans hundreds of sources daily and scores candidates against our 551-story archive. Add Bitly tracking; map and remove the manual retrieval and formatting.</p></div>
-        <div class="card lav"><h3>Personalize</h3><p>Personalized feeds by role, account, company, and interest — content as its own dataset, tracking all EPD/IPD-related news.</p></div>
-        <div class="card pine"><h3>Integrate</h3><p>Prepare content so it flows straight into the platform; streamline ad proposals from resonance data.</p></div>
-      </div>
-      <p class="note"><b>Guardrail:</b> the publication schedule is untouchable. Automation removes retrieval and formatting — never editorial judgment. <b>Owners:</b> Mark · Laura (editorial) · Graeme (audience) · Monica (placement) · Connor (ad sales) · Adam.</p>
-    </div>
-    <div class="foot"><span class="brand">VETINTEL</span><span class="num">09</span></div>
-  </section>
-
-  <!-- 10 HOW CONTENT COMPOUNDS -->
-  <section class="slide s-panel">
-    <div class="stage">
-      <div class="eyebrow">How content compounds <span class="act">· data stories, measurement, contributor network</span></div>
-      <h2>Measurement makes the editorial <span class="hl">better</span> — not more sponsored.</h2>
-      <blockquote class="quote"><p>"We changed in 2025 to move away from vendor-curated content because we weren't seeing engagement… the member engagement is just phenomenal."</p><cite>Kim London, TVC · July 14</cite></blockquote>
-      <div class="grid g3" style="margin-top:20px">
-        <div class="card"><h3>Data stories</h3><p>Published stories built on our own data — ones nobody else can write.</p></div>
-        <div class="card lav"><h3>Measurement</h3><p>Bitly + Mailchimp joins finally show what resonates, sharpening editorial judgment and ad value.</p></div>
-        <div class="card pine"><h3>Contributor network</h3><p>Contributors and experts expand taste, expertise, original reporting, and reach — part of Content, not a separate business.</p></div>
-      </div>
-    </div>
-    <div class="foot"><span class="brand">VETINTEL</span><span class="num">10</span></div>
-  </section>
-
-  <!-- 11 WHO DOES WHAT -->
-  <section class="slide s-light">
-    <div class="stage">
-      <div class="eyebrow">Who does what</div>
-      <h2>Every workstream has a <span class="hl">name on it</span>.</h2>
-      <div class="team">
-        <div class="tcol data"><div class="lane">Data</div><div class="names">Paul · Helena<br>Chris · Ben</div><p>Refresh, verification, new datasets, the platform, and connectors.</p></div>
-        <div class="tcol commercial"><div class="lane">Commercial Plan</div><div class="names">Chris · Connor<br>Adam</div><p>Renewals, expansion, advertising, discovery on every call.</p></div>
-        <div class="tcol content"><div class="lane">Content</div><div class="names">Mark · Laura · Graeme<br>Monica · Adam</div><p>Editorial, automation, audience, placement, measurement.</p></div>
-      </div>
-      <div class="spot">
-        <div class="mug">G</div>
-        <div>
-          <div class="role">New face · Audience &amp; Performance</div>
-          <h4>Graeme</h4>
-          <p>A marketer and analytical thinker joining to right-size our content stack and finally get real numbers out of it — owning story-level measurement, the weekly editorial-performance review with Adam, the 30–40K audience and segmentation, and the Mailchimp-vs-alternatives question.</p>
-          <p class="flag">⚠️ Placeholder bio — Adam to confirm Graeme's exact title, background, and headshot.</p>
-        </div>
-      </div>
-    </div>
-    <div class="foot"><span class="brand">VETINTEL</span><span class="num">11</span></div>
-  </section>
-
-  <!-- 12 MILESTONES -->
-  <section class="slide s-panel">
-    <div class="stage">
-      <div class="eyebrow">Company milestones <span class="act">· three distinct moments</span></div>
+      <div class="eyebrow">Company milestones <span class="act">· three moments that make it real</span></div>
       <h2>We're building toward <span class="hl">dated moments</span>, not vibes.</h2>
       <div class="moments">
-        <div class="moment"><div class="when">~Late Aug / early Sep</div><h3>The announcement</h3><p>Reveal the company, the website, RepView, and the strategic direction — timed to the KC Corridor window.</p></div>
+        <div class="moment"><div class="when">~Late Aug / early Sep</div><h3>The announcement</h3><p>Reveal the company, website, RepView, and direction — timed to the KC Corridor window.</p></div>
         <div class="moment"><div class="when">Aug 28 – Sep 1</div><h3>KC Animal Health Corridor</h3><p>Establish VetIntel publicly inside the animal-health ecosystem.</p></div>
-        <div class="moment"><div class="when">Oct 1 – 3</div><h3>Vet Together, Las Vegas</h3><p>Demonstrate the commercial interface with real buyers, vendors, data, content, and measurable outcomes.</p></div>
+        <div class="moment"><div class="when">Oct 1 – 3</div><h3>Vet Together, Las Vegas</h3><p>Prove the commercial interface with real buyers, vendors, data, and content.</p></div>
       </div>
       <table class="tl">
-        <tr><td class="when">~Jul 21</td><td class="moment-c">Vet Together follow-up — 2026 plan + platform demo</td><td class="proves" style="color:var(--grey)">The partnership path is real</td></tr>
-        <tr><td class="when">Jul 31</td><td class="moment-c">July refresh shipped + platform load reconciled</td><td class="proves" style="color:var(--grey)">The core promise is protected</td></tr>
-        <tr><td class="when">Aug</td><td class="moment-c">Customer onboarding; platform demos in every renewal</td><td class="proves" style="color:var(--grey)">The platform is real</td></tr>
-        <tr><td class="when">Sep 30</td><td class="moment-c">Booked-revenue checkpoint + first CRM connector live</td><td class="proves" style="color:var(--grey)">The commercial engine works</td></tr>
-        <tr><td class="when">Oct 8</td><td class="moment-c">90-day retro + fall decisions, with evidence</td><td class="proves" style="color:var(--grey)">We decide with evidence</td></tr>
+        <tr><td class="when">~Jul 21</td><td class="moment-c">Vet Together follow-up — 2026 plan + platform demo</td><td style="color:var(--grey)">The partnership path is real</td></tr>
+        <tr><td class="when">Jul 31</td><td class="moment-c">July refresh shipped + platform load reconciled</td><td style="color:var(--grey)">The core promise is protected</td></tr>
+        <tr><td class="when">Sep 30</td><td class="moment-c">Booked-revenue checkpoint + first CRM connector live</td><td style="color:var(--grey)">The commercial engine works</td></tr>
+        <tr><td class="when">Oct 8</td><td class="moment-c">90-day retro + fall decisions, with evidence</td><td style="color:var(--grey)">We decide with evidence</td></tr>
       </table>
     </div>
-    <div class="foot"><span class="brand">VETINTEL</span><span class="num">12</span></div>
+    <div class="foot"><span class="brand">VETINTEL</span><span class="num"></span></div>
   </section>
 
-  <!-- 13 HOW WE WORK + SUPPORT -->
+  <!-- CLOSE -->
   <section class="slide s-dark2">
     <div class="stage">
-      <div class="eyebrow">How we work <span class="act">· and how we'll support you</span></div>
-      <h2>We automate the same way every time — and <span class="hl">we help you get there</span>.</h2>
-      <div class="loop">
-        <div class="lstep"><div class="n">1</div><h4>Observe</h4><p>Understand the real workflow.</p></div>
-        <div class="arr">→</div>
-        <div class="lstep"><div class="n">2</div><h4>Build</h4><p>A narrow agent for the manual part.</p></div>
-        <div class="arr">→</div>
-        <div class="lstep"><div class="n">3</div><h4>Dogfood</h4><p>Against what we've already done.</p></div>
-        <div class="arr">→</div>
-        <div class="lstep"><div class="n">4</div><h4>Introduce</h4><p>Hand it to the workflow's owner.</p></div>
-        <div class="arr">→</div>
-        <div class="lstep"><div class="n">5</div><h4>Transition</h4><p>Off the manual way.</p></div>
-      </div>
-      <div class="princ">
-        <span class="p"><b>Be</b> transparent</span>
-        <span class="p"><b>Be</b> proactive</span>
-        <span class="p"><b>Be</b> curious</span>
-        <span class="p"><b>Upskill</b> yourself</span>
-        <span class="p"><b>Fire</b> yourself from tasks</span>
-      </div>
+      <div class="eyebrow">Working together</div>
+      <h2>One system only works if <span class="hl">everyone works in it</span> — and we'll help you get there.</h2>
       <div class="two">
         <div class="side need"><h3>What we need from you</h3><ul>
           <li><b>Work from the shared system</b> — Notion is the company brain.</li>
@@ -504,19 +490,34 @@
           <li><b>Feed the loop</b> — after every call, log the decision and the data that would help.</li>
         </ul></div>
         <div class="side support"><h3>How we'll support you</h3><ul>
-          <li><b>Office hours</b> and <b>1:1 / 101s</b> — hands-on onboarding to the tools.</li>
+          <li><b>Office hours + 1:1s</b> — hands-on onboarding to the tools.</li>
           <li><b>Training</b> — Looms, walkthroughs, shared skills.</li>
           <li><b>We build with you</b> — real support first, before we ask you to work the new way.</li>
         </ul></div>
       </div>
+      <p class="closer">One company. One system. <b>Data</b> is the engine, <b>content</b> is the reach — and together they compound.</p>
     </div>
-    <div class="foot"><span class="brand">VETINTEL</span><span class="num">13</span></div>
+    <div class="foot"><span class="brand">VETINTEL</span><span class="num"></span></div>
   </section>
 
-  <!-- A1 VET TOGETHER -->
-  <section class="slide s-appx">
+  <!-- APPX 1: WHY NOW -->
+  <section class="slide s-appx appx-slide">
     <div class="stage">
-      <div class="eyebrow"><span class="appx-tag">Appendix 1</span> Vet Together <span class="act">· the whole strategy, in one event</span></div>
+      <div class="eyebrow"><span class="appx-tag">Appendix</span> How we got here <span class="act">· why now</span></div>
+      <h2>Built one piece at a time — <span class="hl">now the moment is right</span>.</h2>
+      <div class="grid g2">
+        <div class="card"><h3>How it was built</h3><p>A trusted publication came first. Then ads, to support it. Then a database, because the industry needed it and the other lines couldn't fund everything alone. Each piece was added on its own — and it made sense at the time.</p></div>
+        <div class="card lav"><h3>Why now</h3><p>The market changed: more competitors (everyone launched a newsletter), cloud and AI put data work within reach, and customers expect more. We're still the trusted source — and technology now lets us <b>sprint past</b>, not just keep ahead.</p></div>
+      </div>
+      <p class="note">The pieces were always meant to support each other. This is the quarter we finally wire them together.</p>
+    </div>
+    <div class="foot"><span class="brand">VETINTEL</span><span class="num"></span></div>
+  </section>
+
+  <!-- APPX 2: VET TOGETHER -->
+  <section class="slide s-appx appx-slide">
+    <div class="stage">
+      <div class="eyebrow"><span class="appx-tag">Appendix</span> Vet Together <span class="act">· the whole strategy, in one event</span></div>
       <h2>A contained proof of the <span class="hl">commercial interface</span>.</h2>
       <div class="vt">
         <div class="ph"><div class="t">Before the event</div><ul>
@@ -542,53 +543,64 @@
         <div class="stat"><div class="v">25,000+</div><div class="l">1:1 appointments (last show)</div></div>
         <div class="stat"><div class="v">~85%</div><div class="l">of their vendors don't yet spend with us</div></div>
       </div>
-      <blockquote class="quote sm" style="margin-top:16px"><p>"We have one Super Bowl. That is it… we really don't have any other touch points throughout the year."</p><cite>Vet Together — exactly where we fit: content creates year-round engagement, data makes each interaction more valuable, the platform compounds the signals.</cite></blockquote>
+      <p class="note">How Vet Together describes their calendar: one "Super Bowl" a year, and little else. That's exactly where we fit — content creates year-round engagement, data makes each interaction more valuable, the platform compounds the signals. <span style="color:var(--grey-2)">(Paraphrase — direct quote pending verification.)</span></p>
     </div>
-    <div class="foot"><span class="brand">VETINTEL</span><span class="num">A1</span></div>
+    <div class="foot"><span class="brand">VETINTEL</span><span class="num"></span></div>
   </section>
 
-  <!-- A2 NAMED ACCOUNTS -->
-  <section class="slide s-appx">
+  <!-- APPX 3: HOW WE WORK -->
+  <section class="slide s-appx appx-slide">
     <div class="stage">
-      <div class="eyebrow"><span class="appx-tag">Appendix 2</span> Named-account detail</div>
-      <h2>The commercial book, <span class="hl">by status</span>.</h2>
-      <div class="acct">
-        <div class="acol"><div class="h"><span class="dot d-green"></span>Renewing now</div><ul><li>Ammo<small>monthly data</small></li><li>Butterfly<small>EPD · quarterly</small></li><li>United Pet Care<small>EPD + IPD · monthly</small></li></ul></div>
-        <div class="acol"><div class="h"><span class="dot d-lav"></span>Expansion</div><ul><li>United Pet Care<small>connectors</small></li><li>Felix<small>deeper, multi-year</small></li><li>EPD-only base<small>cross-sell IPD</small></li></ul></div>
-        <div class="acol"><div class="h"><span class="dot d-amber"></span>Re-engaging</div><ul><li>Wedgewood<small>reset after churn</small></li><li>Mashur / Cubex<small>value now clear</small></li></ul></div>
-        <div class="acol"><div class="h"><span class="dot d-ink"></span>Pipeline</div><ul><li>Van Beek Natural Science<small>in negotiation</small></li></ul></div>
+      <div class="eyebrow"><span class="appx-tag">Appendix</span> How we work <span class="act">· method + principles</span></div>
+      <h2>We automate the same way <span class="hl">every time</span>.</h2>
+      <div class="loop5">
+        <div class="lstep"><div class="n">1</div><h4>Observe</h4><p>Understand the real workflow.</p></div>
+        <div class="arr">→</div>
+        <div class="lstep"><div class="n">2</div><h4>Build</h4><p>A narrow agent for the manual part.</p></div>
+        <div class="arr">→</div>
+        <div class="lstep"><div class="n">3</div><h4>Dogfood</h4><p>Against what we've already done.</p></div>
+        <div class="arr">→</div>
+        <div class="lstep"><div class="n">4</div><h4>Introduce</h4><p>Hand it to the workflow's owner.</p></div>
+        <div class="arr">→</div>
+        <div class="lstep"><div class="n">5</div><h4>Transition</h4><p>Off the manual way.</p></div>
       </div>
-      <p class="logos">Enterprise anchors in the book: <b>Merck · Zoetis · Boehringer · Hills · Dechra · Chewy · Antech</b>. Customer voices behind the plan: <b>Phibro</b> (the "thoroughbred"), <b>Clipper</b> (one location, cleaner data, shelters), <b>Vetway</b> (workforce), <b>TVC</b> (independent content wins).</p>
-      <p class="note">Kept out of the team deck: individual account pricing, runway/burn, and individual goal numbers.</p>
+      <div class="princ">
+        <span class="p"><b>Be</b> transparent</span>
+        <span class="p"><b>Be</b> proactive</span>
+        <span class="p"><b>Be</b> curious</span>
+        <span class="p"><b>Upskill</b> yourself</span>
+        <span class="p"><b>Fire</b> yourself from tasks</span>
+      </div>
+      <p class="note">Automation removes retrieval, formatting, and admin — so people spend time on judgment, taste, and relationships.</p>
     </div>
-    <div class="foot"><span class="brand">VETINTEL</span><span class="num">A2</span></div>
+    <div class="foot"><span class="brand">VETINTEL</span><span class="num"></span></div>
   </section>
 
-  <!-- A3 GLOSSARY -->
-  <section class="slide s-appx">
+  <!-- APPX 4: GLOSSARY -->
+  <section class="slide s-appx appx-slide">
     <div class="stage">
-      <div class="eyebrow"><span class="appx-tag">Appendix 3</span> Words we use <span class="act">· a new-hire cheat sheet</span></div>
+      <div class="eyebrow"><span class="appx-tag">Appendix</span> Words we use <span class="act">· a new-hire cheat sheet</span></div>
       <h2>Words we use.</h2>
       <div class="gloss">
         <dl class="term"><dt>EPD / IPD</dt><dd>Enterprise Practice Database (~9,700 corporate locations) / Independent Practice Database (~19,000 independent practices).</dd></dl>
         <dl class="term"><dt>The refresh</dt><dd>The quarterly update of the EPD/IPD — moving toward a more frequent, living pulse.</dd></dl>
-        <dl class="term"><dt>The platform</dt><dd>The product where customers use our data directly: reports, lists, questions, exports.</dd></dl>
+        <dl class="term"><dt>The change story</dt><dd>~20,000 of ~30,000 tracked practices change each quarter — the proof that fresh data is worth paying for.</dd></dl>
+        <dl class="term"><dt>The platform</dt><dd>The product where customers use our data directly: reports, lists, questions, exports, change tracking.</dd></dl>
         <dl class="term"><dt>Report / list / question</dt><dd>The three core jobs the platform must do in V1.</dd></dl>
         <dl class="term"><dt>Match-and-return</dt><dd>Customer sends a file → we match, fix, enrich → return it import-ready → they control the import.</dd></dl>
         <dl class="term"><dt>CRM connector</dt><dd>The step after match-and-return: the customer's system talks to our data directly.</dd></dl>
         <dl class="term"><dt>RepView</dt><dd>Our AI rep co-pilot — briefs sales reps with company, practice, and people intelligence before meetings.</dd></dl>
         <dl class="term"><dt>Workforce data</dt><dd>Data about the people in clinics — roles, tenure, credentials, movement.</dd></dl>
         <dl class="term"><dt>Two engines</dt><dd>Data and Content — the two reinforcing sides of one commercial interface.</dd></dl>
-        <dl class="term"><dt>The loop</dt><dd>Data → content → engagement → platform → richer data. The flywheel; each turn compounds.</dd></dl>
+        <dl class="term"><dt>The loop</dt><dd>Data → content → engagement → platform → richer data. Each turn compounds.</dd></dl>
         <dl class="term"><dt>Newsfeed Intake Agent</dt><dd>The built agent that scans sources daily and scores candidate stories against our 551-story archive.</dd></dl>
         <dl class="term"><dt>Data story</dt><dd>A published story built on our own data — one nobody else can write.</dd></dl>
         <dl class="term"><dt>Story-level measurement</dt><dd>Bitly-tracked links + Mailchimp joins that finally show which stories resonate.</dd></dl>
-        <dl class="term"><dt>Discovery (on every call)</dt><dd>Capturing the customer's real decision and the data that would help — feeding the loop.</dd></dl>
         <dl class="term"><dt>Vet Together</dt><dd>Hosted buying event (Oct 1–3) where we prove the commercial interface with real buyers and vendors.</dd></dl>
         <dl class="term"><dt>FR / PCW / VSI</dt><dd>The Fountain Report / Pet Care Weekly / Veterinary Student Insider.</dd></dl>
       </div>
     </div>
-    <div class="foot"><span class="brand">VETINTEL</span><span class="num">A3</span></div>
+    <div class="foot"><span class="brand">VETINTEL</span><span class="num"></span></div>
   </section>
 
 </main>
@@ -596,11 +608,17 @@
 <script>
   var deck=document.getElementById('deck'), prog=document.getElementById('prog'), cur=document.getElementById('cur');
   var slides=[].slice.call(document.querySelectorAll('.slide'));
+  var core=0, appx=0;
+  slides.forEach(function(s){
+    var n=s.querySelector('.foot .num'); if(!n) return;
+    if(s.classList.contains('appx-slide')){appx++; n.textContent='A'+appx;} else {core++; n.textContent=('0'+core).slice(-2);}
+  });
+  document.getElementById('tot').textContent=slides.length;
   function upd(){
     var t=deck.scrollTop, h=deck.scrollHeight-deck.clientHeight;
     prog.style.width=(h>0?(t/h*100):0)+'%';
     var i=Math.round(t/deck.clientHeight); if(i<0)i=0; if(i>slides.length-1)i=slides.length-1;
-    cur.textContent=(i<13?('0'+(i+1)).slice(-2):'A'+(i-12));
+    cur.textContent=('0'+(i+1)).slice(-2);
   }
   deck.addEventListener('scroll',upd,{passive:true}); upd();
   document.addEventListener('keydown',function(e){
