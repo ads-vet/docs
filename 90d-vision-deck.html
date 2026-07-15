@@ -209,9 +209,25 @@ table.swim td li::before{content:"›"; position:absolute; left:0; color:var(--m
 .vt .ph .t{font-size:10px; font-weight:700; letter-spacing:.14em; text-transform:uppercase; color:var(--ink); margin-bottom:9px}
 .vt .ph li{list-style:none; font-size:12.5px; color:var(--muted); padding:4px 0 4px 14px; position:relative; line-height:1.4}
 .vt .ph li::before{content:"›"; position:absolute; left:0; color:var(--ink); font-weight:700}
-.stats{display:flex; gap:26px; flex-wrap:wrap; margin-top:16px; padding-top:14px; border-top:1px solid var(--rule)}
-.stat .v{font-family:var(--f-serif); font-size:30px; font-weight:600; letter-spacing:-.01em}
-.stat .l{font-size:10px; font-weight:700; color:var(--muted); text-transform:uppercase; letter-spacing:.1em}
+.stats{display:grid; grid-template-columns:repeat(4,1fr); gap:0; margin-top:20px; border:1px solid var(--rule)}
+@media(max-width:640px){.stats{grid-template-columns:1fr 1fr}}
+.stat{padding:16px 18px; border-right:1px solid var(--rule)}
+.stat:last-child{border-right:none}
+.stat .v{font-family:var(--f-serif); font-size:30px; font-weight:600; letter-spacing:-.01em; line-height:1}
+.stat .l{font-size:10px; font-weight:700; color:var(--muted); text-transform:uppercase; letter-spacing:.1em; margin-top:6px}
+/* comparison table */
+.cmp-wrap{overflow-x:auto; margin-top:22px; border:1px solid var(--rule)}
+table.cmp{border-collapse:collapse; width:100%; min-width:760px}
+table.cmp th,table.cmp td{text-align:left; padding:13px 16px; border-bottom:1px solid var(--rule-soft); vertical-align:top; font-size:14px}
+table.cmp tbody tr:last-child td{border-bottom:none}
+table.cmp thead th{background:var(--black); color:var(--paper); font-size:10px; letter-spacing:.14em; text-transform:uppercase; font-weight:700; border-bottom:1px solid var(--rule)}
+table.cmp td:first-child,table.cmp th:first-child{width:118px; font-size:10px; font-weight:700; letter-spacing:.1em; text-transform:uppercase; color:var(--muted-2); background:var(--white)}
+table.cmp td:nth-child(2){color:var(--muted); border-left:1px solid var(--rule-soft)}
+table.cmp td:nth-child(3){color:var(--ink); border-left:3px solid var(--lime); background:rgba(190,242,100,.07)}
+table.cmp td b{color:var(--ink); font-weight:700}
+/* ad-sales row */
+.adrow{display:flex; gap:14px; align-items:center; margin-top:14px; border:1px solid var(--rule); padding:12px 16px; font-size:13px; color:var(--muted); background:var(--white); flex-wrap:wrap}
+.adrow b{color:var(--ink); font-weight:700}
 .note{margin-top:14px; font-size:12.5px; color:var(--muted); border-left:2px solid var(--rule); padding-left:14px}
 .note b{color:var(--ink); font-weight:700}
 
@@ -257,21 +273,22 @@ table.swim td li::before{content:"›"; position:absolute; left:0; color:var(--m
           <div class="k">The vision holds up</div>
           <ul>
             <li>Customers want to "run through our pipes" to reach the market.</li>
-            <li>The commercial-interface thesis lands in every conversation.</li>
+            <li>The thesis lands — the open question is how we grow each account.</li>
           </ul>
         </div>
         <div class="card">
           <div class="k">The data is valuable</div>
           <ul>
-            <li>But they redo manual matching and cleaning before they can use it.</li>
-            <li>They want more — and we can't yet see how they use it.</li>
+            <li>But some only need part of it, or treat it as a one-time buy.</li>
+            <li>A static CSV can't anchor the relationship — so we can't grow it.</li>
           </ul>
         </div>
         <div class="card mkv">
           <div class="k">The content is trusted</div>
           <ul>
-            <li>The team ships every issue heroically — but it's heavy manual work.</li>
-            <li>We can't measure it: only ~1% click through the PDF.</li>
+            <li>But it's getting commoditized — more competition, AI everywhere.</li>
+            <li>Today we can't measure it: only ~1% click through the PDF.</li>
+            <li>Our edge is original stories and contributors no one else has.</li>
           </ul>
         </div>
       </div>
@@ -353,15 +370,21 @@ table.swim td li::before{content:"›"; position:absolute; left:0; color:var(--m
   <!-- DATA -->
   <section class="slide s-paper">
     <div class="stage">
-      <div class="eyebrow">The data engine <span class="act">· from a static file to a living platform</span></div>
-      <h2>The data <span class="hl">changes constantly</span> — that's exactly why it's valuable.</h2>
-      <blockquote class="quote sm" style="margin-top:10px"><p>Of the ~30,000 practices we track, roughly <b>20,000 change every quarter.</b> Fresh, connected data is the product — not the CSV.</p></blockquote>
-      <div class="grid g3" style="margin-top:20px">
-        <div class="card mkl"><div class="k">Living &amp; verified</div><p>Move the trusted EPD/IPD into the platform; stand up verification; show every change with its evidence. Cadence rises from quarterly toward real-time.</p></div>
-        <div class="card"><div class="k">New datasets</div><p>Workforce first (the people in every clinic), then the ~4,000–5,000 cleaned shelters, then vendor / software / financials.</p></div>
-        <div class="card mkv"><div class="k">Three ways to upsell</div><p>More <b>data</b> (workforce, shelters) · more <b>connections</b> (CRM) · more <b>frequency</b> (monthly, weekly, real-time).</p></div>
+      <div class="eyebrow">The data engine <span class="act">· the CSV, past and future</span></div>
+      <h2>Same trusted data — a <span class="hl">completely different product</span>.</h2>
+      <div class="cmp-wrap">
+        <table class="cmp">
+          <thead><tr><th></th><th>The CSV — today</th><th>The platform — where we're going</th></tr></thead>
+          <tbody>
+            <tr><td>Freshness</td><td>A static snapshot</td><td><b>Living &amp; verified</b>, moving toward real-time</td></tr>
+            <tr><td>Use</td><td>One-time, or only part of it</td><td><b>Recurring, everyday use</b> inside their workflow</td></tr>
+            <tr><td>Story</td><td>No story around it</td><td><b>The change story built in</b> — ~20K of 30K practices change each quarter</td></tr>
+            <tr><td>Visibility</td><td>We can't see how it's used</td><td><b>We see exactly how it's used</b></td></tr>
+            <tr><td>Relationship</td><td>Can't anchor the account</td><td><b>Connected to their CRM</b> — anchors and grows it</td></tr>
+          </tbody>
+        </table>
       </div>
-      <p class="note">What we're hearing: <b>Clipper</b> wants match rates from 85% → 95% and a real sales database; <b>Vetway</b> needs the practice, the prescriber, and the affiliation — fast. <span style="color:var(--muted-2)">(Customer paraphrase — direct quotes pending transcript verification.)</span></p>
+      <p class="note">This is why the same data can command far more: it stops being a file and becomes the surface they work in every day.</p>
     </div>
     <div class="foot"><span class="brand">VETINTEL</span><span class="num"></span></div>
   </section>
@@ -370,17 +393,18 @@ table.swim td li::before{content:"›"; position:absolute; left:0; color:var(--m
   <section class="slide s-paper">
     <div class="stage">
       <div class="eyebrow"><span class="tag amber">Live demo</span> See it working</div>
-      <h2>This is what unlocks <span class="hl">2–4× the spend</span>.</h2>
-      <div class="demo">
+      <h2>The spend grows <span class="hl">two ways</span>.</h2>
+      <div class="split">
+        <div class="card mkl"><div class="k">1 · Connect more</div><p>More <b>data</b> (workforce, shelters) · more <b>frequency</b> (toward real-time) · more <b>connections</b> (CRM). The breadth of what they get from us.</p></div>
+        <div class="card mkv"><div class="k">2 · Do more with it</div><p>Applications on top of the data — we help automate their <b>review process</b>, territory planning, and competitive intelligence. The value isn't just the data; it's what they can do with it.</p></div>
+      </div>
+      <div class="demo" style="margin-top:14px">
         <div class="screen"><div class="bar"><i></i><i></i><i></i></div><div class="body"><h4>Clinic &amp; workforce view</h4><p>Every clinic, the people inside it, and how they move — live.</p></div></div>
         <div class="screen"><div class="bar"><i></i><i></i><i></i></div><div class="body"><h4>Vendor comparison</h4><p>Who uses what software and services, side by side.</p></div></div>
         <div class="screen"><div class="bar"><i></i><i></i><i></i></div><div class="body"><h4>Custom reports</h4><p>Ask a question, get a reusable, sourced answer.</p></div></div>
-        <div class="screen"><div class="bar"><i></i><i></i><i></i></div><div class="body"><h4>Change tracking</h4><p>Follow an account and see exactly what changed since last quarter.</p></div></div>
+        <div class="screen"><div class="bar"><i></i><i></i><i></i></div><div class="body"><h4>Change tracking</h4><p>Follow an account and see what changed since last quarter.</p></div></div>
       </div>
-      <div class="usecases">
-        <span class="tag">Territory planning</span><span class="tag">Competitive intelligence</span><span class="tag">Account-change tracking</span><span class="tag lime">Load times in ms</span>
-      </div>
-      <p class="note">Ben walks the team through it live (3–4 min). The point: these are budgets a CSV could never reach.</p>
+      <p class="note">Ben walks the team through it live (3–4 min) — the point: this is a <b>2–4× spend</b> a CSV could never reach.</p>
     </div>
     <div class="foot"><span class="brand">VETINTEL</span><span class="num"></span></div>
   </section>
@@ -391,12 +415,13 @@ table.swim td li::before{content:"›"; position:absolute; left:0; color:var(--m
       <div class="eyebrow">The commercial pipeline <span class="act">· what's coming up, and where we want each account</span></div>
       <h2>The accounts coming up — and <span class="hl">where we're taking them</span>.</h2>
       <div class="pipe">
-        <div class="pcol"><div class="h"><span class="sw sw-lime"></span>Renewing now</div><div class="names">Ammo · Butterfly<br>United Pet Care</div><div class="val">~$40K<small>annual value</small></div><div class="goal"><b>Move to:</b> renew onto the platform, not a CSV.</div></div>
-        <div class="pcol"><div class="h"><span class="sw sw-lav"></span>One dataset today</div><div class="names">Wedgewood · Cubex<br>Felix</div><div class="val">~$35K<small>+ upsell headroom</small></div><div class="goal"><b>Move to:</b> the platform, buying both EPD + IPD.</div></div>
-        <div class="pcol"><div class="h"><span class="sw sw-amber"></span>Win back</div><div class="names">Teravet (lapsed)<br>Chewy</div><div class="val">~$15K<small>to recover</small></div><div class="goal"><b>Move to:</b> re-engaged on the change story + platform.</div></div>
-        <div class="pcol"><div class="h"><span class="sw sw-ink"></span>Grow the anchors</div><div class="names">Hills · Zoetis<br>Merck</div><div class="val">$90K+<small>and climbing</small></div><div class="goal"><b>Move to:</b> shelters, workforce, and far bigger asks.</div></div>
+        <div class="pcol"><div class="h"><span class="sw sw-lime"></span>Renewing now</div><div class="names">Scribenote · Gateway<br>Pegasus · CareVet · United Pet</div><div class="goal"><b>Move to:</b> renew onto the platform, not a CSV.</div></div>
+        <div class="pcol"><div class="h"><span class="sw sw-lav"></span>One dataset today</div><div class="names">Wedgewood · Cubex<br>Felix</div><div class="goal"><b>Move to:</b> the platform, buying both EPD + IPD.</div></div>
+        <div class="pcol"><div class="h"><span class="sw sw-amber"></span>Win back</div><div class="names">Teravet (lapsed)<br>Chewy</div><div class="goal"><b>Move to:</b> re-engaged on the change story.</div></div>
+        <div class="pcol"><div class="h"><span class="sw sw-ink"></span>Grow the anchors</div><div class="names">Hills · Zoetis<br>Merck</div><div class="goal"><b>Move to:</b> shelters, workforce, bigger asks.</div></div>
       </div>
-      <p class="logos">The renewal message writes itself: <b>your data is out of date — here's how much changed.</b> Every renewal is a discovery call and a platform demo.</p>
+      <div class="adrow"><span class="tag dark">Ads &amp; sponsorship</span><span>Dechra is the account of the quarter; Connor's target is <b>~$75K</b> in new bookings — and every open ad deal is also a data conversation.</span></div>
+      <p class="logos"><b>~$245K renewal book</b> coming up + <b>~$75K</b> ad target → the <b>~$260K</b> booked goal by day 90. The renewal message writes itself: your data is out of date, and here's how much changed.</p>
     </div>
     <div class="foot"><span class="brand">VETINTEL</span><span class="num"></span></div>
   </section>
@@ -407,8 +432,8 @@ table.swim td li::before{content:"›"; position:absolute; left:0; color:var(--m
       <div class="eyebrow">The content engine <span class="act">· automate, personalize, integrate</span></div>
       <h2>Free the team from manual work — then make content <span class="hl lav">personal and measurable</span>.</h2>
       <div class="grid g3">
-        <div class="card"><div class="k">Automate</div><p>The Newsfeed Intake Agent scans hundreds of sources daily against our 551-story archive; add Bitly tracking. The low-value retrieval and formatting goes away — the team gets promoted into judgment and original work.</p></div>
-        <div class="card mkv"><div class="k">Personalize &amp; promote</div><p>Bring content <b>into the platform</b>, linked to the data, so feeds personalize by role, account, and interest — and <b>data-led stories promote the EPD/IPD</b> to the people who buy it.</p></div>
+        <div class="card"><div class="k">Automate</div><p>The Newsfeed Intake Agent scans hundreds of sources daily against our legacy story archive; add Bitly tracking. The low-value retrieval and formatting goes away — the team gets promoted into judgment and original work.</p></div>
+        <div class="card mkv"><div class="k">Personalize to drive engagement</div><p>Bring content <b>into the platform</b>, linked to the data, so feeds personalize by role, account, and interest — <b>focused on driving engagement</b>, without swinging the pendulum too far from what readers already love. Data-led stories promote the EPD/IPD to the people who buy it.</p></div>
         <div class="card mkl"><div class="k">Editorial relationships</div><p>Original, data-driven stories only VetIntel can produce — breaking news on every executive's desk — powered by a growing contributor and editorial network.</p></div>
       </div>
       <p class="note" style="color:var(--muted-2)">Visual to add: contributor-network screenshots + a personalized-newsfeed mockup.</p>
@@ -454,7 +479,7 @@ table.swim td li::before{content:"›"; position:absolute; left:0; color:var(--m
   <section class="slide s-paper">
     <div class="stage">
       <div class="eyebrow">What we're building toward <span class="act">· what must be true on October 8</span></div>
-      <h2>Day 90 is a <span class="hl">checklist</span>, not a feeling.</h2>
+      <h2>What must be <span class="hl">true by October 8</span>.</h2>
       <div class="check">
         <div class="item"><div class="box"></div><div><span>July data set refreshed &amp; loaded</span><small>the core promise, protected · Paul·Ben</small></div></div>
         <div class="item"><div class="box"></div><div><span>Platform live; customers onboarded</span><small>report / list / question · Ben</small></div></div>
