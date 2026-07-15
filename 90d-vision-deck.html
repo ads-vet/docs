@@ -112,6 +112,7 @@ h2{font-size:clamp(28px,3.9vw,50px); line-height:1.08}
 .rnode:nth-of-type(even) .n{background:var(--lav)}
 .rnode .nm{font-size:9px; font-weight:700; letter-spacing:.08em; text-transform:uppercase; line-height:1.2}
 .rnode.p1{left:50%;top:17.5%}.rnode.p2{left:80.9%;top:40%}.rnode.p3{left:69.1%;top:76.3%}.rnode.p4{left:30.9%;top:76.3%}.rnode.p5{left:19.1%;top:40%}
+.rnode.q1{left:50%;top:15.5%}.rnode.q2{left:84.5%;top:50%}.rnode.q3{left:50%;top:84.5%}.rnode.q4{left:15.5%;top:50%}
 .rhub{position:absolute; left:50%; top:50%; transform:translate(-50%,-50%); text-align:center; width:30%}
 .rhub .lab{font-family:var(--f-serif); font-weight:700; font-size:13px; line-height:1.1}
 .rhub .ul{height:3px; width:44px; background:var(--lime); margin:6px auto 0}
@@ -141,6 +142,8 @@ h2{font-size:clamp(28px,3.9vw,50px); line-height:1.08}
 .pcol .names{font-family:var(--f-serif); font-size:16px; font-weight:700; line-height:1.4}
 .pcol .goal{font-size:12px; color:var(--muted); margin-top:8px; border-top:1px solid var(--rule-soft); padding-top:8px}
 .pcol .goal b{color:var(--ink); font-weight:700}
+.pcol .val{font-family:var(--f-serif); font-size:22px; font-weight:600; letter-spacing:-.01em; margin-top:10px}
+.pcol .val small{display:block; font-family:var(--f-sans); font-size:10px; font-weight:700; letter-spacing:.1em; text-transform:uppercase; color:var(--muted-2); margin-top:1px}
 .logos{margin-top:14px; font-size:12.5px; color:var(--muted)} .logos b{color:var(--ink); font-weight:700}
 
 /* swimlanes */
@@ -235,7 +238,7 @@ table.swim td li::before{content:"›"; position:absolute; left:0; color:var(--m
       <div class="cover-kick">The Veterinary Intelligence Company</div>
       <h1>The Next <span class="hl">90 Days</span></h1>
       <div class="rule"></div>
-      <p class="sub">July 10 → October 8, 2026 &nbsp;·&nbsp; One commercial interface, powered by two reinforcing engines.</p>
+      <p class="sub">July → October 2026 &nbsp;·&nbsp; One commercial interface, powered by two reinforcing engines.</p>
     </div>
     <div class="foot"><span class="brand">VETINTEL</span><span>Internal · Team Vision</span></div>
   </section>
@@ -243,27 +246,32 @@ table.swim td li::before{content:"›"; position:absolute; left:0; color:var(--m
   <!-- WHAT WE LEARNED -->
   <section class="slide s-paper">
     <div class="stage">
-      <div class="eyebrow">What we learned <span class="act">· from the team and from customers</span></div>
+      <div class="eyebrow">What we learned <span class="act">· we pressure-tested it with the team and with customers</span></div>
       <blockquote class="quote">
-        <p>"You've got a horse that can run here — a thoroughbred."</p>
+        <p>"You've got a horse that can run here. A thoroughbred — and we're treating it like a mule."</p>
         <cite>Andrew Chisholm, Phibro · July 8</cite>
       </blockquote>
-      <p class="qframe">What he's really saying: <b>the data is powerful, but customers can't fully use it yet.</b> That gap — not the team, not the data — is the problem we solve.</p>
-      <div class="split">
+      <p class="qframe">He's not knocking the team or the data — he's saying <b>the data is powerful, and customers can't fully use it yet.</b> Closing that gap is the whole opportunity.</p>
+      <div class="grid g3">
         <div class="card mkl">
-          <div class="k">From the team</div>
+          <div class="k">The vision holds up</div>
           <ul>
-            <li>The culture is fantastic — jump in, absorb last-minute edits, ship every issue on time.</li>
-            <li>But it's heavy manual work, so there's little time to ask where the content could go.</li>
-            <li><b>We can't measure it:</b> only ~1% click through the PDF, so the vast majority never reach the stories.</li>
+            <li>Customers want to "run through our pipes" to reach the market.</li>
+            <li>The commercial-interface thesis lands in every conversation.</li>
+          </ul>
+        </div>
+        <div class="card">
+          <div class="k">The data is valuable</div>
+          <ul>
+            <li>But they redo manual matching and cleaning before they can use it.</li>
+            <li>They want more — and we can't yet see how they use it.</li>
           </ul>
         </div>
         <div class="card mkv">
-          <div class="k">From customers</div>
+          <div class="k">The content is trusted</div>
           <ul>
-            <li>The data is valuable — but they redo manual matching and cleaning before they can use it.</li>
-            <li>They want more data, and help activating it in their own workflow.</li>
-            <li>We can't see how they use it — and they tell us they want to use it <b>more</b>.</li>
+            <li>The team ships every issue heroically — but it's heavy manual work.</li>
+            <li>We can't measure it: only ~1% click through the PDF.</li>
           </ul>
         </div>
       </div>
@@ -294,7 +302,7 @@ table.swim td li::before{content:"›"; position:absolute; left:0; color:var(--m
         <div class="engine data">
           <div class="k">The data engine</div>
           <h3>Data</h3>
-          <p><b>More data, connected to more places, served up more frequently.</b> The living view of the market — practices, people, shelters, vendors, software, history — customers work inside and connect to their own systems.</p>
+          <p><b>More data, connected to more places, served up more frequently.</b> The living, verified view of the market — practices, people, shelters, vendors, software, history — that customers work inside, connect to their CRM, and see change over time.</p>
         </div>
         <div class="engine content">
           <div class="k">The content engine</div>
@@ -380,15 +388,15 @@ table.swim td li::before{content:"›"; position:absolute; left:0; color:var(--m
   <!-- PIPELINE -->
   <section class="slide s-paper">
     <div class="stage">
-      <div class="eyebrow">The commercial pipeline <span class="act">· what's coming up, and the goal for each</span></div>
-      <h2>Real names, real relationships — and a <span class="hl">goal for every one</span>.</h2>
+      <div class="eyebrow">The commercial pipeline <span class="act">· what's coming up, and where we want each account</span></div>
+      <h2>The accounts coming up — and <span class="hl">where we're taking them</span>.</h2>
       <div class="pipe">
-        <div class="pcol"><div class="h"><span class="sw sw-lime"></span>Renewing now</div><div class="names">Ammo · Butterfly<br>United Pet Care</div><div class="goal"><b>Goal:</b> renew onto the platform, not a CSV.</div></div>
-        <div class="pcol"><div class="h"><span class="sw sw-lav"></span>One dataset today</div><div class="names">Wedgewood · Cubex<br>Felix</div><div class="goal"><b>Goal:</b> onto the platform, and sell both EPD + IPD.</div></div>
-        <div class="pcol"><div class="h"><span class="sw sw-amber"></span>Win back</div><div class="names">Teravet (lapsed)<br>Chewy</div><div class="goal"><b>Goal:</b> re-engage with the change story + new platform.</div></div>
-        <div class="pcol"><div class="h"><span class="sw sw-ink"></span>Grow the anchors</div><div class="names">Hills · Zoetis<br>Merck</div><div class="goal"><b>Goal:</b> shelters, workforce, and far bigger asks.</div></div>
+        <div class="pcol"><div class="h"><span class="sw sw-lime"></span>Renewing now</div><div class="names">Ammo · Butterfly<br>United Pet Care</div><div class="val">~$40K<small>annual value</small></div><div class="goal"><b>Move to:</b> renew onto the platform, not a CSV.</div></div>
+        <div class="pcol"><div class="h"><span class="sw sw-lav"></span>One dataset today</div><div class="names">Wedgewood · Cubex<br>Felix</div><div class="val">~$35K<small>+ upsell headroom</small></div><div class="goal"><b>Move to:</b> the platform, buying both EPD + IPD.</div></div>
+        <div class="pcol"><div class="h"><span class="sw sw-amber"></span>Win back</div><div class="names">Teravet (lapsed)<br>Chewy</div><div class="val">~$15K<small>to recover</small></div><div class="goal"><b>Move to:</b> re-engaged on the change story + platform.</div></div>
+        <div class="pcol"><div class="h"><span class="sw sw-ink"></span>Grow the anchors</div><div class="names">Hills · Zoetis<br>Merck</div><div class="val">$90K+<small>and climbing</small></div><div class="goal"><b>Move to:</b> shelters, workforce, and far bigger asks.</div></div>
       </div>
-      <p class="logos">The renewal message writes itself: <b>your data is out of date — and here's how much changed.</b> Every renewal is a discovery call and a platform demo.</p>
+      <p class="logos">The renewal message writes itself: <b>your data is out of date — here's how much changed.</b> Every renewal is a discovery call and a platform demo.</p>
     </div>
     <div class="foot"><span class="brand">VETINTEL</span><span class="num"></span></div>
   </section>
@@ -400,10 +408,9 @@ table.swim td li::before{content:"›"; position:absolute; left:0; color:var(--m
       <h2>Free the team from manual work — then make content <span class="hl lav">personal and measurable</span>.</h2>
       <div class="grid g3">
         <div class="card"><div class="k">Automate</div><p>The Newsfeed Intake Agent scans hundreds of sources daily against our 551-story archive; add Bitly tracking. The low-value retrieval and formatting goes away — the team gets promoted into judgment and original work.</p></div>
-        <div class="card mkv"><div class="k">Personalize</div><p>Not 400 Mailchimp segments — bring content <b>into the platform</b>, linked to the data, so feeds personalize by role, account, and interest.</p></div>
-        <div class="card mkl"><div class="k">New insights</div><p>Data-led stories only VetIntel can produce — breaking news on every executive's desk. Plus the contributor network for taste and reach.</p></div>
+        <div class="card mkv"><div class="k">Personalize &amp; promote</div><p>Bring content <b>into the platform</b>, linked to the data, so feeds personalize by role, account, and interest — and <b>data-led stories promote the EPD/IPD</b> to the people who buy it.</p></div>
+        <div class="card mkl"><div class="k">Editorial relationships</div><p>Original, data-driven stories only VetIntel can produce — breaking news on every executive's desk — powered by a growing contributor and editorial network.</p></div>
       </div>
-      <blockquote class="quote sm" style="margin-top:16px"><p>"We moved away from vendor-curated content because we weren't seeing engagement… now the member engagement is just phenomenal."</p><cite>Kim London, TVC · July 14 — measurement makes editorial better, not more sponsored</cite></blockquote>
       <p class="note" style="color:var(--muted-2)">Visual to add: contributor-network screenshots + a personalized-newsfeed mockup.</p>
     </div>
     <div class="foot"><span class="brand">VETINTEL</span><span class="num"></span></div>
@@ -413,15 +420,15 @@ table.swim td li::before{content:"›"; position:absolute; left:0; color:var(--m
   <section class="slide s-paper">
     <div class="stage">
       <div class="eyebrow">The plan on one page <span class="act">· Data · Commercial Plan · Content</span></div>
-      <h2>Here is <span class="hl">all the work</span>.</h2>
+      <h2>It only works if the three lanes <span class="hl">move together</span>.</h2>
       <div class="swim-wrap">
         <table class="swim">
           <thead><tr><th>Lane</th><th>First 30 days</th><th>Days 30–90</th><th>After day 90</th></tr></thead>
           <tbody>
             <tr>
               <td class="lane data">Data</td>
-              <td><ul><li>Ship refresh; load the platform</li><li>Stand up verification</li></ul></td>
-              <td><ul><li>Onboard customers</li><li>Launch workforce &amp; shelter datasets</li><li>Prove the CRM connection</li></ul></td>
+              <td><ul><li>Ship the CSV refresh; load it into the new platform</li><li>Stand up verification</li></ul></td>
+              <td><ul><li>Onboard customers; enrich the dataset with their data</li><li>Understand our customer base + track performance</li><li>Launch workforce &amp; shelter datasets; prove the CRM connection</li></ul></td>
               <td><ul><li>More frequent refresh</li><li>Vendor / software / financial data</li></ul></td>
             </tr>
             <tr>
@@ -432,9 +439,9 @@ table.swim td li::before{content:"›"; position:absolute; left:0; color:var(--m
             </tr>
             <tr>
               <td class="lane content">Content</td>
-              <td><ul><li>Automate news discovery</li><li>Add story-level tracking</li></ul></td>
-              <td><ul><li>Personalize feeds; bring content into the platform</li><li>Publish first data stories</li></ul></td>
-              <td><ul><li>Expand the contributor network</li><li>Personalized distribution</li></ul></td>
+              <td><ul><li>Automate news discovery; add story-level tracking</li><li>Personalized, data-led stories that promote the EPD/IPD</li></ul></td>
+              <td><ul><li>Bring content into the platform</li><li>Publish first data stories; grow editorial relationships</li></ul></td>
+              <td><ul><li>Product launch + market-research push</li><li>Expand the contributor network</li></ul></td>
             </tr>
           </tbody>
         </table>
@@ -579,29 +586,35 @@ table.swim td li::before{content:"›"; position:absolute; left:0; color:var(--m
     <div class="foot"><span class="brand">VETINTEL</span><span class="num"></span></div>
   </section>
 
-  <!-- APPX: GLOSSARY -->
+  <!-- APPX: JOBS BOARD FLYWHEEL -->
   <section class="slide s-paper appx-slide">
     <div class="stage">
-      <div class="eyebrow"><span class="tag dark">Appendix</span> Words we use <span class="act">· a new-hire cheat sheet</span></div>
-      <h2>Words we use.</h2>
-      <div class="gloss">
-        <dl class="term"><dt>EPD / IPD</dt><dd>Enterprise Practice Database (~9,700 corporate locations) / Independent Practice Database (~19,000 independent practices).</dd></dl>
-        <dl class="term"><dt>The refresh</dt><dd>The quarterly update of the EPD/IPD — moving toward a more frequent, living pulse.</dd></dl>
-        <dl class="term"><dt>The change story</dt><dd>~20,000 of ~30,000 tracked practices change each quarter — the proof that fresh data is worth paying for.</dd></dl>
-        <dl class="term"><dt>The platform</dt><dd>The product where customers use our data directly: reports, lists, questions, exports, change tracking.</dd></dl>
-        <dl class="term"><dt>Report / list / question</dt><dd>The three core jobs the platform must do in V1.</dd></dl>
-        <dl class="term"><dt>Match-and-return</dt><dd>Customer sends a file → we match, fix, enrich → return it import-ready → they control the import.</dd></dl>
-        <dl class="term"><dt>CRM connector</dt><dd>The step after match-and-return: the customer's system talks to our data directly.</dd></dl>
-        <dl class="term"><dt>RepView</dt><dd>Our AI rep co-pilot — briefs sales reps with company, practice, and people intelligence before meetings.</dd></dl>
-        <dl class="term"><dt>Workforce data</dt><dd>Data about the people in clinics — roles, tenure, credentials, movement.</dd></dl>
-        <dl class="term"><dt>Two engines</dt><dd>Data and Content — the two reinforcing sides of one commercial interface.</dd></dl>
-        <dl class="term"><dt>The loop</dt><dd>Data → content → engagement → platform → richer data. Each turn compounds.</dd></dl>
-        <dl class="term"><dt>Newsfeed Intake Agent</dt><dd>The built agent that scans sources daily and scores candidate stories against our 551-story archive.</dd></dl>
-        <dl class="term"><dt>Data story</dt><dd>A published story built on our own data — one nobody else can write.</dd></dl>
-        <dl class="term"><dt>Story-level measurement</dt><dd>Bitly-tracked links + Mailchimp joins that finally show which stories resonate.</dd></dl>
-        <dl class="term"><dt>Vet Together</dt><dd>Hosted buying event (Oct 1–3) where we prove the commercial interface with real buyers and vendors.</dd></dl>
-        <dl class="term"><dt>FR / PCW / VSI</dt><dd>The Fountain Report / Pet Care Weekly / Veterinary Student Insider.</dd></dl>
+      <div class="eyebrow"><span class="tag dark">Appendix</span> The jobs board <span class="act">· the post-90 network product</span></div>
+      <h2>The jobs board is the wedge; the <span class="hl">people graph</span> is the asset.</h2>
+      <div class="loop-wrap">
+        <div class="ring" role="img" aria-label="Jobs-board flywheel: the job market map reveals demand, candidate profiles enrich talent, recruiting monetizes matches, and knowledge work creates signals — all feeding the veterinary workforce graph.">
+          <svg viewBox="0 0 400 400" aria-hidden="true">
+            <defs><marker id="ah2" markerWidth="9" markerHeight="9" refX="5" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6 Z" fill="#111111"></path></marker></defs>
+            <circle cx="200" cy="200" r="130" fill="none" stroke="#A1A1AA" stroke-width="1" stroke-dasharray="2 6"></circle>
+            <path d="M262,92 A130 130 0 0 1 308,200" fill="none" stroke="#111111" stroke-width="1.4" marker-end="url(#ah2)"></path>
+            <path d="M308,200 A130 130 0 0 1 262,308" fill="none" stroke="#111111" stroke-width="1.4" marker-end="url(#ah2)"></path>
+            <path d="M138,308 A130 130 0 0 1 92,200" fill="none" stroke="#111111" stroke-width="1.4" marker-end="url(#ah2)"></path>
+            <path d="M92,200 A130 130 0 0 1 138,92" fill="none" stroke="#111111" stroke-width="1.4" marker-end="url(#ah2)"></path>
+          </svg>
+          <div class="rnode q1"><span class="n">1</span><div class="nm">Job market<br>map</div></div>
+          <div class="rnode q2"><span class="n">2</span><div class="nm">Candidate<br>profiles</div></div>
+          <div class="rnode q3"><span class="n">3</span><div class="nm">Recruiting<br>&amp; placements</div></div>
+          <div class="rnode q4"><span class="n">4</span><div class="nm">Knowledge<br>work</div></div>
+          <div class="rhub"><div class="lab">Workforce<br>graph</div><div class="ul"></div></div>
+        </div>
+        <div class="loop-list">
+          <div class="li"><span class="ln">1</span><div><b>Job market map</b> — open roles reveal demand and the first workforce signal.</div></div>
+          <div class="li"><span class="ln">2</span><div><b>Candidate profiles</b> — professionals verify their own records to access opportunities.</div></div>
+          <div class="li"><span class="ln">3</span><div><b>Recruiting &amp; placements</b> — matches monetize, and produce hiring &amp; movement data.</div></div>
+          <div class="li"><span class="ln">4</span><div><b>Knowledge work</b> — the verified network powers research, validation, and expert content.</div></div>
+        </div>
       </div>
+      <p class="note">Decision-ready at day 90, built in the fall. It gives veterinary professionals a reason to join and maintain their own records — which makes workforce data self-sustaining.</p>
     </div>
     <div class="foot"><span class="brand">VETINTEL</span><span class="num"></span></div>
   </section>
