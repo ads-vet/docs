@@ -120,6 +120,17 @@ h2{font-size:clamp(28px,3.9vw,50px); line-height:1.08}
 .li{display:flex; gap:14px; align-items:baseline; font-size:14px; color:var(--ink); padding:9px 0; border-bottom:1px solid var(--rule-soft)}
 .li:last-child{border-bottom:none} .li b{font-weight:700}
 .li .ln{font-family:var(--f-serif); font-weight:700; color:var(--ink); width:18px; flex:none; font-size:16px}
+.rnode .ic{font-family:var(--f-serif); font-size:19px; font-weight:700; line-height:1; margin-bottom:2px}
+.fw-cards{display:flex; flex-direction:column; gap:8px}
+.fw-cards .fc{border:1px solid var(--rule); border-left:3px solid var(--lime); padding:10px 13px; background:var(--white)}
+.fw-cards .fc.lav{border-left-color:var(--lav)}
+.fw-cards .fc .hd{display:flex; align-items:center; gap:8px; margin-bottom:3px}
+.fw-cards .fc .b{width:18px; height:18px; flex:none; display:flex; align-items:center; justify-content:center; font-size:10px; font-weight:700; border:1px solid var(--rule); background:var(--lime)}
+.fw-cards .fc.lav .b{background:var(--lav)}
+.fw-cards .fc h4{font-family:var(--f-serif); font-size:14.5px; font-weight:700}
+.fw-cards .fc p{font-size:11.5px; color:var(--muted); line-height:1.35}
+.fw-cards .fc .tags{display:flex; gap:4px; flex-wrap:wrap; margin-top:5px}
+.fw-cards .fc .tg{font-size:9px; font-weight:700; letter-spacing:.04em; text-transform:uppercase; border:1px solid var(--rule); padding:2px 6px; color:var(--ink)}
 
 /* demo */
 .demo{display:grid; grid-template-columns:1fr 1fr; gap:14px; margin-top:22px}
@@ -335,32 +346,39 @@ table.cmp td b{color:var(--ink); font-weight:700}
   <!-- THE LOOP -->
   <section class="slide s-paper">
     <div class="stage">
-      <div class="eyebrow">Why it compounds <span class="act">· the loop</span></div>
-      <h2>Each turn makes the next one <span class="hl">bigger</span>.</h2>
+      <div class="eyebrow">Why it compounds <span class="act">· the flywheel</span></div>
+      <h2>Enterprise data sales fund the loop that <span class="hl">deepens the moat</span>.</h2>
       <div class="loop-wrap">
-        <div class="ring" role="img" aria-label="The loop: data spots changes, content explains and reaches the audience, engagement reveals intent, the platform personalizes and verifies, and signals strengthen the data — repeating.">
+        <div class="ring" role="img" aria-label="The flywheel: enterprise data sales fund product expansion, which attracts users into network growth, which extracts signal into deeper data collection, which enriches the proprietary data moat and funds more sales.">
           <svg viewBox="0 0 400 400" aria-hidden="true">
-            <defs><marker id="ah" markerWidth="9" markerHeight="9" refX="5" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6 Z" fill="#111111"></path></marker></defs>
-            <circle cx="200" cy="200" r="130" fill="none" stroke="#A1A1AA" stroke-width="1" stroke-dasharray="2 6"></circle>
-            <path d="M200,70 A130 130 0 0 1 323.7,159.8" fill="none" stroke="#111111" stroke-width="1.4" marker-end="url(#ah)"></path>
-            <path d="M323.7,159.8 A130 130 0 0 1 276.4,305.2" fill="none" stroke="#111111" stroke-width="1.4" marker-end="url(#ah)"></path>
-            <path d="M276.4,305.2 A130 130 0 0 1 123.6,305.2" fill="none" stroke="#111111" stroke-width="1.4" marker-end="url(#ah)"></path>
-            <path d="M123.6,305.2 A130 130 0 0 1 76.3,159.8" fill="none" stroke="#111111" stroke-width="1.4" marker-end="url(#ah)"></path>
-            <path d="M76.3,159.8 A130 130 0 0 1 200,70" fill="none" stroke="#111111" stroke-width="1.4" marker-end="url(#ah)"></path>
+            <defs>
+              <marker id="fwa" markerWidth="9" markerHeight="9" refX="5" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6 Z" fill="#111827"></path></marker>
+              <path id="fp12" d="M262,92 A130 130 0 0 1 308,200" fill="none"></path>
+              <path id="fp23" d="M308,200 A130 130 0 0 1 262,308" fill="none"></path>
+              <path id="fp34" d="M138,308 A130 130 0 0 1 92,200" fill="none"></path>
+              <path id="fp41" d="M92,200 A130 130 0 0 1 138,92" fill="none"></path>
+            </defs>
+            <circle cx="200" cy="200" r="130" fill="none" stroke="#D4D4D8" stroke-width="1" stroke-dasharray="2 6"></circle>
+            <path d="M262,92 A130 130 0 0 1 308,200" fill="none" stroke="#111827" stroke-width="1.4" marker-end="url(#fwa)"></path>
+            <path d="M308,200 A130 130 0 0 1 262,308" fill="none" stroke="#111827" stroke-width="1.4" marker-end="url(#fwa)"></path>
+            <path d="M138,308 A130 130 0 0 1 92,200" fill="none" stroke="#111827" stroke-width="1.4" marker-end="url(#fwa)"></path>
+            <path d="M92,200 A130 130 0 0 1 138,92" fill="none" stroke="#111827" stroke-width="1.4" marker-end="url(#fwa)"></path>
+            <text font-family="'Space Grotesk',sans-serif" font-size="8" font-weight="700" fill="#6B7280" letter-spacing="0.14em"><textPath href="#fp12" startOffset="50%" text-anchor="middle"><tspan dy="-7">REVENUE FUNDS</tspan></textPath></text>
+            <text font-family="'Space Grotesk',sans-serif" font-size="8" font-weight="700" fill="#6B7280" letter-spacing="0.14em"><textPath href="#fp23" startOffset="50%" text-anchor="middle"><tspan dy="-7">ATTRACTS USERS</tspan></textPath></text>
+            <text font-family="'Space Grotesk',sans-serif" font-size="8" font-weight="700" fill="#6B7280" letter-spacing="0.14em"><textPath href="#fp34" startOffset="50%" text-anchor="middle"><tspan dy="15">EXTRACTS SIGNAL</tspan></textPath></text>
+            <text font-family="'Space Grotesk',sans-serif" font-size="8" font-weight="700" fill="#6B7280" letter-spacing="0.14em"><textPath href="#fp41" startOffset="50%" text-anchor="middle"><tspan dy="15">ENRICHES MOAT</tspan></textPath></text>
           </svg>
-          <div class="rnode p1"><span class="n">1</span><div class="nm">Data spots<br>changes</div></div>
-          <div class="rnode p2"><span class="n">2</span><div class="nm">Content<br>explains</div></div>
-          <div class="rnode p3"><span class="n">3</span><div class="nm">Engagement<br>reveals intent</div></div>
-          <div class="rnode p4"><span class="n">4</span><div class="nm">Platform<br>personalizes</div></div>
-          <div class="rnode p5"><span class="n">5</span><div class="nm">Signals<br>enrich data</div></div>
-          <div class="rhub"><div class="lab">One<br>platform</div><div class="ul"></div></div>
+          <div class="rnode q1"><span class="n">1</span><div class="ic">$</div><div class="nm">Enterprise<br>data sales</div></div>
+          <div class="rnode q2"><span class="n">2</span><div class="ic">⚙</div><div class="nm">Product<br>expansion</div></div>
+          <div class="rnode q3"><span class="n">3</span><div class="ic">⬡</div><div class="nm">Network<br>growth</div></div>
+          <div class="rnode q4"><span class="n">4</span><div class="ic">◎</div><div class="nm">Deeper data<br>collection</div></div>
+          <div class="rhub"><div class="lab">Proprietary<br>data moat</div><div class="ul"></div></div>
         </div>
-        <div class="loop-list">
-          <div class="li"><span class="ln">1</span><div><b>Data</b> spots the important changes, stories, people, and accounts.</div></div>
-          <div class="li"><span class="ln">2</span><div><b>Content</b> explains them and reaches the right audience.</div></div>
-          <div class="li"><span class="ln">3</span><div><b>Engagement</b> reveals interests and commercial intent.</div></div>
-          <div class="li"><span class="ln">4</span><div>The <b>platform</b> personalizes the experience and captures verification.</div></div>
-          <div class="li"><span class="ln">5</span><div>Those <b>signals</b> strengthen the data and open the next deal.</div></div>
+        <div class="fw-cards">
+          <div class="fc"><div class="hd"><span class="b">1</span><h4>Enterprise Data Sales</h4></div><p>Enterprise customers pay for proprietary vet intelligence — revenue funds the entire system.</p><div class="tags"><span class="tg">Zoetis</span><span class="tg">Merck</span><span class="tg">Boehringer</span><span class="tg">20+ customers</span></div></div>
+          <div class="fc lav"><div class="hd"><span class="b">2</span><h4>Product Expansion</h4></div><p>Data revenue funds new products — each one a data-collection surface.</p><div class="tags"><span class="tg">Sales intelligence</span><span class="tg">Exec dashboards</span><span class="tg">News alerts</span></div></div>
+          <div class="fc"><div class="hd"><span class="b">3</span><h4>Network Growth</h4></div><p>Products pull more vet professionals in — every user expands reach and coverage.</p><div class="tags"><span class="tg">Sales reps</span><span class="tg">DVMs</span><span class="tg">Industry buyers</span></div></div>
+          <div class="fc lav"><div class="hd"><span class="b">4</span><h4>Deeper Data Collection</h4></div><p>Network interactions generate proprietary signal — closing the loop.</p><div class="tags"><span class="tg">App usage</span><span class="tg">Content analytics</span><span class="tg">Direct surveys</span></div></div>
         </div>
       </div>
     </div>
