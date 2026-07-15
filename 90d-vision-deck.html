@@ -21,9 +21,9 @@ html{scroll-behavior:smooth}
 @media (prefers-reduced-motion: reduce){html{scroll-behavior:auto}*{animation:none!important;transition:none!important}}
 body{background:#0a0a0a; font-family:var(--f-sans); color:var(--ink); font-weight:400; -webkit-font-smoothing:antialiased; line-height:1.5}
 .deck{scroll-snap-type:y proximity; height:100vh; overflow-y:auto; overflow-x:hidden}
-.slide{scroll-snap-align:start; min-height:100vh; display:flex; align-items:center; justify-content:center;
-       padding:clamp(28px,5vh,56px) clamp(20px,5vw,64px); position:relative}
-.stage{width:100%; max-width:var(--w)}
+.slide{scroll-snap-align:start; min-height:100vh; display:flex; flex-direction:column; align-items:center;
+       padding:clamp(22px,3.5vh,44px) clamp(20px,5vw,64px) clamp(14px,2.5vh,24px); position:relative}
+.stage{width:100%; max-width:var(--w); flex:1 1 auto; display:flex; flex-direction:column; justify-content:center; min-height:0}
 .s-paper{background:var(--paper)}
 .s-dark{background:#000; color:var(--paper)}
 .ledger{background-image:linear-gradient(to right,var(--grid) 1px,transparent 1px),linear-gradient(to bottom,var(--grid) 1px,transparent 1px); background-size:40px 40px}
@@ -78,7 +78,7 @@ h2{font-size:clamp(28px,3.9vw,50px); line-height:1.08}
 .card.mkl{border-top:3px solid var(--lime)} .card.mkv{border-top:3px solid var(--lav)}
 
 /* foot / chrome */
-.foot{position:absolute; left:clamp(20px,5vw,64px); right:clamp(20px,5vw,64px); bottom:20px;
+.foot{flex:none; width:100%; max-width:var(--w); margin-top:clamp(14px,2.5vh,22px);
   display:flex; justify-content:space-between; align-items:center; font-size:10px; letter-spacing:.2em; text-transform:uppercase; color:var(--muted-2)}
 .foot .brand{font-weight:700; color:var(--ink)} .s-dark .foot .brand{color:var(--paper)}
 .num{font-variant-numeric:tabular-nums}
@@ -416,12 +416,11 @@ table.cmp td b{color:var(--ink); font-weight:700}
       <h2>The accounts coming up — and <span class="hl">where we're taking them</span>.</h2>
       <div class="pipe">
         <div class="pcol"><div class="h"><span class="sw sw-lime"></span>Renewing now</div><div class="names">Scribenote · Gateway<br>Pegasus · CareVet · United Pet</div><div class="goal"><b>Move to:</b> renew onto the platform, not a CSV.</div></div>
-        <div class="pcol"><div class="h"><span class="sw sw-lav"></span>One dataset today</div><div class="names">Wedgewood · Cubex<br>Felix</div><div class="goal"><b>Move to:</b> the platform, buying both EPD + IPD.</div></div>
         <div class="pcol"><div class="h"><span class="sw sw-amber"></span>Win back</div><div class="names">Teravet (lapsed)<br>Chewy</div><div class="goal"><b>Move to:</b> re-engaged on the change story.</div></div>
-        <div class="pcol"><div class="h"><span class="sw sw-ink"></span>Grow the anchors</div><div class="names">Hills · Zoetis<br>Merck</div><div class="goal"><b>Move to:</b> shelters, workforce, bigger asks.</div></div>
+        <div class="pcol"><div class="h"><span class="sw sw-ink"></span>Expand</div><div class="names">Hills · Wedgewood<br>Cubex · Felix</div><div class="goal"><b>Move to:</b> both datasets, shelters, workforce — bigger asks.</div></div>
+        <div class="pcol"><div class="h"><span class="sw sw-lav"></span>VANE &amp; startups</div><div class="names">VANE-referred<br>startups</div><div class="goal"><b>Move to:</b> onboard the cohort onto the platform.</div></div>
       </div>
-      <div class="adrow"><span class="tag dark">Ads &amp; sponsorship</span><span>Dechra is the account of the quarter; Connor's target is <b>~$75K</b> in new bookings — and every open ad deal is also a data conversation.</span></div>
-      <p class="logos"><b>~$245K renewal book</b> coming up + <b>~$75K</b> ad target → the <b>~$260K</b> booked goal by day 90. The renewal message writes itself: your data is out of date, and here's how much changed.</p>
+      <p class="logos">Every renewal is a discovery call and a platform demo — <b>your data is out of date, and here's how much changed.</b></p>
     </div>
     <div class="foot"><span class="brand">VETINTEL</span><span class="num"></span></div>
   </section>
@@ -500,7 +499,7 @@ table.cmp td b{color:var(--ink); font-weight:700}
   <!-- MILESTONES -->
   <section class="slide s-paper">
     <div class="stage">
-      <div class="eyebrow">Company milestones <span class="act">· three moments that make it real</span></div>
+      <div class="eyebrow">Key milestones <span class="act">· the moments that make it real</span></div>
       <h2>We're building toward <span class="hl">dated moments</span>, not vibes.</h2>
       <div class="moments">
         <div class="moment"><div class="when">~Late Aug / early Sep</div><h3>The announcement</h3><p>Reveal the company, website, RepView, and direction — timed to the KC Corridor window.</p></div>
@@ -615,7 +614,7 @@ table.cmp td b{color:var(--ink); font-weight:700}
   <section class="slide s-paper appx-slide">
     <div class="stage">
       <div class="eyebrow"><span class="tag dark">Appendix</span> The jobs board <span class="act">· the post-90 network product</span></div>
-      <h2>The jobs board is the wedge; the <span class="hl">people graph</span> is the asset.</h2>
+      <h2>The job board is the wedge; the <span class="hl">people graph</span> is the compounding asset.</h2>
       <div class="loop-wrap">
         <div class="ring" role="img" aria-label="Jobs-board flywheel: the job market map reveals demand, candidate profiles enrich talent, recruiting monetizes matches, and knowledge work creates signals — all feeding the veterinary workforce graph.">
           <svg viewBox="0 0 400 400" aria-hidden="true">
@@ -627,16 +626,16 @@ table.cmp td b{color:var(--ink); font-weight:700}
             <path d="M92,200 A130 130 0 0 1 138,92" fill="none" stroke="#111111" stroke-width="1.4" marker-end="url(#ah2)"></path>
           </svg>
           <div class="rnode q1"><span class="n">1</span><div class="nm">Job market<br>map</div></div>
-          <div class="rnode q2"><span class="n">2</span><div class="nm">Candidate<br>profiles</div></div>
-          <div class="rnode q3"><span class="n">3</span><div class="nm">Recruiting<br>&amp; placements</div></div>
+          <div class="rnode q2"><span class="n">2</span><div class="nm">Student<br>profiles</div></div>
+          <div class="rnode q3"><span class="n">3</span><div class="nm">Recruiting</div></div>
           <div class="rnode q4"><span class="n">4</span><div class="nm">Knowledge<br>work</div></div>
-          <div class="rhub"><div class="lab">Workforce<br>graph</div><div class="ul"></div></div>
+          <div class="rhub"><div class="lab">Veterinary<br>workforce graph</div><div class="ul"></div></div>
         </div>
         <div class="loop-list">
-          <div class="li"><span class="ln">1</span><div><b>Job market map</b> — open roles reveal demand and the first workforce signal.</div></div>
-          <div class="li"><span class="ln">2</span><div><b>Candidate profiles</b> — professionals verify their own records to access opportunities.</div></div>
-          <div class="li"><span class="ln">3</span><div><b>Recruiting &amp; placements</b> — matches monetize, and produce hiring &amp; movement data.</div></div>
-          <div class="li"><span class="ln">4</span><div><b>Knowledge work</b> — the verified network powers research, validation, and expert content.</div></div>
+          <div class="li"><span class="ln">1</span><div><b>Map job opportunities</b> — open roles, hiring clinics, systems, geography. The first workforce signal layer.</div></div>
+          <div class="li"><span class="ln">2</span><div><b>Launch the veterinary job board</b> — structured supply from day one; VSI reaches 650 vet students, Fountain distributes to 30K.</div></div>
+          <div class="li"><span class="ln">3</span><div><b>Turn resumes into living artifacts</b> — students verify clinic history and systems exposure; each one verifies 2–4 clinics.</div></div>
+          <div class="li"><span class="ln">4</span><div><b>Power recruiting and knowledge work</b> — the people graph supports recruiting, enrichment, QA, expert review, and AI workflows.</div></div>
         </div>
       </div>
       <p class="note">Decision-ready at day 90, built in the fall. It gives veterinary professionals a reason to join and maintain their own records — which makes workforce data self-sustaining.</p>
@@ -656,10 +655,11 @@ table.cmp td b{color:var(--ink); font-weight:700}
   });
   document.getElementById('tot').textContent=slides.length;
   function upd(){
-    var t=deck.scrollTop, h=deck.scrollHeight-deck.clientHeight;
-    prog.style.width=(h>0?(t/h*100):0)+'%';
-    var i=Math.round(t/deck.clientHeight); if(i<0)i=0; if(i>slides.length-1)i=slides.length-1;
-    cur.textContent=('0'+(i+1)).slice(-2);
+    var h=deck.scrollHeight-deck.clientHeight;
+    prog.style.width=(h>0?(deck.scrollTop/h*100):0)+'%';
+    var best=0, bestDist=Infinity, dtop=deck.getBoundingClientRect().top;
+    slides.forEach(function(sl,idx){ var d=Math.abs(sl.getBoundingClientRect().top-dtop); if(d<bestDist){bestDist=d; best=idx;} });
+    cur.textContent=('0'+(best+1)).slice(-2);
   }
   deck.addEventListener('scroll',upd,{passive:true}); upd();
   document.addEventListener('keydown',function(e){
