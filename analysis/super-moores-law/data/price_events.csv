@@ -1,0 +1,21 @@
+date,provider,model,event,source,date_accessed
+2022-09-01,OpenAI,GPT-3 davinci,"$60 -> $20 per 1M (-67%), first major cut",https://the-decoder.com/openai-cuts-prices-for-gpt-3-by-two-thirds/,2026-08-02
+2023-03-01,OpenAI,GPT-3.5 Turbo,Chat API launch at $2 flat: 90% below davinci,https://openai.com/blog/introducing-chatgpt-and-whisper-apis,2026-08-02
+2023-11-06,OpenAI,GPT-4 Turbo,"Launch at $10/$30: 3x/2x cheaper than GPT-4, 16x context",https://openai.com/index/new-models-and-developer-products-announced-at-devday/,2026-08-02
+2023-11-21,Anthropic,Claude 2.1,$11.02/$32.68 -> $8/$24 (-27%),https://www.anthropic.com/news/claude-2-1,2026-08-02
+2024-01-25,OpenAI,GPT-3.5 Turbo (0125),$1.00/$2.00 -> $0.50/$1.50,https://cointelegraph.com/news/openai-gpt-4-update-price-drop-new-embeddings-models,2026-08-02
+2024-05-07,DeepSeek,DeepSeek-V2,Launch at ~$0.14/$0.28 ignites China price war (Alibaba cut up to 97%),https://cyber.fsi.stanford.edu/publication/taking-stock-deepseek-shock,2026-08-02
+2024-05-13,OpenAI,GPT-4o,Launch at $5/$15: -50% vs GPT-4 Turbo at higher capability,https://openai.com/index/hello-gpt-4o/,2026-08-02
+2024-08-06,OpenAI,GPT-4o (0806),$5/$15 -> $2.50/$10 (-50%/-33%),https://developers.openai.com/api/docs/models/gpt-4o,2026-08-02
+2024-08-12,Google,Gemini 1.5 Flash,$0.35/$1.05 -> $0.075/$0.30 (~-78%),https://developers.googleblog.com/en/gemini-15-flash-updates-google-ai-studio-gemini-api/,2026-08-02
+2024-10-01,Google,Gemini 1.5 Pro,$3.50/$10.50 -> $1.25/$5.00 (-64%/-52%),https://developers.googleblog.com/en/updated-production-ready-gemini-models-reduced-15-pro-pricing-increased-rate-limits-and-more/,2026-08-02
+2025-01-20,DeepSeek,DeepSeek-R1,o1-class reasoning at $0.55/$2.19 (~1/27th of o1 output price),https://arxiv.org/abs/2501.12948,2026-08-02
+2025-06-10,OpenAI,o3,"$10/$40 -> $2/$8 (-80%), same model, optimized inference",https://venturebeat.com/ai/openai-announces-80-price-drop-for-o3-its-most-powerful-reasoning-model,2026-08-02
+2025-09-19,xAI,Grok 4 Fast,Near-Grok-4 capability at $0.20/$0.50 vs $3/$15 (~-98%),https://simonwillison.net/2025/Sep/20/grok-4-fast/,2026-08-02
+2025-09-29,DeepSeek,DeepSeek-V3.2-Exp,API prices cut 50%+ to $0.28/$0.42 via sparse attention,https://venturebeat.com/ai/deepseeks-new-v3-2-exp-model-cuts-api-pricing-in-half-to-less-than-3-cents,2026-08-02
+2025-11-24,Anthropic,Claude Opus 4.5,Opus tier $15/$75 -> $5/$25 (-67%),https://www.anthropic.com/news/claude-opus-4-5,2026-08-02
+2025-12-10,OpenAI,GPT-5.2,COUNTER-TREND: flagship price INCREASE $1.25/$10 -> $1.75/$14 (+40%),https://openrouter.ai/openai/gpt-5.2,2026-08-02
+2026-04-23,OpenAI,GPT-5.5,"COUNTER-TREND: flagship at $5/$30, 4x GPT-5.1 input price in 5 months",https://en.wikipedia.org/wiki/GPT-5.5,2026-08-02
+2026-05-31,DeepSeek,DeepSeek V4-Pro,Permanent -75% cut to $0.435/$0.87 (1M-context frontier model),https://thetechportal.com/2026/05/23/chinas-deepseek-permanently-cuts-prices-of-flagship-v4-pro-ai-model-by-75/,2026-08-02
+2026-07-30,OpenAI,GPT-5.6 Luna,$1.00/$6.00 -> $0.20/$1.20 (-80%) three weeks after launch; Terra -20%,https://www.cnbc.com/2026/07/30/open-ai-price-cut-gpt.html,2026-08-02
+2026-07-31,DeepSeek,DeepSeek V4-Flash,~Opus-4.8-class (AA 50) at $0.14/$0.28 - 'race to zero',https://www.axios.com/2026/08/01/deepseek-model-cheap-ai-price-war,2026-08-02
