@@ -61,3 +61,22 @@ phenomenon at 10–50×/year for constant capability — our figures are the con
 
 **Strategic close:** anything built on today's model prices gets ~2× cheaper or ~2×
 smarter within a year — design products assuming the intelligence budget keeps compounding.
+
+## Slide 4 (Appendix) — The Open-Weight Catch-Up
+
+Both lines show the best capability score achieved to date, split by license: blue is
+closed/proprietary; orange is models whose weights you can download.
+
+1. **The gap.** 2023: Llama 2 ran ~a year behind GPT-4-class capability. Jan 2025:
+   DeepSeek R1 matched o1-class reasoning ~1 month after o1's API launch. 2026: Kimi K3
+   (2.8T params, modified MIT) sits a few points and ~3–6 months behind the closed frontier.
+2. **The price floor.** Open releases set it: DeepSeek V2 started the China price war
+   (May 2024); R1 undercut o1 27×; V4-Pro is an MIT-licensed, 1M-context frontier model
+   at $0.87/M output — 1–3% of closed flagship prices.
+3. **Nuance.** Open-weight ≠ free to serve; the very top of the leaderboard remains
+   closed (Opus 5, GPT-5.6 Sol, Fable 5); and the strongest open models (K3, Qwen Max)
+   now price *up* toward closed-tier rates.
+
+**For VetIntel:** open weights are the credible threat that keeps closed vendors'
+pricing honest — and the path to self-hosted near-frontier capability for data-sensitive
+workloads (EPD/IPD).

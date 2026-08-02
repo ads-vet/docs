@@ -258,3 +258,74 @@ ax.set_title("Intelligence per dollar has doubled every 6–9 months — Moore's
              loc="left", fontsize=13.5, fontweight="bold", pad=10)
 save(fig, "chart3_super_moores_law")
 print("done")
+
+# =====================================================================
+# CHART 4 — The Open-Weight Catch-Up (best capability to date, by license)
+# =====================================================================
+# re-read to pick up the open_weights column
+rows4 = []
+with open("data/models.csv") as f:
+    for r in csv.DictReader(f):
+        r["d"] = dt.date.fromisoformat(r["date"])
+        r["cap"] = float(r["capability_composite_0to1"]) if r["capability_composite_0to1"] else None
+        r["out_p"] = float(r["output_usd_per_1m"])
+        rows4.append(r)
+
+def cap_envelope(sel):
+    pts = sorted([r for r in rows4 if r["cap"] is not None and sel(r)], key=lambda r: r["d"])
+    hi, xs, ys = -1, [], []
+    for r in pts:
+        if r["cap"] > hi:
+            hi = r["cap"]; xs.append(r["d"]); ys.append(hi * 100)
+    xs.append(dt.date(2026, 8, 2)); ys.append(hi * 100)
+    return xs, ys
+
+fig, ax = plt.subplots(figsize=(12.6, 6.2))
+xc, yc = cap_envelope(lambda r: r["open_weights"] == "no")
+xo, yo = cap_envelope(lambda r: r["open_weights"] == "yes")
+ax.step(xc, yc, where="post", color=BLUE, lw=2.6, zorder=3)
+ax.step(xo, yo, where="post", color=ORANGE, lw=2.6, zorder=3)
+
+ax.set_ylim(0, 108)
+ax.set_xlim(dt.date(2020, 3, 1), dt.date(2027, 5, 1))
+ax.set_ylabel("Best capability score to date (composite, 0–100)", fontsize=10)
+ax.xaxis.set_major_locator(mdates.YearLocator())
+ax.xaxis.set_major_formatter(mdates.DateFormatter("%Y"))
+ax.tick_params(length=0)
+for spine in ("top", "right"): ax.spines[spine].set_visible(False)
+
+ax.annotate("Closed / proprietary frontier\n(Claude Opus 5: 97)", xy=(xc[-1], yc[-1]),
+            textcoords="offset points", xytext=(6, 2), fontsize=9.5, color=BLUE,
+            fontweight="bold", va="top", linespacing=1.3)
+ax.annotate("Open-weight frontier\n(Kimi K3: 93 — at 1/3 the price)", xy=(xo[-1], yo[-1]),
+            textcoords="offset points", xytext=(6, -26), fontsize=9.5, color=ORANGE,
+            fontweight="bold", va="top", linespacing=1.3)
+
+MARKS = [
+    ("c", dt.date(2023, 3, 14), 18.7, "GPT-4", (8, -16)),
+    ("c", dt.date(2024, 12, 17), 59.8, "o1  ($60/M out)", (-6, 10)),
+    ("c", dt.date(2026, 7, 24), 97.0, "Claude Opus 5", (-96, 8)),
+    ("o", dt.date(2023, 7, 18), 13.4, "Llama 2 70B", (8, -18)),
+    ("o", dt.date(2024, 7, 23), 34.8, "Llama 3.1 405B", (6, -20)),
+    ("o", dt.date(2025, 1, 20), 55.6, "DeepSeek R1  ($2.19/M out,\n1/27th of o1)", (8, -30)),
+    ("o", dt.date(2026, 5, 31), 80.6, "DeepSeek V4-Pro  ($0.87/M out)", (-40, -26)),
+    ("o", dt.date(2026, 7, 16), 93.4, "Kimi K3", (-20, -24)),
+]
+for kind, d, v, txt, (dx, dy) in MARKS:
+    ax.scatter([d], [v], s=30, color=BLUE if kind == "c" else ORANGE, zorder=4,
+               marker="D", edgecolors=SURFACE, linewidths=1.0)
+    ax.annotate(txt, (d, v), textcoords="offset points", xytext=(dx, dy),
+                fontsize=8.2, color=INK2, linespacing=1.2)
+
+# lag brackets
+ax.annotate("", xy=(dt.date(2025, 1, 20), 56.5), xytext=(dt.date(2024, 12, 17), 56.5),
+            arrowprops=dict(arrowstyle="-", color=MUTED, lw=1.2))
+ax.annotate("2023: open weights ~a year behind the closed frontier\n"
+            "2025: DeepSeek R1 matches o1-class reasoning ~1 month after o1's API launch\n"
+            "2026: open frontier runs ~3–6 months behind — at 1–30% of the price",
+            xy=(dt.date(2020, 5, 1), 96), fontsize=9.5, color=INK, va="top",
+            fontweight="bold", linespacing=1.5)
+
+ax.set_title("Open-weight models have nearly closed the capability gap — and set the price floor",
+             loc="left", fontsize=13.5, fontweight="bold", pad=10)
+save(fig, "chart4_open_weight_catchup")

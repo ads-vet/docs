@@ -18,10 +18,10 @@ $0.20/$1.20 per 1M tokens on 2026-07-30 (OpenAI announcement + CNBC et al.).
 
 | Path | What it is |
 |---|---|
-| `slides/super-moores-law.pptx` | 3-slide executive deck with embedded speaker notes (PDF alongside) |
+| `slides/super-moores-law.pptx` | 3-slide executive deck + open-weight appendix slide, with embedded speaker notes (PDF alongside) |
 | `slides/speaker_notes.md` | Standalone speaker notes |
-| `charts/*.svg` / `charts/*.png` | The three charts, editable SVG + 200-dpi PNG |
-| `data/models.csv` | Cleaned dataset: 74 model price points × 10 providers, with prices, context, benchmarks, per-row sources, fact/estimate flags |
+| `charts/*.svg` / `charts/*.png` | The four charts (3 core + open-weight catch-up), editable SVG + 200-dpi PNG |
+| `data/models.csv` | Cleaned dataset: 74 model price points × 10 providers, with prices, context, benchmarks, open-weights license flag, per-row sources, fact/estimate flags |
 | `data/price_events.csv` | 20 dated major price cuts / increases with sources |
 | `SOURCES.md` | Methodology, assumptions, index construction, caveats, literature |
 | `build_dataset.py` | Reproducibly regenerates `data/*.csv` and the headline numbers |

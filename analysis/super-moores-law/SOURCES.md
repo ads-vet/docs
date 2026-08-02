@@ -79,6 +79,18 @@ release**, not capability. Budget-priced open frontier models (DeepSeek R1, V4-P
 Mistral Large 3) are classed efficient; that is what makes the two envelopes meaningfully
 different, and it is disclosed here.
 
+## 4b. Open-weights classification (appendix slide)
+
+`open_weights` = `yes` when model weights were publicly downloadable at release —
+including Llama-community-license and Mistral-research-license weights, not only
+OSI-approved licenses. `unverified` (DeepSeek V4-Flash, Kimi K2.5, Qwen 3.6 Plus API
+variant) marks models whose license status this research could not confirm; they are
+treated as closed in the open-vs-closed envelope, which makes the open-weight catch-up
+chart conservative. The capability lag on the appendix slide is read off the same
+composite as Slide 2: Llama 2 trailed the GPT-4-class level by ~a year (2023); DeepSeek
+R1 matched o1-class reasoning ~1 month after o1's API launch (Jan 2025); Kimi K3 and
+DeepSeek V4-Pro trail the 2026 closed frontier by ~3–6 months at 1–30% of the price.
+
 ## 5. Headline numbers on the slides (all calculated from the dataset)
 
 | Claim | Calculation |

@@ -95,4 +95,26 @@ function footer(s, text) {
   );
 }
 
+
+// ---------------- Slide 4: Appendix — The Open-Weight Catch-Up ----------------
+{
+  const s = baseSlide("Appendix: The Open-Weight Catch-Up", "Open-source models are the engine of the price collapse — and now trail the closed frontier by months, not years.");
+  s.addImage({ path: "charts/chart4_open_weight_catchup.png", x: 0.42, y: 1.42, w: 9.35, h: 4.60 });
+  statTile(s, 1.42, 1.5, "~3–6 mo", "capability lag of the best open-weight model behind the closed frontier in 2026 — down from ~a year in 2023", ORANGE, TINT_ORANGE);
+  statTile(s, 3.07, 1.5, "1/27th", "DeepSeek R1's output price vs OpenAI o1 at launch (Jan 2025: $2.19 vs $60 per 1M) — the 'DeepSeek shock'", ORANGE, TINT_ORANGE);
+  statTile(s, 4.72, 1.5, "$0.87", "output price of open-weight DeepSeek V4-Pro (MIT license, 1M context) vs $25–50 for closed flagships", BLUE, TINT_BLUE);
+  s.addText([
+    { text: "Open-weight examples in the dataset: ", options: { bold: true, color: INK } },
+    { text: "Meta Llama 2 / 3.1 405B / 4 · DeepSeek V2, V3, R1, V3.2, V4-Pro (MIT) · Mistral Mixtral & Large 2/3 (Apache 2.0) · Qwen 3 (Apache 2.0) · Kimi K2 / K3 (modified MIT — K3 is the largest open-weight model ever at 2.8T params). Open-weight releases triggered the May-2024 China price war and keep resetting the industry price floor.", options: { color: INK2 } },
+  ], { x: 0.5, y: 6.14, w: 12.3, h: 0.8, fontSize: 11, fontFace: "Calibri", margin: 0, lineSpacingMultiple: 1.1 });
+  footer(s, "License status per model in data/models.csv (open_weights column; 'unverified' flagged). Lag measured on the same capability composite as Slide 2. Sources: SOURCES.md.");
+  s.addNotes(
+    "Optional appendix if open source comes up. Both lines show the best capability score achieved to date, split by license: blue is closed/proprietary, orange is models whose weights you can download. " +
+    "Three beats. First, the gap: in 2023 Llama 2 was about a year behind GPT-4-class capability; DeepSeek R1 matched o1-class reasoning roughly one month after o1's API launch; in 2026 Kimi K3 sits a few points and a few months behind the closed frontier. " +
+    "Second, price: the open ecosystem sets the floor. DeepSeek V2 started the Chinese price war in May 2024; R1 undercut o1 by 27x; V4-Pro is an MIT-licensed, million-token-context frontier model at 87 cents per million output tokens — one to three percent of closed flagship prices. " +
+    "Third, nuance: open-weight does not mean free to serve — someone still runs the GPUs — and the very top of the leaderboard remains closed (Opus 5, GPT-5.6 Sol, Fable 5). Also note the counter-trend: the strongest open models, Kimi K3 and Qwen's flagships, now price UP toward closed-tier rates. " +
+    "For VetIntel: open-weight availability is the credible threat that keeps every closed vendor's pricing honest, and it is what makes self-hosted or private deployments of near-frontier capability plausible for data-sensitive workloads like ours."
+  );
+}
+
 pres.writeFile({ fileName: "slides/super-moores-law.pptx" }).then(() => console.log("deck written"));

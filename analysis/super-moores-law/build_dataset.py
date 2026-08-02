@@ -321,6 +321,8 @@ M = [
       src="https://artificialanalysis.ai/models/qwen3-7-max"),
 ]
 
+# open_weights: yes = weights publicly downloadable at release (incl. Llama-license and
+# Mistral research-license weights); unverified = license not confirmed in this research.
 EVENTS = [
  ("2022-09-01","OpenAI","GPT-3 davinci","$60 -> $20 per 1M (-67%), first major cut","https://the-decoder.com/openai-cuts-prices-for-gpt-3-by-two-thirds/"),
  ("2023-03-01","OpenAI","GPT-3.5 Turbo","Chat API launch at $2 flat: 90% below davinci","https://openai.com/blog/introducing-chatgpt-and-whisper-apis"),
@@ -343,6 +345,8 @@ EVENTS = [
  ("2026-07-30","OpenAI","GPT-5.6 Luna","$1.00/$6.00 -> $0.20/$1.20 (-80%) three weeks after launch; Terra -20%","https://www.cnbc.com/2026/07/30/open-ai-price-cut-gpt.html"),
  ("2026-07-31","DeepSeek","DeepSeek V4-Flash","~Opus-4.8-class (AA 50) at $0.14/$0.28 - 'race to zero'","https://www.axios.com/2026/08/01/deepseek-model-cheap-ai-price-war"),
 ]
+
+OPEN = {'Llama 2 70B (Together)': 'yes', 'Llama 3.1 405B (Together)': 'yes', 'Llama 4 Maverick (Together)': 'yes', 'DeepSeek-V2': 'yes', 'DeepSeek-V3': 'yes', 'DeepSeek-R1': 'yes', 'DeepSeek-V3.2-Exp': 'yes', 'DeepSeek-V4-Pro': 'yes', 'DeepSeek-V4-Flash': 'unverified', 'Mixtral 8x7B': 'yes', 'Mistral Large 2': 'yes', 'Mistral Large 3': 'yes', 'Qwen3-235B': 'yes', 'Qwen 3.6 Plus': 'unverified', 'Kimi K2': 'yes', 'Kimi K2.5': 'unverified', 'Kimi K3': 'yes'}
 
 def blended(inp, out):
     return (3 * inp + out) / 4.0
@@ -369,7 +373,7 @@ anchor = c0 / blended(gpt3["inp"], gpt3["out"])   # intelligence per dollar of G
 os.makedirs("data", exist_ok=True)
 with open("data/models.csv", "w", newline="") as f:
     w = csv.writer(f)
-    w.writerow(["provider","model","tier","date","event","input_usd_per_1m","output_usd_per_1m",
+    w.writerow(["provider","model","tier","open_weights","date","event","input_usd_per_1m","output_usd_per_1m",
                 "blended_usd_per_1m_3to1","context_k_tokens","mmlu","gpqa_diamond",
                 "swe_bench_verified","aa_index_v4_1","capability_composite_0to1","capability_basis",
                 "intelligence_per_dollar_index_gpt3eq1","status","notes","sources","date_accessed"])
@@ -377,7 +381,7 @@ with open("data/models.csv", "w", newline="") as f:
         b = blended(r["inp"], r["out"])
         c, basis = capability(r)
         idx = (c / b) / anchor if c is not None else None
-        w.writerow([r["provider"], r["model"], r["tier"], r["date"], r["event"],
+        w.writerow([r["provider"], r["model"], r["tier"], OPEN.get(r["model"], "no"), r["date"], r["event"],
                     r["inp"], r["out"], round(b, 4), r["ctx"] * 1000,
                     r["mmlu"] or "", r["gpqa"] or "", r["swe"] or "", r["aa"] or "",
                     round(c, 4) if c is not None else "", basis,
